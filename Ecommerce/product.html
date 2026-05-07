@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development – Basic Package | HighCodeX</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* === EXACT STYLES FROM ORIGINAL === */
+        .pd-wrap {
+            --gold: #B8860B;
+            --gold-light: #D4A017;
+            --gold-pale: #FDF8EE;
+            --cream: #FEFCF7;
+            --dark: #1A1208;
+            --text: #3D2E0E;
+            --text-muted: #7A6845;
+            --border: #E8D9B8;
+            --section-bg: #F9F4EA;
+            --shadow-lg: 0 12px 48px rgba(184,134,11,0.16);
+            background: #FEFCF7;
+            font-family: 'Jost', sans-serif;
+            color: #3D2E0E;
+        }
+        .pd-breadcrumb { background: #F9F4EA; border-bottom: 1px solid #E8D9B8; padding: 12px 0; }
+        .pd-breadcrumb-inner { max-width: 1240px; margin: 0 auto; padding: 0 2rem; font-size: 13px; color: #7A6845; }
+        .pd-breadcrumb-inner a { color: #B8860B; text-decoration: none; }
+        .pd-breadcrumb-inner a:hover { text-decoration: underline; }
+        .pd-main { max-width: 1240px; margin: 0 auto; padding: 3rem 2rem; }
+        .pd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+        .pd-main-img {
+            border-radius: 16px; overflow: hidden;
+            border: 1.5px solid #E8D9B8; background: #FDF8EE;
+            height: 460px; display: flex; align-items: center; justify-content: center;
+        }
+        .pd-main-img img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.4s; }
+        .pd-main-img img:hover { transform: scale(1.03); }
+        .pd-thumbs { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+        .pd-thumb {
+            width: 72px; height: 72px; object-fit: cover;
+            border-radius: 8px; cursor: pointer;
+            border: 2px solid #E8D9B8; transition: border-color 0.25s;
+        }
+        .pd-thumb:hover, .pd-thumb.active { border-color: #B8860B; }
+        .pd-category-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #B8860B; margin-bottom: 8px; }
+        .pd-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: #1A1208; line-height: 1.2; margin-bottom: 1rem; }
+        .pd-rating { display: flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; }
+        .pd-stars { color: #F6AD55; font-size: 16px; }
+        .pd-review-cnt { font-size: 13px; color: #7A6845; }
+        .pd-price-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 1.2rem; flex-wrap: wrap; }
+        .pd-price { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: #B8860B; }
+        .pd-old-price { font-size: 18px; color: #bbb; text-decoration: line-through; }
+        .pd-off-badge { background: #E53E3E; color: #fff; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 4px; letter-spacing: 1px; }
+        .pd-stock-in { display: inline-flex; align-items: center; gap: 6px; background: #F0FFF4; color: #276749; border: 1px solid #9AE6B4; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 20px; margin-bottom: 1.2rem; }
+        .pd-stock-out { display: inline-flex; align-items: center; gap: 6px; background: #FFF5F5; color: #C53030; border: 1px solid #FEB2B2; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 20px; margin-bottom: 1.2rem; }
+        .pd-short-desc { color: #7A6845; font-size: 14px; line-height: 1.8; margin-bottom: 1.5rem; }
+        .pd-var-label { font-size: 13px; font-weight: 600; color: #1A1208; margin-bottom: 8px; }
+        .pd-var-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; }
+        .pd-var-btn { padding: 8px 16px; border-radius: 8px; border: 1.5px solid #E8D9B8; background: #fff; color: #7A6845; font-size: 13px; cursor: pointer; transition: all 0.25s; font-family: 'Jost', sans-serif; }
+        .pd-var-btn:hover, .pd-var-btn.active { border-color: #B8860B; color: #B8860B; background: #FDF8EE; }
+        .pd-cart-form { display: flex; gap: 10px; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; }
+        .pd-qty-wrap { display: flex; align-items: center; border: 1.5px solid #E8D9B8; border-radius: 8px; overflow: hidden; background: #fff; }
+        .pd-qty-btn { background: #F9F4EA; border: none; color: #B8860B; width: 40px; height: 46px; font-size: 20px; cursor: pointer; transition: background 0.2s; font-family: 'Jost', sans-serif; }
+        .pd-qty-btn:hover { background: #E8D9B8; }
+        .pd-qty-input { width: 55px; text-align: center; border: none; background: transparent; color: #1A1208; font-size: 16px; font-family: 'Jost', sans-serif; outline: none; }
+        .pd-add-btn { flex: 1; background: #B8860B; color: #fff; border: none; padding: 13px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.25s; font-family: 'Jost', sans-serif; min-width: 160px; }
+        .pd-add-btn:hover { background: #D4A017; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(184,134,11,0.3); }
+        .pd-wish-btn { background: #fff; border: 1.5px solid #E8D9B8; border-radius: 8px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #7A6845; cursor: pointer; transition: all 0.25s; }
+        .pd-wish-btn:hover { border-color: #E53E3E; color: #E53E3E; }
+        .pd-meta { font-size: 12px; color: #aaa; display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .pd-meta span { color: #7A6845; }
+        .pd-divider { height: 1.5px; background: linear-gradient(90deg, transparent, #E8D9B8, transparent); margin: 3rem 0; }
+        .pd-tabs { display: flex; gap: 0; border-bottom: 2px solid #E8D9B8; margin-bottom: 2rem; }
+        .pd-tab-btn { background: none; border: none; padding: 12px 24px; font-size: 14px; font-weight: 600; color: #7A6845; cursor: pointer; border-bottom: 2.5px solid transparent; margin-bottom: -2px; transition: all 0.25s; font-family: 'Jost', sans-serif; }
+        .pd-tab-btn:hover { color: #B8860B; }
+        .pd-tab-btn.active { color: #B8860B; border-bottom-color: #B8860B; }
+        .pd-tab-pane { display: none; }
+        .pd-tab-pane.active { display: block; }
+        .pd-desc-content { color: #3D2E0E; line-height: 1.9; font-size: 15px; }
+        .pd-desc-content strong { color: #1A1208; }
+        .pd-desc-content p { margin-bottom: 1rem; }
+        .pd-review-form-card { background: #fff; border: 1.5px solid #E8D9B8; border-radius: 16px; padding: 1.8rem; margin-bottom: 2rem; }
+        .pd-review-form-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #1A1208; margin-bottom: 1.2rem; }
+        .pd-review-input { width: 100%; border: 1.5px solid #E8D9B8; background: #F9F4EA; border-radius: 8px; padding: 10px 14px; font-size: 14px; font-family: 'Jost', sans-serif; color: #3D2E0E; outline: none; transition: border 0.25s; margin-bottom: 12px; }
+        .pd-review-input:focus { border-color: #B8860B; }
+        .pd-review-submit { background: #B8860B; color: #fff; border: none; padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Jost', sans-serif; transition: all 0.25s; }
+        .pd-review-submit:hover { background: #D4A017; }
+        .pd-review-card { background: #fff; border: 1.5px solid #E8D9B8; border-radius: 12px; padding: 1.4rem; margin-bottom: 12px; }
+        .pd-review-author { font-weight: 600; font-size: 14px; color: #1A1208; }
+        .pd-review-date { font-size: 12px; color: #aaa; }
+        .pd-review-title { font-size: 14px; font-weight: 600; color: #3D2E0E; margin: 6px 0 4px; }
+        .pd-review-text { font-size: 14px; color: #7A6845; line-height: 1.6; }
+        .pd-related-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: #1A1208; margin-bottom: 1.5rem; }
+        .pd-related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+        .pd-rel-card { background: #fff; border: 1.5px solid #E8D9B8; border-radius: 12px; overflow: hidden; transition: all 0.3s; text-decoration: none; display: block; }
+        .pd-rel-card:hover { border-color: #B8860B; transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .pd-rel-img { height: 160px; background: #FDF8EE; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .pd-rel-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .pd-rel-card:hover .pd-rel-img img { transform: scale(1.05); }
+        .pd-rel-body { padding: 1rem; }
+        .pd-rel-name { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: #1A1208; line-height: 1.3; }
+        .pd-rel-price { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: #B8860B; margin-top: 6px; }
+        @media (max-width: 768px) {
+            .pd-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .pd-title { font-size: 26px; }
+            .pd-related-grid { grid-template-columns: repeat(2, 1fr); }
+            .pd-add-btn { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <script src="navbar.js"></script>
+<div class="pd-wrap">
+
+    <!-- BREADCRUMB (HighCodeX) -->
+    <div class="pd-breadcrumb">
+        <div class="pd-breadcrumb-inner">
+            <a href="#">Home</a> &nbsp;/&nbsp;
+            <a href="#">Services</a> &nbsp;/&nbsp;
+            <a href="#">Web Development</a> &nbsp;/&nbsp;
+            <span style="color:#3D2E0E;">Basic Package (3–4 pages)</span>
+        </div>
+    </div>
+
+    <div class="pd-main">
+        <div class="pd-grid">
+            <!-- LEFT: IMAGES -->
+            <div>
+                <div class="pd-main-img">
+                    <img id="pdMainImg" src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&h=460&fit=crop" alt="Web Development">
+                </div>
+                <div class="pd-thumbs">
+                    <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=100&h=100&fit=crop" class="pd-thumb active" onclick="changeImage(this)" alt="Thumb 1">
+                    <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=100&h=100&fit=crop" class="pd-thumb" onclick="changeImage(this)" alt="Thumb 2">
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=100&h=100&fit=crop" class="pd-thumb" onclick="changeImage(this)" alt="Thumb 3">
+                </div>
+            </div>
+
+            <!-- RIGHT: PRODUCT INFO -->
+            <div>
+                <div class="pd-category-tag">Web Development</div>
+                <h1 class="pd-title">Basic Package – 3–4 Pages</h1>
+
+                <!-- RATING -->
+                <div class="pd-rating">
+                    <span class="pd-stars">★★★★★</span>
+                    <span class="pd-review-cnt">(12 reviews)</span>
+                </div>
+
+                <!-- PRICE -->
+                <div class="pd-price-wrap">
+                    <span class="pd-price">₹8,000</span>
+                    <!-- No sale for Basic, but keeping pattern -->
+                </div>
+
+                <!-- STOCK -->
+                <div class="pd-stock-in">
+                    <i class="bi bi-check-circle-fill"></i>
+                    In Stock (unlimited slots)
+                </div>
+
+                <!-- SHORT DESC -->
+                <div class="pd-short-desc">
+                    Perfect for startups and small businesses. Includes a responsive, mobile-friendly website with a clean design, enquiry form, and basic SEO setup.
+                </div>
+
+                <!-- VARIATIONS (Standard & Premium as upgrades) -->
+                <div class="pd-var-label">Upgrade Options:</div>
+                <div class="pd-var-grid">
+                    <button type="button" class="pd-var-btn" data-price="8000" onclick="selectVariation(this, 8000, 'Basic Package')">Basic (3–4 pages) — ₹8,000</button>
+                    <button type="button" class="pd-var-btn" data-price="12000" onclick="selectVariation(this, 12000, 'Standard (5–6 pages)')">Standard (5–6 pages) — ₹12,000</button>
+                    <button type="button" class="pd-var-btn" data-price="18000" onclick="selectVariation(this, 18000, 'Premium (All pages)')">Premium (All pages) — ₹18,000</button>
+                </div>
+
+                <!-- ADD TO CART FORM (demo) -->
+                <div class="pd-cart-form">
+                    <div class="pd-qty-wrap">
+                        <button type="button" class="pd-qty-btn" onclick="changeQty(-1)">−</button>
+                        <input type="number" id="qtyInput" value="1" min="1" class="pd-qty-input">
+                        <button type="button" class="pd-qty-btn" onclick="changeQty(1)">+</button>
+                    </div>
+                    <button type="button" class="pd-add-btn" onclick="addToCart()">
+                        <i class="bi bi-cart-plus"></i> Add to Cart
+                    </button>
+                    <button type="button" class="pd-wish-btn" onclick="toggleWishlist(this)">
+                        <i class="bi bi-heart"></i>
+                    </button>
+                </div>
+
+                <!-- META INFO -->
+                <div class="pd-meta">
+                    <span>SKU: <strong>HCX-BASIC-01</strong></span>
+                    <span>Category: <a href="#" style="color:#B8860B;">Web Development</a></span>
+                    <span>Delivery: <strong>2–3 days project kickoff</strong></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="pd-divider"></div>
+
+        <!-- TABS -->
+        <div class="pd-tabs">
+            <button class="pd-tab-btn active" onclick="openTab('desc', this)">Description</button>
+            <button class="pd-tab-btn" onclick="openTab('reviews', this)">Reviews (12)</button>
+        </div>
+
+        <!-- DESCRIPTION TAB -->
+        <div class="pd-tab-pane active" id="tab-desc">
+            <div class="pd-desc-content">
+                <p><strong>What’s included in the Basic Package?</strong></p>
+                <ul>
+                    <li>Up to 4 pages (Home, About, Gallery, Contact)</li>
+                    <li>Fully responsive design (works on all devices)</li>
+                    <li>Mobile-friendly enquiry form with email notifications</li>
+                    <li>Basic on-page SEO setup (meta tags, alt texts)</li>
+                    <li>Fast loading and clean HTML/CSS code</li>
+                    <li>1 month of free support after launch</li>
+                </ul>
+                <p>This package is ideal for small businesses, freelancers, and startups wanting a professional online presence. You can upgrade to Standard or Premium anytime.</p>
+                <p>All our websites are built with modern technologies: HTML5, CSS3, JavaScript, Bootstrap, and optionally WordPress or Laravel.</p>
+            </div>
+        </div>
+
+        <!-- REVIEWS TAB -->
+        <div class="pd-tab-pane" id="tab-reviews">
+            <!-- Write review form (demo, no backend) -->
+            <div class="pd-review-form-card">
+                <div class="pd-review-form-title">Write a Review</div>
+                <div>
+                    <div style="display:flex; gap:8px; margin-bottom:12px;" id="starWrap">
+                        <label style="cursor:pointer;"><input type="radio" name="rating" value="1" style="display:none;"><span class="star-icon" data-val="1" style="font-size:28px; color:#E8D9B8;" onclick="selectStar(1)" onmouseover="hoverStars(1)" onmouseout="resetStars()">★</span></label>
+                        <label style="cursor:pointer;"><input type="radio" name="rating" value="2" style="display:none;"><span class="star-icon" data-val="2" style="font-size:28px; color:#E8D9B8;" onclick="selectStar(2)" onmouseover="hoverStars(2)" onmouseout="resetStars()">★</span></label>
+                        <label style="cursor:pointer;"><input type="radio" name="rating" value="3" style="display:none;"><span class="star-icon" data-val="3" style="font-size:28px; color:#E8D9B8;" onclick="selectStar(3)" onmouseover="hoverStars(3)" onmouseout="resetStars()">★</span></label>
+                        <label style="cursor:pointer;"><input type="radio" name="rating" value="4" style="display:none;"><span class="star-icon" data-val="4" style="font-size:28px; color:#E8D9B8;" onclick="selectStar(4)" onmouseover="hoverStars(4)" onmouseout="resetStars()">★</span></label>
+                        <label style="cursor:pointer;"><input type="radio" name="rating" value="5" style="display:none;"><span class="star-icon" data-val="5" style="font-size:28px; color:#E8D9B8;" onclick="selectStar(5)" onmouseover="hoverStars(5)" onmouseout="resetStars()">★</span></label>
+                    </div>
+                    <input type="text" id="reviewTitle" placeholder="Review title" class="pd-review-input">
+                    <textarea id="reviewText" rows="4" placeholder="Write your review..." class="pd-review-input" style="resize:vertical;"></textarea>
+                    <button class="pd-review-submit" onclick="submitReview()">Submit Review</button>
+                </div>
+            </div>
+
+            <!-- Existing reviews (demo) -->
+            <div class="pd-review-card">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+                    <div><div class="pd-review-author">Ramesh Kumar</div><div class="pd-review-date">2 weeks ago</div></div>
+                    <div style="color:#F6AD55;">★★★★★</div>
+                </div>
+                <div class="pd-review-title">Excellent service!</div>
+                <div class="pd-review-text">The team delivered exactly what we needed – clean, fast, and professional. Highly recommend HighCodeX for web development.</div>
+            </div>
+            <div class="pd-review-card">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+                    <div><div class="pd-review-author">Priya Sharma</div><div class="pd-review-date">1 month ago</div></div>
+                    <div style="color:#F6AD55;">★★★★☆</div>
+                </div>
+                <div class="pd-review-title">Good value for money</div>
+                <div class="pd-review-text">Basic package was perfect for my startup. The support was quick and helpful. Will upgrade soon.</div>
+            </div>
+        </div>
+
+        <div class="pd-divider"></div>
+
+        <!-- RELATED PRODUCTS (other services from PDF) -->
+        <div>
+            <h2 class="pd-related-title">You May Also Like</h2>
+            <div class="pd-related-grid">
+                <a href="#" class="pd-rel-card" onclick="alert('Mobile App – Standard Package: ₹12,000')">
+                    <div class="pd-rel-img"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=200&h=160&fit=crop" alt="Mobile App"></div>
+                    <div class="pd-rel-body"><div class="pd-rel-name">Mobile App – Standard Package</div><div class="pd-rel-price">₹12,000</div></div>
+                </a>
+                <a href="#" class="pd-rel-card" onclick="alert('E-Commerce – Premium Package: ₹18,000')">
+                    <div class="pd-rel-img"><img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=200&h=160&fit=crop" alt="E-Commerce"></div>
+                    <div class="pd-rel-body"><div class="pd-rel-name">E‑Commerce – Premium Package</div><div class="pd-rel-price">₹18,000</div></div>
+                </a>
+                <a href="#" class="pd-rel-card" onclick="alert('Backend API – Custom: starting ₹12,000')">
+                    <div class="pd-rel-img"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=200&h=160&fit=crop" alt="Backend API"></div>
+                    <div class="pd-rel-body"><div class="pd-rel-name">Backend API Development</div><div class="pd-rel-price">Quote based</div></div>
+                </a>
+                <a href="#" class="pd-rel-card" onclick="alert('UI/UX Design – from ₹5,000')">
+                    <div class="pd-rel-img"><img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=200&h=160&fit=crop" alt="UI/UX"></div>
+                    <div class="pd-rel-body"><div class="pd-rel-name">UI/UX Design Package</div><div class="pd-rel-price">₹5,000+</div></div>
+                </a>
+            </div>
+        </div>
+
+    </div><!-- pd-main -->
+</div><!-- pd-wrap -->
+
+<script>
+    // Image change
+    function changeImage(el) {
+        document.getElementById('pdMainImg').src = el.src;
+        document.querySelectorAll('.pd-thumb').forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+    }
+
+    // Quantity stepper
+    function changeQty(delta) {
+        let input = document.getElementById('qtyInput');
+        let newVal = parseInt(input.value) + delta;
+        if (newVal < 1) newVal = 1;
+        input.value = newVal;
+    }
+
+    // Variation selection (updates price display and stores selection)
+    let currentPrice = 8000;
+    let currentPackage = "Basic Package";
+
+    function selectVariation(btn, price, packageName) {
+        document.querySelectorAll('.pd-var-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentPrice = price;
+        currentPackage = packageName;
+        document.querySelector('.pd-price').innerText = '₹' + price.toLocaleString('en-IN');
+    }
+
+    // Add to cart demo
+    function addToCart() {
+        let qty = document.getElementById('qtyInput').value;
+        alert(`Added to cart:\n${currentPackage} x ${qty}\nTotal: ₹${(currentPrice * parseInt(qty)).toLocaleString('en-IN')}\n\nHighCodeX will contact you shortly.`);
+    }
+
+    // Wishlist toggle demo
+    function toggleWishlist(btn) {
+        let icon = btn.querySelector('i');
+        if (icon.classList.contains('bi-heart')) {
+            icon.classList.remove('bi-heart');
+            icon.classList.add('bi-heart-fill');
+            btn.style.color = '#E53E3E';
+            btn.style.borderColor = '#E53E3E';
+            alert('Added to wishlist!');
+        } else {
+            icon.classList.remove('bi-heart-fill');
+            icon.classList.add('bi-heart');
+            btn.style.color = '';
+            btn.style.borderColor = '';
+            alert('Removed from wishlist.');
+        }
+    }
+
+    // Tabs
+    function openTab(tabName, btn) {
+        document.querySelectorAll('.pd-tab-pane').forEach(pane => pane.classList.remove('active'));
+        document.querySelectorAll('.pd-tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('tab-' + tabName).classList.add('active');
+        btn.classList.add('active');
+    }
+
+    // Star rating logic
+    let selectedRating = 0;
+    function selectStar(star) {
+        selectedRating = star;
+        let stars = document.querySelectorAll('.star-icon');
+        stars.forEach((s, idx) => {
+            s.style.color = idx < star ? '#F6AD55' : '#E8D9B8';
+        });
+        document.querySelector(`input[name="rating"][value="${star}"]`).checked = true;
+    }
+    function hoverStars(star) {
+        let stars = document.querySelectorAll('.star-icon');
+        stars.forEach((s, idx) => {
+            s.style.color = idx < star ? '#F6AD55' : '#E8D9B8';
+        });
+    }
+    function resetStars() {
+        let stars = document.querySelectorAll('.star-icon');
+        stars.forEach((s, idx) => {
+            s.style.color = idx < selectedRating ? '#F6AD55' : '#E8D9B8';
+        });
+    }
+
+    // Submit review demo
+    function submitReview() {
+        let title = document.getElementById('reviewTitle').value;
+        let text = document.getElementById('reviewText').value;
+        if (selectedRating === 0) {
+            alert('Please select a star rating.');
+            return;
+        }
+        alert(`Thank you for your review!\nRating: ${selectedRating} ★\nTitle: ${title || '(no title)'}\nReview: ${text || '(no comment)'}\n\nYour feedback helps us improve.`);
+        // In a real app, you'd send to backend.
+    }
+</script>
+</body>
+</html>

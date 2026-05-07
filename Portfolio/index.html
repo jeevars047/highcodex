@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Jeeva | Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --green: #00ff88;
+  --blue:  #0ea5e9;
+  --bg:    #050a0f;
+  --bg2:   #080f17;
+  --text:  #e2e8f0;
+  --muted: rgba(226,232,240,0.45);
+  --border: rgba(255,255,255,0.07);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ─── CUSTOM CURSOR ─── */
+#cursor {
+  width: 12px; height: 12px;
+  background: var(--green);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
+  box-shadow: 0 0 12px var(--green);
+}
+#cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(0,255,136,0.4);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: all 0.12s ease;
+}
+body:hover #cursor { opacity:1; }
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(0,255,136,0.3); border-radius: 2px; }
+
+/* ─── BG GRID ─── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* ─── PARTICLES ─── */
+.particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: floatParticle linear infinite;
+  opacity: 0;
+}
+@keyframes floatParticle {
+  0%   { transform: translateY(100vh) rotate(0deg); opacity:0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(-10vh) rotate(720deg); opacity:0; }
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 2.5rem;
+  background: rgba(5,10,15,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 1.2rem;
+  color: var(--text); text-decoration: none;
+}
+.nav-logo span { color: var(--green); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.62rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--muted);
+  text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--green);
+  border-bottom-color: var(--green);
+}
+
+/* ─── SECTIONS ─── */
+section {
+  min-height: 100vh;
+  padding: 7rem 2rem 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative; z-index: 1;
+}
+
+/* ─── HERO ─── */
+#home {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  max-width: 1200px;
+}
+
+.hero-left { flex: 1 1 340px; }
+
+.badge {
+  display: inline-block;
+  font-size: 0.58rem; letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--green);
+  border: 1px solid rgba(0,255,136,0.25);
+  padding: 0.4rem 1.1rem; border-radius: 2px;
+  margin-bottom: 1.6rem;
+  animation: fadeUp 0.6s ease both;
+}
+.badge::before { content: '● '; font-size: 0.5rem; animation: blink 1.4s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+h1.hero-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 1;
+  color: #f1f5f9;
+  margin-bottom: 0.8rem;
+  animation: fadeUp 0.7s ease 0.1s both;
+}
+h1.hero-name .green { color: var(--green); }
+
+.hero-role {
+  font-size: clamp(0.9rem, 2vw, 1.15rem);
+  color: var(--muted);
+  margin-bottom: 1.6rem;
+  height: 1.8rem;
+  animation: fadeUp 0.7s ease 0.2s both;
+}
+.cursor-blink {
+  color: var(--green);
+  animation: blink 0.8s step-end infinite;
+}
+
+.hero-desc {
+  max-width: 420px;
+  font-size: 0.78rem;
+  color: rgba(226,232,240,0.5);
+  line-height: 1.9;
+  margin-bottom: 2.2rem;
+  animation: fadeUp 0.7s ease 0.3s both;
+}
+
+.btn-row {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  margin-bottom: 3rem;
+  animation: fadeUp 0.7s ease 0.4s both;
+}
+.btn-primary {
+  background: var(--green); color: #050a0f;
+  border: none; padding: 0.85rem 2.2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.08em; cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.25s;
+  text-decoration: none; display: inline-block;
+}
+.btn-primary:hover { background: #00cc6f; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,255,136,0.3); }
+.btn-outline {
+  background: transparent; color: var(--green);
+  border: 1px solid rgba(0,255,136,0.35);
+  padding: 0.85rem 2.2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.08em; cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.25s;
+  text-decoration: none; display: inline-block;
+}
+.btn-outline:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,255,136,0.15); }
+
+.stats {
+  display: flex; gap: 2.5rem; flex-wrap: wrap;
+  animation: fadeUp 0.7s ease 0.5s both;
+}
+.stat-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.8rem; font-weight: 800;
+  color: var(--green);
+}
+.stat-label {
+  font-size: 0.52rem; letter-spacing: 0.18em;
+  color: rgba(226,232,240,0.3);
+  text-transform: uppercase; margin-top: 0.1rem;
+}
+
+/* ─── HERO RIGHT: ORBIT ANIMATION ─── */
+.hero-right {
+  flex: 0 1 420px;
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeUp 0.9s ease 0.3s both;
+}
+.orbit-scene {
+  position: relative;
+  width: 380px; height: 380px;
+}
+
+/* Rings */
+.ring {
+  position: absolute; border-radius: 50%;
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  border: 1.5px solid rgba(0,255,136,0.12);
+}
+.ring-1 { width: 340px; height: 340px; animation: spinCW  18s linear infinite; border-style: dashed; border-color: rgba(0,255,136,0.18); }
+.ring-2 { width: 250px; height: 250px; animation: spinCCW 12s linear infinite; }
+.ring-3 { width: 160px; height: 160px; border-color: rgba(0,255,136,0.35); box-shadow: 0 0 30px rgba(0,255,136,0.08); animation: pulseRing 3s ease-in-out infinite; }
+
+@keyframes spinCW  { to { transform: translate(-50%,-50%) rotate(360deg); } }
+@keyframes spinCCW { to { transform: translate(-50%,-50%) rotate(-360deg); } }
+@keyframes pulseRing { 0%,100%{box-shadow:0 0 20px rgba(0,255,136,0.08)} 50%{box-shadow:0 0 40px rgba(0,255,136,0.2)} }
+
+/* Orbiting dots */
+.orbit-dot {
+  position: absolute; top:50%; left:50%;
+  border-radius: 50%;
+  transform-origin: 0 0;
+}
+.dot-green {
+  width:10px; height:10px; background: var(--green);
+  margin-left:-170px; margin-top:-5px;
+  box-shadow: 0 0 12px var(--green), 0 0 24px rgba(0,255,136,0.5);
+  animation: spinCW 6s linear infinite;
+}
+.dot-blue {
+  width:8px; height:8px; background: var(--blue);
+  margin-left:-125px; margin-top:-4px;
+  box-shadow: 0 0 10px var(--blue), 0 0 20px rgba(14,165,233,0.5);
+  animation: spinCCW 4s linear infinite;
+}
+.dot-white {
+  width:6px; height:6px; background: rgba(255,255,255,0.6);
+  margin-left:-80px; margin-top:-3px;
+  animation: spinCW 3s linear infinite;
+}
+
+/* Center */
+.orbit-center {
+  position: absolute; top:50%; left:50%;
+  transform: translate(-50%,-50%);
+  text-align: center; z-index:5;
+}
+.orbit-emoji { font-size: 3rem; line-height:1; display:block; animation: floatEmoji 3s ease-in-out infinite; }
+@keyframes floatEmoji { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.orbit-name {
+  font-size: 0.48rem; color: var(--green);
+  letter-spacing: 0.3em; margin-top: 0.4rem; display:block;
+}
+
+/* Tech pill tags */
+.tech-tag {
+  position: absolute;
+  background: rgba(0,0,0,0.75);
+  border: 1px solid rgba(0,255,136,0.25);
+  border-radius: 20px;
+  padding: 0.28rem 0.8rem;
+  font-size: 0.6rem; color: var(--green);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 16px rgba(0,255,136,0.07);
+}
+.tag-1  { top:4%;  left:34%; animation: floatTag 3.2s ease-in-out infinite 0s; }
+.tag-2  { top:18%; left:72%; animation: floatTag 3.5s ease-in-out infinite 0.3s; }
+.tag-3  { top:40%; left:82%; animation: floatTag 2.9s ease-in-out infinite 0.6s; }
+.tag-4  { top:65%; left:70%; animation: floatTag 3.4s ease-in-out infinite 0.9s; }
+.tag-5  { top:82%; left:34%; animation: floatTag 3.1s ease-in-out infinite 1.2s; }
+.tag-6  { top:65%; left: 2%; animation: floatTag 3.6s ease-in-out infinite 1.5s; }
+.tag-7  { top:40%; left:-4%; animation: floatTag 2.8s ease-in-out infinite 1.8s; }
+.tag-8  { top:18%; left: 5%; animation: floatTag 3.3s ease-in-out infinite 2.1s; }
+@keyframes floatTag { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
+
+/* ─── SECTION HEADER ─── */
+.section-eyebrow {
+  font-size: 0.58rem; letter-spacing: 0.35em;
+  color: var(--green); text-transform: uppercase;
+  margin-bottom: 0.7rem;
+}
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800; color: #f1f5f9;
+  margin-bottom: 2.8rem;
+}
+
+/* ─── SKILLS ─── */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+.skill-item { margin-bottom: 1.3rem; }
+.skill-row { display:flex; justify-content:space-between; margin-bottom:0.45rem; }
+.skill-name { font-size:0.75rem; color: var(--text); }
+.skill-pct  { font-size:0.65rem; color: var(--green); }
+.skill-track {
+  height: 3px; background: rgba(255,255,255,0.07);
+  border-radius: 2px; overflow: hidden;
+}
+.skill-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--green), var(--blue));
+  border-radius: 2px;
+  transition: width 1.3s ease;
+}
+
+.badges { display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:2.5rem; }
+.badge-pill {
+  font-size:0.62rem; padding:0.38rem 0.9rem;
+  border:1px solid rgba(255,255,255,0.1);
+  color:rgba(226,232,240,0.5); border-radius:3px;
+  letter-spacing:0.05em;
+  transition: all 0.2s;
+}
+.badge-pill:hover { border-color:rgba(0,255,136,0.35); color:var(--green); }
+
+/* ─── PROJECTS ─── */
+.projects-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:1.2rem; }
+.project-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  padding: 1.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.project-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  opacity:0; transition:opacity 0.3s;
+}
+.project-card:hover { background:rgba(255,255,255,0.045); transform:translateY(-5px); border-color:rgba(0,255,136,0.2); }
+.project-card:hover::before { opacity:1; }
+.card-green::before  { background:linear-gradient(90deg,transparent,#00ff88,transparent); }
+.card-orange::before { background:linear-gradient(90deg,transparent,#ff6b35,transparent); }
+.card-purple::before { background:linear-gradient(90deg,transparent,#7c3aed,transparent); }
+
+.card-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.8rem; }
+.card-title { font-family:'Syne',sans-serif; font-size:1.15rem; font-weight:700; color:#f1f5f9; }
+.card-year  { font-size:0.58rem; color:rgba(255,255,255,0.3); letter-spacing:0.1em; }
+.card-desc  { font-size:0.73rem; color:rgba(226,232,240,0.5); line-height:1.85; margin-bottom:1.2rem; }
+.card-tags  { display:flex; flex-wrap:wrap; gap:0.4rem; }
+.card-tag   { font-size:0.58rem; padding:0.22rem 0.65rem; border-radius:2px; letter-spacing:0.05em; }
+
+/* ─── CONTACT ─── */
+.contact-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1.1rem; }
+.contact-card {
+  padding:1.6rem;
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:5px;
+  cursor:pointer;
+  transition:all 0.25s;
+}
+.contact-card:hover { border-color:rgba(0,255,136,0.3); background:rgba(0,255,136,0.02); transform:translateY(-3px); }
+.contact-icon  { font-size:1.4rem; margin-bottom:0.8rem; }
+.contact-label { font-size:0.58rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(226,232,240,0.3); margin-bottom:0.3rem; }
+.contact-value { font-size:0.76rem; color:var(--text); }
+
+/* ─── FOOTER ─── */
+footer {
+  text-align:center; padding:2rem;
+  font-size:0.58rem; color:rgba(226,232,240,0.2);
+  letter-spacing:0.12em; border-top:1px solid var(--border);
+  position:relative; z-index:1;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+.reveal {
+  opacity:0; transform:translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ─── GLOW ORBS ─── */
+.orb {
+  position:fixed; border-radius:50%;
+  pointer-events:none; z-index:0;
+}
+.orb-1 { width:500px;height:500px; top:10%; left:5%; background:radial-gradient(circle,rgba(0,255,136,0.05) 0%,transparent 70%); animation:floatOrb 9s ease-in-out infinite; }
+.orb-2 { width:400px;height:400px; bottom:15%; right:5%; background:radial-gradient(circle,rgba(14,165,233,0.05) 0%,transparent 70%); animation:floatOrb 11s ease-in-out infinite 2s; }
+@keyframes floatOrb { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- Glow orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo"><span>J</span>eeva</a>
+  <ul class="nav-links">
+    <li><a href="#home"     class="active">Home</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+
+  <!-- Left -->
+  <div class="hero-left">
+    <div class="badge">Available for work</div>
+
+    <h1 class="hero-name">Hi, I'm<br><span class="green">Jeeva</span></h1>
+
+    <div class="hero-role">
+      <span id="typed"></span><span class="cursor-blink">|</span>
+    </div>
+
+    <p class="hero-desc">
+      I build scalable, high-performance web applications from database to UI.
+      Passionate about clean code, great UX, and solving real problems.
+    </p>
+
+    <div class="btn-row">
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="#contact"  class="btn-outline">Contact Me</a>
+    </div>
+
+    <div class="stats">
+      <div>
+        <div class="stat-val">Fresher</div>
+        <div class="stat-label">Experience</div>
+      </div>
+      <div>
+        <div class="stat-val">2+</div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div>
+        <div class="stat-val">100%</div>
+        <div class="stat-label">Committed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Orbit Animation -->
+  <div class="hero-right">
+    <div class="orbit-scene">
+
+      <!-- Rings -->
+      <div class="ring ring-1"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-3"></div>
+
+      <!-- Orbiting dots -->
+      <div class="orbit-dot dot-green"></div>
+      <div class="orbit-dot dot-blue"></div>
+      <div class="orbit-dot dot-white"></div>
+
+      <!-- Center -->
+      <div class="orbit-center">
+        <span class="orbit-emoji">👨‍💻</span>
+        <span class="orbit-name">JEEVA</span>
+      </div>
+
+      <!-- Tech tags -->
+      <div class="tech-tag tag-1">Python</div>
+      <div class="tech-tag tag-2">Django</div>
+      <div class="tech-tag tag-3">PHP</div>
+      <div class="tech-tag tag-4">Laravel</div>
+      <div class="tech-tag tag-5">MySQL</div>
+      <div class="tech-tag tag-6">HTML/CSS</div>
+      <div class="tech-tag tag-7">JavaScript</div>
+      <div class="tech-tag tag-8">React</div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <div class="section-eyebrow">02 / Skills</div>
+    <div class="section-title">Tech Stack</div>
+  </div>
+
+  <div class="skills-grid reveal">
+    <div>
+      <div class="skill-item">
+        <div class="skill-row"><span class="skill-name">Python</span><span class="skill-pct">95%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-width="95"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span class="skill-name">PHP</span><span class="skill-pct">90%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-width="90"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span class="skill-name">HTML</span><span class="skill-pct">88%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-width="88"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span class="skill-name">CSS</span><span class="skill-pct">82%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-width="82"></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-item">
+        <div class="skill-row"><span class="skill-name">JavaScript</span><span class="skill-pct">80%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span class="skill-name">MySQL</span><span class="skill-pct">75%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-width="75"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span class="skill-name">Django</span><span class="skill-pct">85%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span class="skill-name">Laravel</span><span class="skill-pct">78%</span></div>
+        <div class="skill-track"><div class="skill-fill" data-width="78"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="badges reveal">
+    <span class="badge-pill">Python</span>
+    <span class="badge-pill">PHP</span>
+    <span class="badge-pill">Django</span>
+    <span class="badge-pill">Laravel</span>
+    <span class="badge-pill">HTML</span>
+    <span class="badge-pill">CSS</span>
+    <span class="badge-pill">JavaScript</span>
+    <span class="badge-pill">MySQL</span>
+    <span class="badge-pill">Git</span>
+    <span class="badge-pill">GitHub</span>
+    <span class="badge-pill">REST API</span>
+    <span class="badge-pill">React</span>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reveal">
+    <div class="section-eyebrow">03 / Projects</div>
+    <div class="section-title">Featured Work</div>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card card-green reveal">
+      <div class="card-top">
+        <span class="card-title">Ecommerce</span>
+        <span class="card-year">2026</span>
+      </div>
+      <p class="card-desc">Full-stack e-commerce platform with real-time inventory, payment gateway integration, and admin dashboard.</p>
+      <div class="card-tags">
+        <span class="card-tag" style="background:rgba(0,255,136,0.1);color:#00ff88;border:1px solid rgba(0,255,136,0.2)">Python</span>
+        <span class="card-tag" style="background:rgba(0,255,136,0.1);color:#00ff88;border:1px solid rgba(0,255,136,0.2)">Django</span>
+        <span class="card-tag" style="background:rgba(0,255,136,0.1);color:#00ff88;border:1px solid rgba(0,255,136,0.2)">MySQL</span>
+        <span class="card-tag" style="background:rgba(0,255,136,0.1);color:#00ff88;border:1px solid rgba(0,255,136,0.2)">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="project-card card-orange reveal">
+      <div class="card-top">
+        <span class="card-title">MyPortfolio</span>
+        <span class="card-year">2025</span>
+      </div>
+      <p class="card-desc">Passionate full stack developer building scalable and user friendly applications.</p>
+      <div class="card-tags">
+        <span class="card-tag" style="background:rgba(255,107,53,0.1);color:#ff6b35;border:1px solid rgba(255,107,53,0.2)">HTML</span>
+        <span class="card-tag" style="background:rgba(255,107,53,0.1);color:#ff6b35;border:1px solid rgba(255,107,53,0.2)">CSS</span>
+        <span class="card-tag" style="background:rgba(255,107,53,0.1);color:#ff6b35;border:1px solid rgba(255,107,53,0.2)">Django</span>
+        <span class="card-tag" style="background:rgba(255,107,53,0.1);color:#ff6b35;border:1px solid rgba(255,107,53,0.2)">GitHub</span>
+      </div>
+    </div>
+
+    <div class="project-card card-purple reveal">
+      <div class="card-top">
+        <span class="card-title">Portfolio</span>
+        <span class="card-year">2026</span>
+      </div>
+      <p class="card-desc">Creative web developer crafting modern responsive digital experiences.</p>
+      <div class="card-tags">
+        <span class="card-tag" style="background:rgba(124,58,237,0.1);color:#7c3aed;border:1px solid rgba(124,58,237,0.2)">React.js</span>
+        <span class="card-tag" style="background:rgba(124,58,237,0.1);color:#7c3aed;border:1px solid rgba(124,58,237,0.2)">JavaScript</span>
+        <span class="card-tag" style="background:rgba(124,58,237,0.1);color:#7c3aed;border:1px solid rgba(124,58,237,0.2)">Node.js</span>
+        <span class="card-tag" style="background:rgba(124,58,237,0.1);color:#7c3aed;border:1px solid rgba(124,58,237,0.2)">CSS</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-eyebrow">04 / Contact</div>
+    <div class="section-title">Let's Build Together</div>
+  </div>
+
+  <div class="contact-grid reveal">
+    <div class="contact-card">
+      <div class="contact-icon">✉</div>
+      <div class="contact-label">Email</div>
+      <div class="contact-value">jeevars047@gmail.com</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">⌥</div>
+      <div class="contact-label">GitHub</div>
+      <div class="contact-value">github.com/jeevars047</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">∞</div>
+      <div class="contact-label">LinkedIn</div>
+      <div class="contact-value">linkedin.com/in/jeevars047</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">◈</div>
+      <div class="contact-label">Location</div>
+      <div class="contact-value">Tamil Nadu, India 🇮🇳</div>
+    </div>
+  </div>
+</section>
+
+<footer>BUILT WITH HTML · CSS · JS &nbsp;·&nbsp; DESIGNED FOR IMPACT &nbsp;·&nbsp; © 2026 JEEVA</footer>
+
+<script>
+// ── Custom cursor ──
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+document.addEventListener('mousemove', e => {
+  cur.style.left  = e.clientX + 'px';
+  cur.style.top   = e.clientY + 'px';
+  setTimeout(() => {
+    ring.style.left = e.clientX + 'px';
+    ring.style.top  = e.clientY + 'px';
+  }, 60);
+});
+document.querySelectorAll('a,button,.project-card,.contact-card').forEach(el => {
+  el.addEventListener('mouseenter', () => { cur.style.width='20px'; cur.style.height='20px'; cur.style.background='rgba(0,255,136,0.4)'; });
+  el.addEventListener('mouseleave', () => { cur.style.width='12px'; cur.style.height='12px'; cur.style.background='var(--green)'; });
+});
+
+// ── Typewriter ──
+const roles = ["Full Stack Developer","Python & PHP Specialist","Django Developer","Problem Solver"];
+let ri=0, ci=0, del=false;
+const el = document.getElementById('typed');
+function type() {
+  const cur = roles[ri];
+  if (!del && ci < cur.length)      { el.textContent = cur.slice(0,++ci); setTimeout(type, 80); }
+  else if (!del && ci===cur.length) { del=true; setTimeout(type, 1800); }
+  else if (del && ci > 0)           { el.textContent = cur.slice(0,--ci); setTimeout(type, 40); }
+  else                              { del=false; ri=(ri+1)%roles.length; setTimeout(type, 200); }
+}
+type();
+
+// ── Scroll reveal ──
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 100);
+    }
+  });
+}, { threshold: 0.15 });
+reveals.forEach(r => io.observe(r));
+
+// ── Skill bar animation ──
+const skillObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.skill-fill').forEach((bar, i) => {
+        setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, i * 120);
+      });
+      skillObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.skills-grid').forEach(g => skillObs.observe(g));
+
+// ── Active nav ──
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) cur = s.id; });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+});
+
+// ── Floating particles ──
+for (let i = 0; i < 18; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  const size = Math.random() * 4 + 2;
+  p.style.cssText = `
+    width:${size}px; height:${size}px;
+    left:${Math.random()*100}%;
+    background:${Math.random()>0.5 ? 'rgba(0,255,136,0.5)' : 'rgba(14,165,233,0.4)'};
+    animation-duration:${8+Math.random()*12}s;
+    animation-delay:${Math.random()*8}s;
+  `;
+  document.body.appendChild(p);
+}
+</script>
+</body>
+</html>

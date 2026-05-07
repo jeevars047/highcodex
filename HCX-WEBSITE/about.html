@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About — HighCodeX Technologies</title>
+<meta name="description" content="Meet Jeeva R, the founder of HighCodeX Technologies — a passionate full-stack developer from Chennai."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#050d1f;--navy2:#081428;--navy3:#0b1c36;
+  --blue:#1a6fc4;--blue2:#2182e0;--blue3:#56a0f0;--accent:#00c8ff;
+  --text:#e8f0fe;--text2:#8ba4c8;--text3:#3d5878;
+  --border:rgba(26,111,196,0.18);--border2:rgba(26,111,196,0.35);
+  --white:#ffffff;--wbg:#f4f7fb;--wtext:#1a2540;--wtext2:#4a5f82;--wborder:#dde6f5;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(0,200,255,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
+
+/* TOP BAR */
+.top-bar{background:var(--navy2);border-bottom:1px solid var(--border);position:relative;z-index:998}
+.top-bar-inner{max-width:1400px;margin:0 auto;padding:9px 5%;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--text2);flex-wrap:wrap;gap:8px}
+.tb-left{display:flex;gap:20px;flex-wrap:wrap}
+.tbi{display:flex;align-items:center;gap:8px}
+.tbi-ico{width:26px;height:26px;border-radius:50%;background:rgba(26,111,196,.15);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px}
+.tb-right{display:flex;gap:7px}
+.soc{width:28px;height:28px;border-radius:50%;background:rgba(26,111,196,.1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text2);text-decoration:none;font-size:11px;transition:background .3s,border-color .3s,color .3s}
+.soc:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:1000;background:rgba(5,13,31,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow .4s}
+nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.5)}
+.nav-inner{max-width:1400px;margin:0 auto;padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:66px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-lbox{width:38px;height:38px;border:1.5px solid var(--border2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:var(--blue3);background:rgba(26,111,196,.08);transition:box-shadow .3s}
+.nav-logo:hover .nav-lbox{box-shadow:0 0 18px rgba(26,111,196,.4)}
+.nav-brand{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:var(--text);letter-spacing:.5px}
+.nav-links{display:flex;list-style:none;gap:30px;align-items:center}
+.nav-links a{font-size:13px;font-weight:600;color:var(--text2);text-decoration:none;letter-spacing:.7px;text-transform:uppercase;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--blue3);transform:scaleX(0);transition:transform .3s;border-radius:1px}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-cta{padding:8px 20px!important;border-radius:6px!important;background:var(--blue)!important;color:#fff!important;font-weight:700!important;transition:background .3s,box-shadow .3s!important}
+.nav-cta:hover{background:var(--blue2)!important;box-shadow:0 8px 24px rgba(26,111,196,.45)!important}
+.nav-cta::after{display:none!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:900;background:rgba(5,13,31,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:26px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Rajdhani',sans-serif;font-size:28px;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .3s}
+.mobile-menu a:hover,.mobile-menu a.active{color:var(--blue3)}
+
+/* PAGE HERO */
+.page-hero{padding:110px 5% 70px;text-align:center;position:relative;overflow:hidden;background:var(--navy2);border-bottom:1px solid var(--border)}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(26,111,196,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(26,111,196,.05) 1px,transparent 1px);background-size:60px 60px}
+.page-hero-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(26,111,196,.12) 0%,transparent 65%);pointer-events:none}
+.ph-content{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.ph-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid var(--border2);border-radius:100px;font-size:11px;font-family:'Space Mono',monospace;color:var(--blue3);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;background:rgba(26,111,196,.08)}
+.ph-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(34px,5.5vw,64px);line-height:1;letter-spacing:-1px;margin-bottom:16px}
+.ph-title span{background:linear-gradient(90deg,var(--blue3),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ph-sub{font-size:15px;color:var(--text2);line-height:1.75;font-weight:300}
+
+/* SECTION COMMON */
+.sec-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-family:'Space Mono',monospace;color:var(--blue3);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.sec-tag::before{content:'—';color:var(--blue3)}
+.sec-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(26px,4vw,46px);letter-spacing:-1px;line-height:1;margin-bottom:12px;color:var(--text)}
+.sec-title span{background:linear-gradient(90deg,var(--blue3),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-sub{font-size:14px;color:var(--text2);font-weight:300;line-height:1.75;max-width:500px}
+.sec-hdr{margin-bottom:52px}
+.sec-hdr.center{text-align:center}
+.sec-hdr.center .sec-tag{justify-content:center}
+.sec-hdr.center .sec-sub{margin:0 auto}
+
+/* BUTTONS */
+.btn-p{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:var(--blue);color:#fff;text-decoration:none;border-radius:7px;font-weight:700;font-size:13px;font-family:'Rajdhani',sans-serif;letter-spacing:1px;text-transform:uppercase;transition:all .3s ease;border:none;cursor:pointer}
+.btn-p:hover{background:var(--blue2);transform:translateY(-2px);box-shadow:0 14px 36px rgba(26,111,196,.45)}
+.btn-o{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border:1.5px solid var(--border2);color:var(--text);text-decoration:none;border-radius:7px;font-size:13px;font-family:'Rajdhani',sans-serif;font-weight:600;letter-spacing:1px;text-transform:uppercase;background:rgba(8,20,40,.5);backdrop-filter:blur(8px);cursor:pointer;transition:all .3s ease}
+.btn-o:hover{border-color:var(--blue3);background:rgba(26,111,196,.15);transform:translateY(-2px)}
+
+/* ========== MIDDLE SECTION - FULL WHITE BACKGROUND ========== */
+.middle-section-white {
+  background: var(--white);
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* White Theme for Founder Section */
+.white-theme .founder-sec {
+  background: var(--white);
+  padding: 90px 5%;
+}
+.white-theme .founder-card {
+  background: var(--white);
+  border: 1px solid var(--wborder);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+.white-theme .founder-card-item {
+  color: var(--wtext2);
+  border-bottom-color: var(--wborder);
+}
+.white-theme .sec-tag {
+  color: var(--blue);
+}
+.white-theme .sec-tag::before {
+  color: var(--blue);
+}
+.white-theme .sec-title {
+  color: var(--wtext);
+}
+.white-theme .about-text {
+  color: var(--wtext2);
+}
+.white-theme .btn-o {
+  border-color: var(--wborder);
+  color: var(--wtext);
+  background: rgba(26,111,196,0.03);
+}
+.white-theme .btn-o:hover {
+  border-color: var(--blue);
+  background: rgba(26,111,196,0.08);
+}
+
+/* White Theme for Skills Section */
+.white-theme .skills-sec {
+  background: var(--wbg);
+  border-top: 1px solid var(--wborder);
+  border-bottom: 1px solid var(--wborder);
+}
+.white-theme .skill-cat {
+  background: var(--white);
+  border: 1px solid var(--wborder);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+.white-theme .skill-cat h3 {
+  color: var(--wtext);
+  border-bottom-color: var(--wborder);
+}
+.white-theme .skill-name {
+  color: var(--wtext2);
+}
+.white-theme .skill-name span {
+  color: var(--blue);
+}
+.white-theme .sec-sub {
+  color: var(--wtext2);
+}
+
+/* White Theme for Vision Section */
+.white-theme .vision-sec {
+  background: var(--white);
+}
+.white-theme .vision-card {
+  background: var(--white);
+  border: 1px solid var(--wborder);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+.white-theme .vision-card h3 {
+  color: var(--wtext);
+}
+.white-theme .vision-card p {
+  color: var(--wtext2);
+}
+.white-theme .vision-ico {
+  filter: none;
+}
+
+/* FOUNDER SECTION (inside white theme) */
+.founder-grid{display:grid;grid-template-columns:320px 1fr;gap:68px;align-items:start;max-width:1200px;margin:0 auto}
+.founder-visual{display:flex;flex-direction:column;align-items:center;gap:24px}
+.founder-avatar{position:relative;width:180px;height:180px;margin:0 auto}
+.avatar-initials{width:180px;height:180px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--accent));display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-size:52px;font-weight:800;color:#fff;position:relative;z-index:1;box-shadow:0 16px 48px rgba(26,111,196,.4);animation:floatAvatar 4s ease-in-out infinite}
+@keyframes floatAvatar {
+  0%,100%{transform:translateY(0px)}
+  50%{transform:translateY(-8px)}
+}
+.avatar-ring{position:absolute;inset:-12px;border-radius:50%;border:1.5px dashed rgba(0,200,255,.4);animation:spinRing 20s linear infinite}
+@keyframes spinRing{to{transform:rotate(360deg)}}
+.founder-card{background:var(--white);border:1px solid var(--wborder);border-radius:12px;padding:18px 22px;width:100%}
+.founder-card-item{padding:10px 0;font-size:13px;color:var(--wtext2);border-bottom:1px solid var(--wborder);display:flex;align-items:center;gap:9px;font-weight:400}
+.founder-card-item:last-child{border-bottom:none}
+.about-text{font-size:14px;color:var(--wtext2);line-height:1.85;margin-bottom:14px;font-weight:300}
+.founder-btns{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+
+/* SKILLS SECTION (white theme) */
+.skills-sec{padding:90px 5%;transition:all .3s}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:0 auto}
+.skill-cat{background:var(--white);border:1px solid var(--wborder);border-radius:12px;padding:30px 24px;transition:all .4s ease}
+.skill-cat:hover{border-color:var(--blue);transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,0.08)}
+.skill-cat h3{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:var(--wtext);margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid var(--wborder);letter-spacing:.5px}
+.skill-list{display:flex;flex-direction:column;gap:14px}
+.skill-item{display:flex;flex-direction:column;gap:7px}
+.skill-name{font-size:13px;font-weight:500;color:var(--wtext2);display:flex;justify-content:space-between}
+.skill-name span{color:var(--blue);font-family:'Space Mono',monospace;font-size:11px}
+.skill-bar{height:5px;background:rgba(26,111,196,.12);border-radius:50px;overflow:hidden}
+.skill-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--accent));border-radius:50px;width:0;transition:width 1.2s cubic-bezier(0.2,0.9,0.4,1.1)}
+
+/* VISION SECTION (white theme) */
+.vision-sec{padding:90px 5%;transition:all .3s}
+.vision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1200px;margin:0 auto}
+.vision-card{background:var(--white);border:1px solid var(--wborder);border-radius:14px;padding:38px 28px;text-align:center;transition:all .4s ease;position:relative;overflow:hidden}
+.vision-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--accent));transform:scaleX(0);transition:transform .4s}
+.vision-card:hover{border-color:var(--blue);transform:translateY(-8px);box-shadow:0 25px 50px rgba(0,0,0,0.08)}
+.vision-card:hover::before{transform:scaleX(1)}
+.vision-ico{font-size:42px;margin-bottom:18px;display:block;animation:pulseIcon 2s ease-in-out infinite}
+@keyframes pulseIcon {
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.08);opacity:0.9}
+}
+.vision-card h3{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;letter-spacing:.5px;color:var(--wtext);margin-bottom:10px}
+.vision-card p{font-size:13px;color:var(--wtext2);line-height:1.75;font-weight:300}
+
+/* CTA */
+.cta-wrap{padding:0 5% 88px;background:var(--navy)}
+.cta-banner{padding:70px 56px;text-align:center;background:linear-gradient(135deg,rgba(26,111,196,.15),rgba(0,200,255,.06));border:1px solid rgba(26,111,196,.25);border-radius:16px;position:relative;overflow:hidden}
+.cta-banner::before{content:'';position:absolute;inset:-50%;background:radial-gradient(ellipse at center,rgba(26,111,196,.06) 0%,transparent 60%);animation:cP 6s ease-in-out infinite alternate}
+@keyframes cP{from{transform:scale(.9)}to{transform:scale(1.1)}}
+.cta-c{position:relative;z-index:1}
+.cta-banner h2{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(24px,4vw,46px);letter-spacing:-1px;margin-bottom:11px}
+.cta-banner p{font-size:14px;color:var(--text2);font-weight:300;margin-bottom:28px}
+
+/* FOOTER */
+footer{background:var(--navy2);border-top:1px solid var(--border)}
+.fcbar{padding:30px 5%;display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border);gap:14px}
+.fci{display:flex;align-items:flex-start;gap:12px}
+.fci-ico{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:rgba(26,111,196,.15);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:15px}
+.fci-lbl{font-size:10px;font-family:'Space Mono',monospace;color:var(--blue3);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.fci-info{font-size:12px;color:var(--text2);line-height:1.7;font-weight:300}
+.fmain{padding:40px 5%;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:40px}
+.flogo{display:flex;align-items:center;gap:9px;margin-bottom:12px;text-decoration:none}
+.flogo-box{width:34px;height:34px;border:1.5px solid var(--border2);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;color:var(--blue3);background:rgba(26,111,196,.08)}
+.fbrand{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:var(--text);letter-spacing:.5px}
+.fdesc{font-size:12px;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:16px;max-width:240px}
+.fsocs{display:flex;gap:7px}
+.fcol h4{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--text);margin-bottom:14px}
+.fcol ul{list-style:none}
+.fcol li{margin-bottom:8px}
+.fcol a{font-size:12px;color:var(--text2);text-decoration:none;font-weight:300;transition:color .3s;display:flex;align-items:center;gap:5px}
+.fcol a:hover{color:var(--blue3)}
+.fcol a::before{content:'›';color:var(--text3)}
+.nl-form{display:flex;margin-top:9px}
+.nl-inp{flex:1;padding:10px 12px;background:rgba(26,111,196,.06);border:1px solid var(--border);border-right:none;border-radius:6px 0 0 6px;color:var(--text);font-size:12px;font-family:'Barlow',sans-serif;outline:none;transition:border-color .3s}
+.nl-inp:focus{border-color:var(--blue3)}
+.nl-inp::placeholder{color:var(--text3)}
+.nl-btn{padding:10px 13px;background:var(--blue);border:none;border-radius:0 6px 6px 0;cursor:pointer;color:#fff;font-size:13px;transition:background .3s}
+.nl-btn:hover{background:var(--blue2)}
+.fbot{padding:18px 5%;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text3);font-family:'Space Mono',monospace;flex-wrap:wrap;gap:8px}
+
+/* WHATSAPP */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:9990;width:58px;height:58px;border-radius:50%;background:#25D366;box-shadow:0 6px 24px rgba(37,211,102,.5);display:flex;align-items:center;justify-content:center;text-decoration:none;animation:waPulse 2.5s ease-in-out infinite}
+.wa-float svg{width:30px;height:30px;fill:#fff}
+@keyframes waPulse{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,.35)}50%{box-shadow:0 6px 24px rgba(37,211,102,.5),0 0 0 12px rgba(37,211,102,0)}}
+
+/* FADE UP */
+.fade-up{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .founder-grid{grid-template-columns:1fr;gap:40px}
+  .founder-visual{flex-direction:row;flex-wrap:wrap;justify-content:center}
+  .skills-grid{grid-template-columns:1fr 1fr}
+  .vision-grid{grid-template-columns:1fr 1fr}
+  .fmain{grid-template-columns:1fr 1fr;gap:30px}
+}
+@media(max-width:768px){
+  .nav-links{display:none}.hamburger{display:flex}
+  .skills-grid{grid-template-columns:1fr}
+  .vision-grid{grid-template-columns:1fr}
+  .founder-btns{justify-content:center}
+  .founder-grid{text-align:center}
+  .founder-visual{align-items:center}
+  .fcbar{grid-template-columns:1fr;gap:16px}
+  .fmain{grid-template-columns:1fr;gap:24px}
+  .cta-banner{padding:42px 18px}
+  .fbot{flex-direction:column;text-align:center}
+  .tb-left .tbi:nth-child(3){display:none}
+  .page-hero{padding:90px 5% 50px}
+}
+@media(max-width:480px){
+  .tb-left{gap:8px}
+  .cta-wrap{padding:0 5% 60px}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="tb-left">
+      <div class="tbi"><span class="tbi-ico">📞</span><span>+91 78689 46689</span></div>
+      <div class="tbi"><span class="tbi-ico">✉️</span><span>highcodextech@gmail.com</span></div>
+      <div class="tbi"><span class="tbi-ico">📍</span><span>Chennai, TN</span></div>
+    </div>
+    <div class="tb-right">
+      <a href="https://wa.me/917868946689" class="soc">💬</a>
+      <a href="mailto:highcodextech@gmail.com" class="soc">✉</a>
+      <a href="#" class="soc">in</a>
+      <a href="#" class="soc">▶</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-lbox">HCX</div>
+      <span class="nav-brand">HighCodeX Technologies</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mob">
+  <a href="index.html">Home</a>
+  <a href="about.html" class="active">About</a>
+  <a href="services.html">Services</a>
+  <a href="#">Portfolio</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-glow"></div>
+  <div class="ph-content fade-up">
+    <div class="ph-tag">About Us</div>
+    <h1 class="ph-title">The Story Behind<br/><span>HighCodeX Technologies</span></h1>
+    <p class="ph-sub">A passionate full-stack developer from Chennai, building digital products that make a difference.</p>
+  </div>
+</section>
+
+<!-- MIDDLE SECTION - WHITE BACKGROUND -->
+<div class="middle-section-white white-theme">
+  <!-- FOUNDER SECTION -->
+  <div class="founder-sec">
+    <div class="founder-grid">
+      <div class="founder-visual fade-up">
+        <div class="founder-avatar">
+          <div class="avatar-initials">JR</div>
+          <div class="avatar-ring"></div>
+        </div>
+        <div class="founder-card">
+          <div class="founder-card-item">📍 Chennai, Tamil Nadu</div>
+          <div class="founder-card-item">🏠 Native: Ariyalur</div>
+          <div class="founder-card-item">💻 Full Stack Developer</div>
+          <div class="founder-card-item">🚀 Founder, HighCodeX Tech</div>
+        </div>
+      </div>
+      <div class="fade-up d2">
+        <div class="sec-tag">Meet the Founder</div>
+        <h2 class="sec-title">Hi, I'm <span>Jeeva R</span> 👋</h2>
+        <p class="about-text">I'm a passionate full-stack developer based in Chennai with a strong drive to build web solutions that actually work for businesses. I started HighCodeX Technologies with a simple mission — to deliver professional, high-quality digital products that help clients grow online.</p>
+        <p class="about-text">From my hometown in Ariyalur to working in the heart of Chennai, every line of code I write is driven by a commitment to excellence. I believe great software isn't just about functionality — it's about creating experiences that users love.</p>
+        <p class="about-text">Currently growing as a freelance developer, I'm focused on building a strong portfolio and helping businesses establish their digital presence. HighCodeX is more than a brand — it's a promise to go beyond limits.</p>
+        <div class="founder-btns">
+          <a href="contact.html" class="btn-p">Work With Me →</a>
+          <a href="#" class="btn-o">View Portfolio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS SECTION -->
+  <div class="skills-sec">
+    <div class="sec-hdr center fade-up" style="max-width:1200px;margin:0 auto 52px">
+      <div class="sec-tag" style="justify-content:center">Technical Skills</div>
+      <h2 class="sec-title">What I <span>Know</span></h2>
+      <p class="sec-sub" style="margin:0 auto">A wide range of technologies to handle any project — front to back.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-cat fade-up">
+        <h3>🎨 Frontend</h3>
+        <div class="skill-list">
+          <div class="skill-item"><div class="skill-name">HTML5 <span>95%</span></div><div class="skill-bar"><div class="skill-fill" data-w="95%"></div></div></div>
+          <div class="skill-item"><div class="skill-name">CSS3 <span>92%</span></div><div class="skill-bar"><div class="skill-fill" data-w="92%"></div></div></div>
+          <div class="skill-item"><div class="skill-name">JavaScript <span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-w="88%"></div></div></div>
+          <div class="skill-item"><div class="skill-name">Bootstrap <span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-w="90%"></div></div></div>
+          <div class="skill-item"><div class="skill-name">React <span>70%</span></div><div class="skill-bar"><div class="skill-fill" data-w="70%"></div></div></div>
+        </div>
+      </div>
+      <div class="skill-cat fade-up d1">
+        <h3>⚙️ Backend</h3>
+        <div class="skill-list">
+          <div class="skill-item"><div class="skill-name">Python <span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-w="88%"></div></div></div>
+          <div class="skill-item"><div class="skill-name">Django <span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-w="85%"></div></div></div>
+          <div class="skill-item"><div class="skill-name">Flask <span>82%</span></div><div class="skill-bar"><div class="skill-fill" data-w="82%"></div></div></div>
+          <div class="skill-item"><div class="skill-name">PHP <span>80%</span></div><div class="skill-bar"><div class="skill-fill" data-w="80%"></div></div></div>
+          <div class="skill-item"><div class="skill-name">Laravel <span>75%</span></div><div class="skill-bar"><div class="skill-fill" data-w="75%"></div></div></div>
+        </div>
+      </div>
+      <div class="skill-cat fade-up d2">
+        <h3>🗄️ Database & Tools</h3>
+        <div class="skill-list">
+          <div class="skill-item"><div class="skill-name">MySQL <span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-w="88%"></div></div></div>
+          <div class="skill-item"><div class="skill-name">WordPress <span>78%</span></div><div class="skill-bar"><div class="skill-fill" data-w="78%"></div></div></div>
+          <div class="skill-item"><div class="skill-name">Java <span>70%</span></div><div class="skill-bar"><div class="skill-fill" data-w="70%"></div></div></div>
+          <div class="skill-item"><div class="skill-name">Spring Boot <span>65%</span></div><div class="skill-bar"><div class="skill-fill" data-w="65%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISION SECTION -->
+  <div class="vision-sec">
+    <div class="sec-hdr center fade-up" style="max-width:1200px;margin:0 auto 52px">
+      <div class="sec-tag" style="justify-content:center">Our Direction</div>
+      <h2 class="sec-title">Mission, Vision &amp; <span>Values</span></h2>
+    </div>
+    <div class="vision-grid">
+      <div class="vision-card fade-up">
+        <span class="vision-ico">🎯</span>
+        <h3>Our Mission</h3>
+        <p>To deliver world-class digital solutions that empower businesses to thrive online — with clean code, on-time delivery, and honest communication.</p>
+      </div>
+      <div class="vision-card fade-up d1">
+        <span class="vision-ico">🚀</span>
+        <h3>Our Vision</h3>
+        <p>To grow HighCodeX Technologies into a full-scale digital agency based in Chennai — serving clients across India and beyond.</p>
+      </div>
+      <div class="vision-card fade-up d2">
+        <span class="vision-ico">💡</span>
+        <h3>Our Values</h3>
+        <p>Transparency, quality, and continuous learning. We believe the best code comes from curiosity, commitment, and care for the client's success.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <div class="cta-banner fade-up">
+    <div class="cta-c">
+      <h2>Let's Build Something Great Together</h2>
+      <p>Ready to start your project? I'd love to hear from you.</p>
+      <a href="contact.html" class="btn-p">Get In Touch →</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fcbar">
+    <div class="fci"><div class="fci-ico">📞</div><div><div class="fci-lbl">Phone</div><div class="fci-info">Office: +91 78689 46689<br/>Sales: +91 78689 46689</div></div></div>
+    <div class="fci"><div class="fci-ico">✉️</div><div><div class="fci-lbl">Email</div><div class="fci-info">highcodextech@gmail.com</div></div></div>
+    <div class="fci"><div class="fci-ico">📍</div><div><div class="fci-lbl">Chennai</div><div class="fci-info">Chennai, Tamil Nadu 600000</div></div></div>
+  </div>
+  <div class="fmain">
+    <div>
+      <a href="index.html" class="flogo"><div class="flogo-box">HCX</div><span class="fbrand">HighCodeX Technologies</span></a>
+      <p class="fdesc">Powering your digital presence with clean code and creative design. Chennai-based, globally delivered.</p>
+      <div class="fsocs"><a href="https://wa.me/917868946689" class="soc">💬</a><a href="mailto:highcodextech@gmail.com" class="soc">✉</a><a href="#" class="soc">in</a><a href="#" class="soc">▶</a></div>
+    </div>
+    <div class="fcol"><h4>Quick Links</h4><ul><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="#">Portfolio</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="fcol"><h4>Services</h4><ul><li><a href="services.html">Web Development</a></li><li><a href="services.html">Mobile Apps</a></li><li><a href="services.html">E-Commerce</a></li><li><a href="services.html">Backend Dev</a></li></ul></div>
+    <div class="fcol"><h4>Newsletter</h4><p style="font-size:12px;color:var(--text2);font-weight:300;margin-bottom:9px">Get latest updates from us.</p><div class="nl-form"><input type="email" class="nl-inp" placeholder="Your Email"/><button class="nl-btn">→</button></div></div>
+  </div>
+  <div class="fbot"><span>© 2026 HighCodeX Technologies. All Rights Reserved.</span><span>Code Beyond Limits 🚀</span></div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/917868946689" class="wa-float" target="_blank" title="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.425.638 4.7 1.757 6.675L2 30l7.528-1.733A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.44 11.44 0 01-5.834-1.597l-.418-.248-4.468 1.028 1.059-4.355-.272-.447A11.463 11.463 0 014.5 16C4.5 9.649 9.649 4.5 16 4.5S27.5 9.649 27.5 16 22.351 27.5 16 27.5zm6.29-8.617c-.344-.172-2.036-1.004-2.352-1.119-.315-.115-.545-.172-.774.172-.23.344-.888 1.119-1.088 1.349-.2.23-.4.258-.744.086-.344-.172-1.452-.535-2.766-1.708-1.022-.913-1.712-2.04-1.912-2.384-.2-.344-.021-.53.15-.701.155-.154.344-.402.516-.603.172-.2.229-.344.344-.573.115-.23.057-.43-.029-.602-.086-.172-.774-1.866-1.06-2.555-.28-.672-.564-.58-.774-.591l-.659-.011c-.23 0-.602.086-.917.43s-1.203 1.176-1.203 2.868 1.232 3.327 1.404 3.556c.172.23 2.424 3.7 5.874 5.19.821.354 1.462.566 1.962.724.824.262 1.574.225 2.167.137.661-.099 2.036-.832 2.323-1.636.287-.803.287-1.492.2-1.636-.086-.143-.315-.23-.659-.401z"/></svg>
+</a>
+
+<script>
+// CURSOR
+const curEl=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function tick(){curEl.style.left=mx+'px';curEl.style.top=my+'px';rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
+document.querySelectorAll('a,button,.skill-cat,.vision-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='50px';ring.style.height='50px';ring.style.borderColor='rgba(0,200,255,.7)'});
+  el.addEventListener('mouseleave',()=>{ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(0,200,255,.5)'});
+});
+// NAV
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>40));
+const ham=document.getElementById('ham'),mob=document.getElementById('mob');
+ham.addEventListener('click',()=>mob.classList.toggle('open'));
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mob.classList.remove('open')));
+// OBSERVER + SKILL BARS
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      e.target.querySelectorAll('.skill-fill').forEach(f=>{f.style.width=f.dataset.w});
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:.08});
+document.querySelectorAll('.fade-up,.skill-cat,.vision-card').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

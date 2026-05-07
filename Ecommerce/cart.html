@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart – HighCodeX Technologies</title>
+  <!-- Google Fonts + Bootstrap Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <style>
+    /* Copied exactly from original cart.blade.php – unchanged */
+    .ct-wrap {
+      --gold:#B8860B; --gold-pale:#FDF8EE; --cream:#FEFCF7;
+      --dark:#1A1208; --text:#3D2E0E; --text-muted:#7A6845;
+      --border:#E8D9B8; --section-bg:#F9F4EA;
+      --shadow-lg:0 12px 48px rgba(184,134,11,0.16);
+      background:#FEFCF7; font-family:'Jost',sans-serif; color:#3D2E0E;
+      min-height:70vh;
+    }
+    .ct-hero {
+      background:linear-gradient(120deg,#FDF6E3,#FFF9EE,#FEF3D8);
+      border-bottom:1px solid #E8D9B8; padding:1.8rem 0;
+    }
+    .ct-hero-inner { max-width:1240px; margin:0 auto; padding:0 1rem; }
+    .ct-eyebrow {
+      font-size:11px; font-weight:700; letter-spacing:2.5px;
+      text-transform:uppercase; color:#B8860B; margin-bottom:6px;
+    }
+    .ct-title {
+      font-family:'Playfair Display',serif; font-size:clamp(24px,5vw,36px);
+      font-weight:900; color:#1A1208; margin:0;
+    }
+    .ct-title-count {
+      font-size:15px; font-weight:400; color:#7A6845;
+      font-family:'Jost',sans-serif; margin-left:10px;
+    }
+    .ct-main {
+      max-width:1240px; margin:0 auto;
+      padding:2rem 1rem;
+      display:grid;
+      grid-template-columns:1fr 340px;
+      gap:1.5rem;
+      align-items:start;
+    }
+    .ct-table-wrap {
+      background:#fff; border:1.5px solid #E8D9B8;
+      border-radius:16px; overflow:hidden;
+    }
+    .ct-table { width:100%; border-collapse:collapse; }
+    .ct-table th {
+      background:#F9F4EA; color:#B8860B;
+      padding:12px 16px; font-size:11px;
+      text-transform:uppercase; letter-spacing:2px;
+      font-family:'Jost',sans-serif; font-weight:700;
+      border-bottom:1.5px solid #E8D9B8; text-align:left;
+    }
+    .ct-table td {
+      padding:16px; border-bottom:1px solid #F0E8D4;
+      color:#3D2E0E; vertical-align:middle;
+    }
+    .ct-table tr:last-child td { border-bottom:none; }
+    .ct-table tr:hover td { background:#FEFCF7; }
+    .ct-card-list { display:none; flex-direction:column; gap:0; }
+    .ct-card-item {
+      padding:1rem; border-bottom:1px solid #F0E8D4;
+      display:flex; gap:12px; align-items:flex-start;
+      background:#fff;
+    }
+    .ct-card-item:last-child { border-bottom:none; }
+    .ct-prod-img {
+      width:64px; height:64px; object-fit:cover;
+      border-radius:8px; border:1.5px solid #E8D9B8;
+      flex-shrink:0;
+    }
+    .ct-prod-img-placeholder {
+      width:64px; height:64px; border-radius:8px;
+      background:#FDF8EE; border:1.5px solid #E8D9B8;
+      display:flex; align-items:center; justify-content:center;
+      font-size:26px; flex-shrink:0;
+    }
+    .ct-prod-name { font-weight:600; font-size:14px; color:#1A1208; margin-bottom:4px; }
+    .ct-price { font-family:'Playfair Display',serif; font-size:14px; color:#3D2E0E; font-weight:600; }
+    .ct-subtotal { font-family:'Playfair Display',serif; font-size:17px; color:#B8860B; font-weight:700; }
+    .ct-card-body { flex:1; min-width:0; }
+    .ct-card-meta {
+      display:flex; align-items:center;
+      justify-content:space-between; margin-top:8px;
+      flex-wrap:wrap; gap:8px;
+    }
+    .ct-card-price-row {
+      display:flex; align-items:center; gap:6px;
+      font-size:12px; color:#7A6845; margin-bottom:6px;
+    }
+    .ct-qty-wrap {
+      display:flex; align-items:center;
+      border:1.5px solid #E8D9B8; border-radius:8px;
+      overflow:hidden; background:#F9F4EA; width:fit-content;
+    }
+    .ct-qty-btn {
+      background:none; border:none; color:#B8860B;
+      width:32px; height:34px; font-size:17px;
+      cursor:pointer; transition:background 0.2s;
+    }
+    .ct-qty-btn:hover { background:#E8D9B8; }
+    .ct-qty-num {
+      width:36px; text-align:center; font-size:14px;
+      font-weight:600; color:#1A1208; border:none;
+      background:transparent; font-family:'Jost',sans-serif;
+    }
+    .ct-remove-btn {
+      background:#FFF5F5; border:1px solid #FEB2B2;
+      color:#C53030; padding:6px 10px; border-radius:6px;
+      font-size:12px; cursor:pointer; transition:all 0.25s;
+      white-space:nowrap;
+    }
+    .ct-remove-btn:hover { background:#C53030; color:#fff; border-color:#C53030; }
+    .ct-table-footer {
+      padding:1rem 1.2rem;
+      display:flex; justify-content:space-between;
+      align-items:center; flex-wrap:wrap; gap:8px;
+      border-top:1.5px solid #E8D9B8; background:#F9F4EA;
+    }
+    .ct-continue-link {
+      display:inline-flex; align-items:center; gap:6px;
+      color:#B8860B; font-size:13px; font-weight:600;
+      text-decoration:none;
+      border:1.5px solid #B8860B; padding:8px 16px;
+      border-radius:8px; transition:all 0.25s;
+    }
+    .ct-continue-link:hover { background:#B8860B; color:#fff; }
+    .ct-summary {
+      background:#fff; border:1.5px solid #E8D9B8;
+      border-radius:16px; overflow:hidden;
+      position:sticky; top:85px;
+    }
+    .ct-summary-hdr {
+      background:#B8860B; color:#fff;
+      padding:1.1rem 1.4rem;
+      font-family:'Playfair Display',serif;
+      font-size:18px; font-weight:700;
+    }
+    .ct-summary-body { padding:1.2rem 1.4rem; }
+    .ct-sum-row {
+      display:flex; justify-content:space-between;
+      align-items:center; padding:9px 0;
+      border-bottom:1px solid #F0E8D4;
+      font-size:14px; color:#7A6845;
+    }
+    .ct-sum-row:last-of-type { border-bottom:none; }
+    .ct-sum-row .val { color:#3D2E0E; font-weight:600; }
+    .ct-sum-total {
+      display:flex; justify-content:space-between;
+      align-items:center; padding:12px 0 4px;
+      border-top:2px solid #E8D9B8; margin-top:8px;
+      font-family:'Playfair Display',serif;
+    }
+    .ct-sum-total .lbl { font-size:16px; font-weight:700; color:#1A1208; }
+    .ct-sum-total .val { font-size:22px; font-weight:700; color:#B8860B; }
+    .ct-coupon-wrap { margin:0.8rem 0 1rem; }
+    .ct-coupon-label {
+      font-size:11px; font-weight:700; letter-spacing:1.5px;
+      text-transform:uppercase; color:#B8860B; margin-bottom:7px;
+      display:block;
+    }
+    .ct-coupon-input-wrap { display:flex; gap:7px; }
+    .ct-coupon-input {
+      flex:1; border:1.5px solid #E8D9B8; background:#F9F4EA;
+      border-radius:8px; padding:9px 12px; font-size:13px;
+      font-family:'Jost',sans-serif; color:#3D2E0E; outline:none;
+      transition:border 0.25s; min-width:0;
+    }
+    .ct-coupon-input:focus { border-color:#B8860B; }
+    .ct-coupon-btn {
+      background:#F9F4EA; color:#B8860B; border:1.5px solid #B8860B;
+      border-radius:8px; padding:9px 14px; font-size:13px;
+      font-weight:600; cursor:pointer; font-family:'Jost',sans-serif;
+      transition:all 0.25s; white-space:nowrap;
+    }
+    .ct-coupon-btn:hover { background:#B8860B; color:#fff; }
+    .ct-coupon-applied {
+      background:#F0FFF4; border:1px solid #9AE6B4;
+      border-radius:8px; padding:9px 12px; margin-bottom:1rem;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .ct-coupon-applied-text {
+      font-size:13px; color:#276749; font-weight:600;
+    }
+    .ct-coupon-remove-btn {
+      background:none; border:none; color:#C53030;
+      cursor:pointer; font-size:13px; padding:0;
+    }
+    .ct-checkout-btn {
+      display:block; width:100%; background:#B8860B; color:#fff;
+      border:none; padding:14px; border-radius:10px;
+      font-size:15px; font-weight:700; text-align:center;
+      text-decoration:none; margin-top:1.1rem;
+      transition:all 0.25s; font-family:'Jost',sans-serif;
+      cursor:pointer; box-sizing:border-box;
+    }
+    .ct-checkout-btn:hover {
+      background:#D4A017; color:#fff;
+      transform:translateY(-2px);
+      box-shadow:0 6px 20px rgba(184,134,11,0.3);
+    }
+    .ct-secure {
+      display:flex; justify-content:center;
+      gap:0.8rem; margin-top:0.9rem; flex-wrap:wrap;
+    }
+    .ct-secure-item {
+      font-size:11px; color:#aaa;
+      display:flex; align-items:center; gap:4px;
+    }
+    .ct-empty { text-align:center; padding:4rem 1.5rem; }
+    .ct-empty-icon { font-size:70px; margin-bottom:1.2rem; display:block; }
+    .ct-empty-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(22px,5vw,28px); color:#1A1208; margin-bottom:8px;
+    }
+    .ct-empty-sub { color:#7A6845; font-size:15px; margin-bottom:1.8rem; }
+    .ct-empty-btn {
+      display:inline-block; background:#B8860B; color:#fff;
+      padding:13px 28px; border-radius:8px; font-size:14px;
+      font-weight:600; text-decoration:none;
+      transition:all 0.25s;
+    }
+    .ct-empty-btn:hover { background:#D4A017; color:#fff; transform:translateY(-2px); }
+    @media(max-width:900px){
+      .ct-main { grid-template-columns:1fr; }
+      .ct-summary { position:static; }
+    }
+    @media(max-width:640px){
+      .ct-hero { padding:1.2rem 0; }
+      .ct-main { padding:1rem; gap:1rem; }
+      .ct-table-wrap .ct-table,
+      .ct-table-wrap .ct-table thead { display:none; }
+      .ct-card-list { display:flex; }
+      .ct-table-wrap { padding:0; }
+      .ct-table-footer {
+        flex-direction:column; align-items:stretch; gap:8px;
+        padding:0.9rem 1rem;
+      }
+      .ct-continue-link { justify-content:center; }
+      .ct-summary-body { padding:1rem; }
+      .ct-summary-hdr { padding:1rem; font-size:16px; }
+      .ct-sum-total .val { font-size:20px; }
+    }
+    @media(max-width:380px){
+      .ct-prod-img,
+      .ct-prod-img-placeholder { width:54px; height:54px; }
+      .ct-prod-name { font-size:13px; }
+    }
+  </style>
+</head>
+<body>
+  <script src="navbar.js"></script>
+<div class="ct-wrap">
+
+  <!-- HERO (HighCodeX branding) -->
+  <div class="ct-hero">
+    <div class="ct-hero-inner">
+      <p class="ct-eyebrow">Your Project Cart</p>
+      <h1 class="ct-title">Shopping Cart
+        <span class="ct-title-count">(3 items)</span>
+      </h1>
+    </div>
+  </div>
+
+  <!-- CART CONTENT (static demo using HighCodeX services from PDF) -->
+  <div class="ct-main">
+    <!-- LEFT: Cart Items -->
+    <div>
+      <div class="ct-table-wrap">
+        <!-- Desktop Table -->
+        <table class="ct-table">
+          <thead>
+            <tr><th>Service</th><th>Price</th><th>Quantity</th><th>Subtotal</th><th>Remove</th></tr>
+          </thead>
+          <tbody>
+            <!-- Item 1: Web Development (Basic) -->
+            <tr>
+              <td><div style="display:flex;align-items:center;gap:12px;"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=100&h=100&fit=crop" class="ct-prod-img" alt="Web Dev"><div class="ct-prod-name">Web Development – Basic Package (3‑4 pages)</div></div></td>
+              <td><span class="ct-price">₹8,000</span></td>
+              <td><div class="ct-qty-wrap"><button class="ct-qty-btn" onclick="updateQty(this, -1)">−</button><span class="ct-qty-num">1</span><button class="ct-qty-btn" onclick="updateQty(this, 1)">+</button></div></td>
+              <td><span class="ct-subtotal">₹8,000</span></td>
+              <td><button class="ct-remove-btn" onclick="removeItem(this)"><i class="bi bi-trash"></i></button></td>
+            </tr>
+            <!-- Item 2: Mobile App Development (Standard) -->
+            <tr>
+              <td><div style="display:flex;align-items:center;gap:12px;"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=100&h=100&fit=crop" class="ct-prod-img" alt="Mobile App"><div class="ct-prod-name">Mobile App – Standard Package (Cross‑platform)</div></div></td>
+              <td><span class="ct-price">₹12,000</span></td>
+              <td><div class="ct-qty-wrap"><button class="ct-qty-btn" onclick="updateQty(this, -1)">−</button><span class="ct-qty-num">1</span><button class="ct-qty-btn" onclick="updateQty(this, 1)">+</button></div></td>
+              <td><span class="ct-subtotal">₹12,000</span></td>
+              <td><button class="ct-remove-btn" onclick="removeItem(this)"><i class="bi bi-trash"></i></button></td>
+            </tr>
+            <!-- Item 3: E‑Commerce Solution (Premium) -->
+            <tr>
+              <td><div style="display:flex;align-items:center;gap:12px;"><img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=100&h=100&fit=crop" class="ct-prod-img" alt="E‑Commerce"><div class="ct-prod-name">E‑Commerce – Premium Package (Full store)</div></div></td>
+              <td><span class="ct-price">₹18,000</span></td>
+              <td><div class="ct-qty-wrap"><button class="ct-qty-btn" onclick="updateQty(this, -1)">−</button><span class="ct-qty-num">1</span><button class="ct-qty-btn" onclick="updateQty(this, 1)">+</button></div></td>
+              <td><span class="ct-subtotal">₹18,000</span></td>
+              <td><button class="ct-remove-btn" onclick="removeItem(this)"><i class="bi bi-trash"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Mobile Card List (duplicate content) -->
+        <div class="ct-card-list">
+          <div class="ct-card-item">
+            <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=100&h=100&fit=crop" class="ct-prod-img" alt="Web Dev">
+            <div class="ct-card-body">
+              <div class="ct-prod-name">Web Development – Basic Package</div>
+              <div class="ct-card-price-row"><span>₹8,000</span><span>×</span><span>1</span></div>
+              <div class="ct-card-meta">
+                <div class="ct-qty-wrap"><button class="ct-qty-btn" onclick="updateQty(this, -1)">−</button><span class="ct-qty-num">1</span><button class="ct-qty-btn" onclick="updateQty(this, 1)">+</button></div>
+                <span class="ct-subtotal">₹8,000</span>
+                <button class="ct-remove-btn" onclick="removeItem(this)"><i class="bi bi-trash"></i> Remove</button>
+              </div>
+            </div>
+          </div>
+          <div class="ct-card-item">
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=100&h=100&fit=crop" class="ct-prod-img" alt="Mobile App">
+            <div class="ct-card-body">
+              <div class="ct-prod-name">Mobile App – Standard Package</div>
+              <div class="ct-card-price-row"><span>₹12,000</span><span>×</span><span>1</span></div>
+              <div class="ct-card-meta">
+                <div class="ct-qty-wrap"><button class="ct-qty-btn" onclick="updateQty(this, -1)">−</button><span class="ct-qty-num">1</span><button class="ct-qty-btn" onclick="updateQty(this, 1)">+</button></div>
+                <span class="ct-subtotal">₹12,000</span>
+                <button class="ct-remove-btn" onclick="removeItem(this)"><i class="bi bi-trash"></i> Remove</button>
+              </div>
+            </div>
+          </div>
+          <div class="ct-card-item">
+            <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=100&h=100&fit=crop" class="ct-prod-img" alt="E‑Commerce">
+            <div class="ct-card-body">
+              <div class="ct-prod-name">E‑Commerce – Premium Package</div>
+              <div class="ct-card-price-row"><span>₹18,000</span><span>×</span><span>1</span></div>
+              <div class="ct-card-meta">
+                <div class="ct-qty-wrap"><button class="ct-qty-btn" onclick="updateQty(this, -1)">−</button><span class="ct-qty-num">1</span><button class="ct-qty-btn" onclick="updateQty(this, 1)">+</button></div>
+                <span class="ct-subtotal">₹18,000</span>
+                <button class="ct-remove-btn" onclick="removeItem(this)"><i class="bi bi-trash"></i> Remove</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer with continue shopping -->
+        <div class="ct-table-footer">
+          <a href="#" class="ct-continue-link" onclick="alert('Browse our services – Web, Mobile, E‑Commerce & Backend')"><i class="bi bi-arrow-left"></i> Continue Shopping</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Order Summary -->
+    <div>
+      <div class="ct-summary">
+        <div class="ct-summary-hdr">Order Summary</div>
+        <div class="ct-summary-body">
+          <!-- Coupon demo section -->
+          <div id="couponSection">
+            <div class="ct-coupon-wrap">
+              <span class="ct-coupon-label">Have a Coupon?</span>
+              <div class="ct-coupon-input-wrap">
+                <input type="text" id="couponCode" class="ct-coupon-input" placeholder="Enter SAVE10">
+                <button type="button" onclick="applyCoupon()" class="ct-coupon-btn">Apply</button>
+              </div>
+              <div id="couponMsg" style="font-size:12px;margin-top:6px;"></div>
+            </div>
+          </div>
+          <div id="appliedCouponDisplay" style="display:none;" class="ct-coupon-applied">
+            <span class="ct-coupon-applied-text"><i class="bi bi-tag-fill"></i> <span id="couponCodeDisplay"></span> — ₹<span id="couponDiscountAmount"></span> off</span>
+            <button onclick="removeCoupon()" class="ct-coupon-remove-btn">✕ Remove</button>
+          </div>
+
+          <!-- Dynamic summary rows -->
+          <div class="ct-sum-row"><span>Subtotal</span><span class="val" id="subtotal">₹38,000</span></div>
+          <div id="discountRow" style="display:none;" class="ct-sum-row"><span>Discount</span><span class="val" style="color:#276749;" id="discountVal">− ₹0</span></div>
+          <div class="ct-sum-row"><span>Shipping</span><span class="val" style="color:#276749;">Calculated at checkout</span></div>
+          <div class="ct-sum-total"><span class="lbl">Total</span><span class="val" id="total">₹38,000</span></div>
+
+          <button class="ct-checkout-btn" onclick="alert('Proceed to checkout – contact HighCodeX at +91 7868946689 or highcodextech@gmail.com')">
+            Proceed to Checkout &nbsp;→
+          </button>
+          <div class="ct-secure">
+            <span class="ct-secure-item"><i class="bi bi-shield-check" style="color:#B8860B;"></i> Secure Checkout</span>
+            <span class="ct-secure-item"><i class="bi bi-truck" style="color:#B8860B;"></i> Fast Delivery</span>
+            <span class="ct-secure-item"><i class="bi bi-arrow-return-left" style="color:#B8860B;"></i> Easy Returns</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Pure frontend cart management (no backend)
+  // Prices list based on service names (static mapping for demo)
+  function getPriceFromName(name) {
+    if (name.includes('Basic')) return 8000;
+    if (name.includes('Standard')) return 12000;
+    if (name.includes('Premium')) return 18000;
+    return 0;
+  }
+
+  function updateQty(btn, delta) {
+    let qtySpan = btn.parentElement.querySelector('.ct-qty-num');
+    let row = btn.closest('tr') || btn.closest('.ct-card-item');
+    let currentQty = parseInt(qtySpan.innerText);
+    let newQty = currentQty + delta;
+    if (newQty < 1) newQty = 1;
+    qtySpan.innerText = newQty;
+    // Find price per unit
+    let priceSpan = row.querySelector('.ct-price') || row.querySelector('.ct-card-price-row span:first-child');
+    let price = parseInt(priceSpan.innerText.replace('₹', '').replace(',', ''));
+    let subtotalSpan = row.querySelector('.ct-subtotal');
+    let newSubtotal = price * newQty;
+    subtotalSpan.innerText = '₹' + newSubtotal.toLocaleString('en-IN');
+    updateTotals();
+  }
+
+  function removeItem(btn) {
+    let row = btn.closest('tr') || btn.closest('.ct-card-item');
+    row.remove();
+    updateTotals();
+    // Also remove from mobile card list if present (redundancy handled by updateTotals)
+    let itemCount = document.querySelectorAll('.ct-table tbody tr, .ct-card-item').length;
+    if (itemCount === 0) {
+      location.reload(); // simple reload to show empty state (or we could dynamically show empty cart)
+    }
+  }
+
+  function updateTotals() {
+    let subtotal = 0;
+    // Desktop rows
+    document.querySelectorAll('.ct-table tbody tr').forEach(row => {
+      let subtotalSpan = row.querySelector('.ct-subtotal');
+      if (subtotalSpan) {
+        let val = parseInt(subtotalSpan.innerText.replace('₹', '').replace(',', ''));
+        subtotal += val;
+      }
+    });
+    // Mobile cards (if desktop hidden, but we sum both to be safe)
+    document.querySelectorAll('.ct-card-item .ct-subtotal').forEach(span => {
+      let val = parseInt(span.innerText.replace('₹', '').replace(',', ''));
+      subtotal += val;
+    });
+    document.getElementById('subtotal').innerText = '₹' + subtotal.toLocaleString('en-IN');
+    let discount = window.currentDiscount || 0;
+    let total = subtotal - discount;
+    document.getElementById('total').innerText = '₹' + total.toLocaleString('en-IN');
+    if (discount > 0) {
+      document.getElementById('discountVal').innerText = '− ₹' + discount.toLocaleString('en-IN');
+      document.getElementById('discountRow').style.display = 'flex';
+    } else {
+      document.getElementById('discountRow').style.display = 'none';
+    }
+  }
+
+  let window.currentDiscount = 0;
+
+  function applyCoupon() {
+    let code = document.getElementById('couponCode').value.trim();
+    if (code === 'SAVE10') {
+      let subtotalText = document.getElementById('subtotal').innerText;
+      let subtotal = parseInt(subtotalText.replace('₹', '').replace(',', ''));
+      let discount = Math.floor(subtotal * 0.10); // 10% off
+      window.currentDiscount = discount;
+      document.getElementById('couponMsg').innerHTML = '<span style="color:#276749;">✓ Coupon applied! 10% off</span>';
+      // Show applied coupon display
+      document.getElementById('couponCodeDisplay').innerText = code;
+      document.getElementById('couponDiscountAmount').innerText = discount.toLocaleString('en-IN');
+      document.getElementById('appliedCouponDisplay').style.display = 'flex';
+      document.getElementById('couponSection').style.display = 'none';
+      updateTotals();
+    } else {
+      document.getElementById('couponMsg').innerHTML = '<span style="color:#C53030;">✗ Invalid coupon code. Try SAVE10</span>';
+    }
+  }
+
+  function removeCoupon() {
+    window.currentDiscount = 0;
+    document.getElementById('appliedCouponDisplay').style.display = 'none';
+    document.getElementById('couponSection').style.display = 'block';
+    document.getElementById('couponMsg').innerHTML = '';
+    updateTotals();
+  }
+</script>
+
+</body>
+</html>

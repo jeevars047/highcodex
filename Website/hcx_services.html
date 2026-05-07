@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>HighCodeX Technologies | Services - Code Beyond Limits</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playball&family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0a;
+      color: #d3d3d3;
+      font-family: 'Quattrocento Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .fancy-title {
+      font-family: 'Playball', cursive;
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
+
+    h2 { font-size: 34px; color: #ecc371; margin-bottom: 20px; }
+    h5 { font-family: 'Quattrocento Sans', sans-serif; font-size: 18px; font-weight: 300; letter-spacing: 1px; color: #d3d3d3; }
+
+    .gold-text { color: #ecc371; }
+
+    .btn-gold {
+      background: #ecc371;
+      color: #000;
+      border: none;
+      padding: 12px 30px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      letter-spacing: 1px;
+      font-family: 'Quattrocento Sans', sans-serif;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .btn-gold:hover { background: #d6b05c; transform: translateY(-3px); }
+
+    /* NAV */
+    .site-header {
+      background: #0a0a0a;
+      border-bottom: 1px solid rgba(236,195,113,0.2);
+      padding: 18px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .logo-box {
+      width: 48px;
+      height: 48px;
+      background: #ecc371;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playball', cursive;
+      font-size: 22px;
+      color: #000;
+      font-weight: 700;
+    }
+    .logo-text { font-family: 'Playball', cursive; font-size: 22px; color: #ecc371; }
+    .logo-tagline { font-size: 10px; color: #888; letter-spacing: 2px; display: block; }
+
+    .nav-menu ul { list-style: none; display: flex; gap: 28px; flex-wrap: wrap; }
+    .nav-menu a { color: #d3d3d3; text-decoration: none; font-size: 15px; letter-spacing: 1px; transition: 0.3s; }
+    .nav-menu a:hover, .nav-menu a.active { color: #ecc371; }
+
+    /* PAGE HEADER */
+    .page-header {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1400&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 100px 5%;
+      text-align: center;
+    }
+    .page-header h1 { font-size: 52px; color: #ecc371; }
+    .page-header p { font-size: 18px; color: #ccc; margin-top: 15px; }
+
+    .section-padding { padding: 80px 5%; }
+    .container { max-width: 1240px; margin: 0 auto; }
+
+    .divider-line { width: 80px; height: 2px; background: #ecc371; margin: 20px auto; }
+    .divider-left { width: 80px; height: 2px; background: #ecc371; margin: 20px 0; }
+
+    /* SERVICE CARDS FULL */
+    .service-full {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      margin-bottom: 80px;
+      align-items: center;
+    }
+    .service-full.reverse { flex-direction: row-reverse; }
+    .service-img {
+      flex: 1;
+      min-width: 280px;
+    }
+    .service-img img {
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid rgba(236,195,113,0.2);
+      transition: 0.3s;
+    }
+    .service-img img:hover { transform: scale(1.02); border-color: #ecc371; }
+    .service-content {
+      flex: 1;
+      min-width: 280px;
+    }
+    .service-content h3 {
+      font-size: 28px;
+      color: #ecc371;
+      margin-bottom: 15px;
+    }
+    .service-content p {
+      color: #aaa;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .tech-tag {
+      background: rgba(236,195,113,0.1);
+      border: 1px solid rgba(236,195,113,0.3);
+      padding: 5px 12px;
+      font-size: 12px;
+      color: #ecc371;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+    .tech-tag:hover { background: rgba(236,195,113,0.2); transform: translateY(-2px); }
+    .feature-list {
+      list-style: none;
+      margin: 20px 0;
+    }
+    .feature-list li {
+      padding: 8px 0;
+      font-size: 14px;
+      color: #ccc;
+    }
+    .feature-list li i {
+      color: #ecc371;
+      margin-right: 10px;
+    }
+
+    /* PROCESS */
+    .process-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 50px;
+      justify-content: center;
+    }
+    .process-step {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+      background: rgba(255,255,255,0.03);
+      padding: 35px 20px;
+      border-radius: 4px;
+      border: 1px solid rgba(236,195,113,0.1);
+      transition: 0.3s;
+    }
+    .process-step:hover { border-color: #ecc371; transform: translateY(-5px); background: rgba(236,195,113,0.05); }
+    .step-num {
+      width: 60px;
+      height: 60px;
+      background: #ecc371;
+      color: #000;
+      font-family: 'Playball', cursive;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+    }
+    .process-step h4 { color: #ecc371; font-size: 20px; margin-bottom: 12px; }
+    .process-step p { font-size: 13px; color: #888; line-height: 1.7; }
+
+    /* PRICING */
+    .pricing-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-top: 50px;
+      justify-content: center;
+    }
+    .price-card {
+      flex: 1;
+      min-width: 260px;
+      max-width: 320px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 4px;
+      padding: 35px 28px;
+      text-align: center;
+      transition: 0.3s;
+      position: relative;
+    }
+    .price-card.popular { border-color: #ecc371; background: rgba(236,195,113,0.05); }
+    .popular-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: #ecc371; color: #000;
+      padding: 4px 20px; font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      border-radius: 20px;
+    }
+    .price-card:hover { transform: translateY(-6px); }
+    .price-name { font-family: 'Playball', cursive; font-size: 24px; color: #ecc371; margin-bottom: 8px; }
+    .price-amount { font-size: 40px; font-family: 'Playball', cursive; color: #fff; }
+    .price-amount span { font-size: 18px; color: #aaa; }
+    .price-pages { font-size: 13px; color: #888; margin: 10px 0 20px; }
+    .price-features { list-style: none; text-align: left; margin-bottom: 28px; }
+    .price-features li { font-size: 14px; color: #aaa; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .price-features li i { color: #ecc371; margin-right: 8px; }
+
+    /* FAQ SECTION */
+    .faq-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 50px;
+    }
+    .faq-item {
+      flex: 1;
+      min-width: 300px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(236,195,113,0.1);
+      border-radius: 4px;
+      padding: 25px;
+      transition: 0.3s;
+    }
+    .faq-item:hover { border-color: rgba(236,195,113,0.3); }
+    .faq-item h4 { color: #ecc371; font-family: 'Quattrocento Sans', sans-serif; font-size: 16px; margin-bottom: 12px; }
+    .faq-item h4 i { margin-right: 10px; }
+    .faq-item p { color: #aaa; font-size: 14px; line-height: 1.7; }
+
+    /* CTA */
+    .cta-overlay {
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      padding: 80px 20px;
+      position: relative;
+    }
+    .cta-overlay::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(10,10,10,0.85);
+      z-index: 1;
+    }
+    .cta-content {
+      position: relative; z-index: 2;
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .cta-content h2 { color: #ecc371; font-size: 36px; }
+    .cta-content p { color: #ccc; margin: 16px 0 28px; }
+
+    /* FOOTER */
+    .footer { background: #050505; border-top: 1px solid rgba(236,195,113,0.15); padding: 40px 20px; text-align: center; }
+    .footer-grid { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; max-width: 1000px; margin: 0 auto 30px; }
+    .footer-col { flex: 1; min-width: 180px; text-align: left; }
+    .footer-col h4 { color: #ecc371; font-family: 'Playball', cursive; font-size: 20px; margin-bottom: 14px; }
+    .footer-col p, .footer-col a { font-size: 14px; color: #888; line-height: 2; text-decoration: none; display: block; }
+    .footer-col a:hover { color: #ecc371; }
+    .footer-col i { color: #ecc371; margin-right: 8px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 22px; font-size: 13px; color: #555; }
+
+    @media (max-width: 768px) {
+      h2 { font-size: 26px; }
+      .page-header h1 { font-size: 32px; }
+      .page-header { padding: 60px 5%; }
+      .header-inner { flex-direction: column; align-items: flex-start; }
+      .service-full.reverse { flex-direction: row; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-area" href="hcx_home.html">
+      <div class="logo-box">HCX</div>
+      <div>
+        <div class="logo-text">HighCodeX</div>
+        <span class="logo-tagline">// CODE BEYOND LIMITS</span>
+      </div>
+    </a>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="hcx_home.html">Home</a></li>
+        <li><a href="hcx_about.html">About</a></li>
+        <li><a href="hcx_services.html" class="active">Services</a></li>
+        <li><a href="hcx_contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <h1>What We Build For You</h1>
+  <p>From concept to launch — we handle every layer of your digital product with expertise and care.</p>
+</div>
+
+<!-- Service 1: Web Design & Development -->
+<div class="section-padding" style="padding-bottom:0;">
+  <div class="container">
+    <div class="service-full">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=700&q=80" alt="Web Development">
+      </div>
+      <div class="service-content">
+        <h3>01 — Web Design & Development</h3>
+        <p>We craft stunning, responsive websites that not only look beautiful but also drive real business results. From simple landing pages to complex web applications — we do it all.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">HTML5/CSS3</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Bootstrap</span>
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">WordPress</span>
+          <span class="tech-tag">PHP</span>
+        </div>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Responsive Design</li>
+          <li><i class="fas fa-check-circle"></i> SEO Optimized</li>
+          <li><i class="fas fa-check-circle"></i> Fast Loading Performance</li>
+          <li><i class="fas fa-check-circle"></i> Cross Browser Compatible</li>
+          <li><i class="fas fa-check-circle"></i> Clean Code & CMS Integration</li>
+        </ul>
+        <a href="hcx_contact.html" class="btn-gold">Get a Quote →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Service 2: Mobile App Development -->
+<section class="section-padding" style="padding-top:0;">
+  <div class="container">
+    <div class="service-full reverse">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=700&q=80" alt="Mobile App Development">
+      </div>
+      <div class="service-content">
+        <h3>02 — Mobile App Development</h3>
+        <p>We build powerful mobile applications that deliver seamless experiences across Android and iOS platforms. User-friendly interfaces backed by robust functionality.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">React Native</span>
+          <span class="tech-tag">Flutter</span>
+          <span class="tech-tag">Python Backend</span>
+          <span class="tech-tag">REST APIs</span>
+        </div>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Android & iOS Support</li>
+          <li><i class="fas fa-check-circle"></i> Cross Platform Development</li>
+          <li><i class="fas fa-check-circle"></i> Intuitive UI/UX Design</li>
+          <li><i class="fas fa-check-circle"></i> API Integration</li>
+          <li><i class="fas fa-check-circle"></i> Push Notifications</li>
+          <li><i class="fas fa-check-circle"></i> Performance Optimized</li>
+        </ul>
+        <a href="hcx_contact.html" class="btn-gold">Get a Quote →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Service 3: E-Commerce Solutions -->
+<div class="section-padding" style="padding-top:0; padding-bottom:0;">
+  <div class="container">
+    <div class="service-full">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=80" alt="E-Commerce Solutions">
+      </div>
+      <div class="service-content">
+        <h3>03 — E-Commerce Solutions</h3>
+        <p>Launch your online store with a powerful, secure, and scalable e-commerce platform. We integrate payment gateways, inventory management, and everything you need to sell online.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">WooCommerce</span>
+          <span class="tech-tag">Shopify</span>
+          <span class="tech-tag">Laravel</span>
+          <span class="tech-tag">Django</span>
+          <span class="tech-tag">MySQL</span>
+        </div>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Secure Payment Gateway</li>
+          <li><i class="fas fa-check-circle"></i> Inventory Management System</li>
+          <li><i class="fas fa-check-circle"></i> Order Tracking System</li>
+          <li><i class="fas fa-check-circle"></i> Admin Dashboard</li>
+          <li><i class="fas fa-check-circle"></i> Mobile Friendly Store</li>
+          <li><i class="fas fa-check-circle"></i> Secure Checkout Process</li>
+        </ul>
+        <a href="hcx_contact.html" class="btn-gold">Get a Quote →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Service 4: Backend Development -->
+<section class="section-padding" style="padding-top:0;">
+  <div class="container">
+    <div class="service-full reverse">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=700&q=80" alt="Backend Development">
+      </div>
+      <div class="service-content">
+        <h3>04 — Backend Development</h3>
+        <p>Solid, scalable backend systems that power your applications. From REST APIs to database architecture — we build the foundation your product needs to grow.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python/Django</span>
+          <span class="tech-tag">Flask</span>
+          <span class="tech-tag">PHP/Laravel</span>
+          <span class="tech-tag">Java/Spring Boot</span>
+          <span class="tech-tag">MySQL/PostgreSQL</span>
+        </div>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> REST API Development</li>
+          <li><i class="fas fa-check-circle"></i> Database Design & Optimization</li>
+          <li><i class="fas fa-check-circle"></i> Authentication & Security</li>
+          <li><i class="fas fa-check-circle"></i> Server Management (AWS/Linux)</li>
+          <li><i class="fas fa-check-circle"></i> Cloud Integration</li>
+          <li><i class="fas fa-check-circle"></i> Performance Tuning</li>
+        </ul>
+        <a href="hcx_contact.html" class="btn-gold">Get a Quote →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Process Section -->
+<section class="section-padding" style="background:#0d0d0d;">
+  <div class="container">
+    <div style="text-align:center;">
+      <h2>Our Development Process</h2>
+      <div class="divider-line"></div>
+      <h5>Simple, transparent, and effective — from idea to launch</h5>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <h4>Discovery</h4>
+        <p>We understand your requirements, goals, and target audience through a detailed consultation.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <h4>Planning</h4>
+        <p>We plan the architecture, design wireframes, and define the project scope and timeline.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <h4>Development</h4>
+        <p>We build your product with clean code, regular updates, and quality assurance at every step.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <h4>Launch</h4>
+        <p>We deploy, test, and hand over the product — with full support to ensure a smooth go-live.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Packages -->
+<section class="section-padding">
+  <div class="container">
+    <div style="text-align:center;">
+      <h2>Pricing Packages</h2>
+      <div class="divider-line"></div>
+      <h5>Transparent pricing — no hidden costs, no surprises.</h5>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">Basic</div>
+        <div class="price-amount">₹8,000</div>
+        <div class="price-pages">3–4 Pages</div>
+        <ul class="price-features">
+          <li><i class="fas fa-check"></i> Home, About, Gallery, Contact</li>
+          <li><i class="fas fa-check"></i> Mobile-friendly design</li>
+          <li><i class="fas fa-check"></i> Enquiry form setup</li>
+          <li><i class="fas fa-check"></i> Basic SEO setup</li>
+        </ul>
+        <a href="hcx_contact.html" class="btn-gold">Get Started</a>
+      </div>
+      <div class="price-card popular">
+        <div class="popular-badge">POPULAR</div>
+        <div class="price-name">Standard</div>
+        <div class="price-amount">₹12,000</div>
+        <div class="price-pages">5–6 Pages</div>
+        <ul class="price-features">
+          <li><i class="fas fa-check"></i> Premium design + better UI</li>
+          <li><i class="fas fa-check"></i> Enquiry + WhatsApp integration</li>
+          <li><i class="fas fa-check"></i> Basic SEO setup</li>
+          <li><i class="fas fa-check"></i> Google listing setup</li>
+        </ul>
+        <a href="hcx_contact.html" class="btn-gold">Get Started</a>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Premium</div>
+        <div class="price-amount">₹18,000</div>
+        <div class="price-pages">All Pages</div>
+        <ul class="price-features">
+          <li><i class="fas fa-check"></i> Advanced design + fast performance</li>
+          <li><i class="fas fa-check"></i> Enquiry + WhatsApp + Call</li>
+          <li><i class="fas fa-check"></i> SEO optimized (keywords, speed)</li>
+          <li><i class="fas fa-check"></i> Google ranking basic setup</li>
+        </ul>
+        <a href="hcx_contact.html" class="btn-gold">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section-padding" style="background:#0d0d0d;">
+  <div class="container">
+    <div style="text-align:center;">
+      <h2>Frequently Asked Questions</h2>
+      <div class="divider-line"></div>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h4><i class="fas fa-rupee-sign gold-text"></i> How much does a website cost?</h4>
+        <p>It depends on the complexity and features. Our basic package starts at ₹8,000 for 3-4 pages, while e-commerce or custom web apps are quoted based on requirements. Contact us for a free estimate!</p>
+      </div>
+      <div class="faq-item">
+        <h4><i class="fas fa-clock gold-text"></i> How long does a project take?</h4>
+        <p>Most websites take 2-4 weeks. Mobile apps or e-commerce stores may take 6-8 weeks. We'll give you a clear timeline during the planning phase — no surprises.</p>
+      </div>
+      <div class="faq-item">
+        <h4><i class="fas fa-headset gold-text"></i> Do you provide support after delivery?</h4>
+        <p>Yes! We provide post-launch support and maintenance. Any bugs or issues after delivery are fixed at no additional cost. Ongoing support packages are also available.</p>
+      </div>
+      <div class="faq-item">
+        <h4><i class="fas fa-code gold-text"></i> Do you redesign existing websites?</h4>
+        <p>Absolutely! We love redesign projects. We'll analyze your current site and suggest improvements to boost performance, design, and conversions.</p>
+      </div>
+      <div class="faq-item">
+        <h4><i class="fas fa-search gold-text"></i> Is SEO included?</h4>
+        <p>Yes, basic SEO setup is included in all packages. We ensure your site is optimized for search engines — fast loading, mobile-friendly, meta tags, and proper structure.</p>
+      </div>
+      <div class="faq-item">
+        <h4><i class="fas fa-handshake gold-text"></i> How do I get started?</h4>
+        <p>Simply reach out via contact form, WhatsApp, or call. We'll schedule a free consultation to understand your needs and provide a tailored quote.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-overlay" style="background-image: url('https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1400&q=80');">
+  <div class="cta-content">
+    <h2>Ready to Build Something Great?</h2>
+    <p>Let's discuss your project. We're just a message away — response within 24 hours.</p>
+    <a href="hcx_contact.html" class="btn-gold">Start a Project <i class="fas fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>HighCodeX</h4>
+      <p style="color:#888; font-size:13px; line-height:1.8;">Code Beyond Limits.<br>Web solutions that grow your business.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <a href="hcx_home.html">Home</a>
+      <a href="hcx_about.html">About</a>
+      <a href="hcx_services.html">Services</a>
+      <a href="hcx_contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+917868946689"><i class="fas fa-phone"></i>+91 78689 46689</a>
+      <a href="mailto:highcodextech@gmail.com"><i class="fas fa-envelope"></i>highcodextech@gmail.com</a>
+      <a href="#"><i class="fas fa-map-marker-alt"></i>Chennai, Tamil Nadu</a>
+    </div>
+    <div class="footer-col">
+      <h4>Reach Us</h4>
+      <a href="https://wa.me/917868946689"><i class="fab fa-whatsapp"></i>WhatsApp Us</a>
+      <a href="mailto:jeevars047@gmail.com"><i class="fas fa-user"></i>jeevars047@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 HighCodeX Technologies. All Rights Reserved. &nbsp;|&nbsp; Code Beyond Limits
+  </div>
+</footer>
+</body>
+</html>

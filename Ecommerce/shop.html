@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop – HighCodeX Technologies</title>
+  <!-- CSS + Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── EXACT STYLES FROM ORIGINAL shop.blade.php ── */
+    .sp-wrap {
+      background: #fff;
+      font-family: 'DM Sans', sans-serif;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+    .sp-hero {
+      background: linear-gradient(135deg, #fdf6e3 0%, #fff9ee 50%, #fef3d8 100%);
+      border-bottom: 1px solid #e8d9b8;
+      padding: 3rem 0 2.5rem;
+    }
+    .sp-hero-inner { max-width: 100%; margin: 0 auto; padding: 0 2rem; }
+    .sp-hero-ey {
+      font-size: 10px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: #b8860b; margin-bottom: 8px;
+    }
+    .sp-hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 38px; font-weight: 400; color: #1a1208; line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .sp-hero-title em { color: #b8860b; font-style: italic; }
+    .sp-hero-sub { color: #7a6845; font-size: 14px; }
+    .sp-hero-stats {
+      display: flex; gap: 2rem; margin-top: 1.5rem;
+      padding-top: 1.5rem; border-top: 1px solid #e8d9b8;
+    }
+    .sp-stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px; color: #b8860b; font-weight: 400;
+    }
+    .sp-stat-lbl { font-size: 11px; color: #aaa; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+    .sp-main {
+      width: 100%;
+      padding: 2.5rem 2rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      box-sizing: border-box;
+    }
+    .sp-sidebar { position: sticky; top: 80px; }
+    .sp-filter-box {
+      background: #fff; border: 1px solid #f0e8d0;
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 2px 16px rgba(184,134,11,0.06);
+    }
+    .sp-filter-hdr {
+      background: #1a1208; color: #fff;
+      padding: 1rem 1.2rem;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sp-filter-hdr i { color: #b8860b; }
+    .sp-filter-body { padding: 1.2rem; }
+    .sp-filter-section { margin-bottom: 1.2rem; }
+    .sp-filter-section:last-child { margin-bottom: 0; }
+    .sp-filter-lbl {
+      font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #b8860b;
+      margin-bottom: 8px; display: block;
+    }
+    .sp-search-wrap { position: relative; }
+    .sp-search-input {
+      width: 100%; border: 1.5px solid #e8d9b8;
+      background: #fafafa; border-radius: 8px;
+      padding: 9px 38px 9px 12px;
+      font-size: 13px; font-family: 'DM Sans', sans-serif;
+      color: #1a1a1a; outline: none; transition: border 0.2s;
+      box-sizing: border-box;
+    }
+    .sp-search-input:focus { border-color: #b8860b; background: #fff; }
+    .sp-search-input::placeholder { color: #aaa; }
+    .sp-search-btn {
+      position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+      background: #b8860b; border: none; color: #fff;
+      width: 26px; height: 26px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; cursor: pointer;
+    }
+    .sp-divider { height: 1px; background: #f0e8d0; margin: 1rem 0; }
+    .sp-cat-list { display: flex; flex-direction: column; }
+    .sp-cat-btn {
+      display: flex; align-items: center; gap: 8px;
+      width: 100%; background: transparent;
+      border: 1px solid transparent; color: #7a6845;
+      padding: 7px 10px; border-radius: 8px;
+      font-size: 12px; margin-bottom: 4px; cursor: pointer;
+      transition: all 0.2s; text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      box-sizing: border-box;
+    }
+    .sp-cat-btn:hover { background: #fdf8ee; color: #b8860b; border-color: #e8d9b8; }
+    .sp-cat-btn.active { background: #fdf8ee; color: #b8860b; border-color: #b8860b; font-weight: 600; }
+    .sp-cat-icon { font-size: 14px; width: 18px; text-align: center; flex-shrink: 0; }
+    .sp-sort-select {
+      width: 100%; border: 1.5px solid #e8d9b8;
+      background: #fafafa; border-radius: 8px;
+      padding: 9px 12px; font-size: 13px;
+      font-family: 'DM Sans', sans-serif; color: #1a1a1a;
+      outline: none; cursor: pointer; transition: border 0.2s;
+      box-sizing: border-box;
+    }
+    .sp-sort-select:focus { border-color: #b8860b; }
+    .sp-clear-btn {
+      display: block; width: 100%; margin-top: 1rem;
+      background: none; border: 1px dashed #e8d9b8;
+      color: #bbb; padding: 8px; border-radius: 8px;
+      font-size: 12px; cursor: pointer; text-align: center;
+      font-family: 'DM Sans', sans-serif; text-decoration: none;
+      transition: all 0.2s; box-sizing: border-box;
+    }
+    .sp-clear-btn:hover { border-color: #c53030; color: #c53030; }
+
+    .sp-topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.2rem; padding-bottom: 1rem;
+      border-bottom: 1px solid #f0e8d0;
+    }
+    .sp-count { font-size: 13px; color: #7a6845; }
+    .sp-count strong { color: #b8860b; font-weight: 700; }
+
+    .sp-prod-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1rem; }
+    .sp-prod-card {
+      background: #fff; border: 1px solid #f0e8d0;
+      border-radius: 12px; overflow: hidden;
+      transition: all 0.3s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .sp-prod-card:hover {
+      border-color: #b8860b; transform: translateY(-4px);
+      box-shadow: 0 10px 32px rgba(184,134,11,0.14);
+    }
+    .sp-prod-img {
+      position: relative; height: 180px;
+      background: #fdf8ee;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .sp-prod-img img {
+      width: 100%; height: 100%; object-fit: contain;
+      background: #fdf8ee; transition: transform 0.5s;
+    }
+    .sp-prod-card:hover .sp-prod-img img { transform: scale(1.06); }
+    .sp-no-img { font-size: 50px; }
+    .sp-badge {
+      position: absolute; top: 8px; left: 8px;
+      font-size: 8px; font-weight: 700; letter-spacing: 1px;
+      padding: 2px 8px; border-radius: 4px; text-transform: uppercase;
+    }
+    .sp-badge-sale { background: #e53e3e; color: #fff; }
+    .sp-badge-new  { background: #b8860b; color: #fff; }
+    .sp-wish-btn {
+      position: absolute; top: 8px; right: 8px;
+      background: #fff; border: 1px solid #e8d9b8;
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; cursor: pointer; transition: all 0.2s;
+    }
+    .sp-wish-btn:hover { border-color: #e53e3e; color: #e53e3e; }
+    .sp-overlay {
+      position: absolute; inset: 0;
+      background: rgba(26,18,8,0.35);
+      opacity: 0; transition: 0.3s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sp-prod-card:hover .sp-overlay { opacity: 1; }
+    .sp-quick {
+      background: #fff; color: #b8860b;
+      border: 1.5px solid #b8860b;
+      padding: 6px 14px; border-radius: 6px;
+      font-size: 11px; font-weight: 600;
+      text-decoration: none; font-family: 'DM Sans', sans-serif;
+    }
+    .sp-quick:hover { background: #b8860b; color: #fff; }
+    .sp-prod-body { padding: 0.8rem; }
+    .sp-prod-cat {
+      font-size: 8px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: #b8860b; margin-bottom: 3px;
+    }
+    .sp-prod-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 13px; color: #1a1208; line-height: 1.3; margin-bottom: 5px;
+    }
+    .sp-prod-name a { text-decoration: none; color: inherit; }
+    .sp-prod-name a:hover { color: #b8860b; }
+    .sp-prod-rating { display: flex; align-items: center; gap: 3px; margin-bottom: 6px; }
+    .sp-stars { color: #f6ad55; font-size: 10px; }
+    .sp-rating-cnt { font-size: 10px; color: #bbb; }
+    .sp-price-row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+    .sp-price { font-family: 'DM Serif Display', serif; font-size: 16px; color: #b8860b; }
+    .sp-old-price { font-size: 11px; color: #ccc; text-decoration: line-through; }
+    .sp-cart-btn {
+      width: 100%; background: #1a1208; color: #fff;
+      border: none; border-radius: 7px; padding: 8px;
+      font-size: 11px; font-weight: 600; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      gap: 5px; transition: all 0.25s; font-family: 'DM Sans', sans-serif;
+    }
+    .sp-cart-btn:hover { background: #b8860b; }
+
+    .sp-empty { text-align: center; padding: 5rem 2rem; }
+    .sp-empty-icon { font-size: 60px; margin-bottom: 1rem; display: block; }
+    .sp-empty-title { font-family: 'DM Serif Display', serif; font-size: 24px; color: #1a1208; margin-bottom: 6px; }
+    .sp-empty-sub { color: #7a6845; font-size: 14px; margin-bottom: 1.5rem; }
+    .sp-empty-btn {
+      display: inline-block; background: #b8860b; color: #fff;
+      border-radius: 8px; padding: 11px 26px; font-size: 13px;
+      font-weight: 600; text-decoration: none; font-family: 'DM Sans', sans-serif;
+      transition: all 0.25s;
+    }
+    .sp-empty-btn:hover { background: #d4a017; color: #fff; transform: translateY(-2px); }
+
+    .sp-pagination { margin-top: 2.5rem; display: flex; justify-content: center; }
+    .sp-pagination .pagination { gap: 5px; }
+    .sp-pagination .page-link {
+      border: 1.5px solid #e8d9b8 !important; color: #b8860b !important;
+      background: #fff !important; border-radius: 8px !important;
+      padding: 7px 13px; font-family: 'DM Sans', sans-serif; font-size: 13px; transition: all 0.2s;
+      cursor: pointer;
+    }
+    .sp-pagination .page-link:hover { background: #b8860b !important; color: #fff !important; border-color: #b8860b !important; }
+    .sp-pagination .page-item.active .page-link { background: #b8860b !important; color: #fff !important; border-color: #b8860b !important; }
+    .sp-pagination .page-item.disabled .page-link { color: #ddd !important; pointer-events: none; cursor: not-allowed; }
+
+    .sp-mobile-filter-btn {
+      display: none; width: 100%;
+      background: #1a1208; color: #fff;
+      border: none; border-radius: 10px; padding: 12px;
+      font-size: 13px; font-weight: 600;
+      font-family: 'DM Sans', sans-serif; cursor: pointer;
+      align-items: center; justify-content: center; gap: 8px;
+      margin-bottom: 1rem;
+    }
+    .sp-mobile-filter-btn i { color: #b8860b; }
+
+    @media(max-width:1200px){ .sp-prod-grid { grid-template-columns: repeat(4,1fr); } }
+    @media(max-width:1024px){ .sp-prod-grid { grid-template-columns: repeat(3,1fr); } }
+    @media(max-width:768px){
+      .sp-hero { padding: 1.5rem 0; }
+      .sp-hero-title { font-size: 24px; }
+      .sp-hero-sub { font-size: 13px; }
+      .sp-hero-stats { gap: 1.5rem; }
+      .sp-stat-num { font-size: 18px; }
+      .sp-main { grid-template-columns: 1fr; padding: 1rem; gap: 1rem; }
+      .sp-sidebar { position: static; }
+      .sp-mobile-filter-btn { display: flex; }
+      .sp-filter-box { display: none; }
+      .sp-filter-box.open { display: block; }
+      .sp-cat-list {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 6px;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+      }
+      .sp-cat-list::-webkit-scrollbar { display: none; }
+      .sp-cat-btn { white-space: nowrap; flex-shrink: 0; margin-bottom: 0; padding: 6px 10px; font-size: 11px; }
+      .sp-prod-grid { grid-template-columns: repeat(2,1fr); gap: 0.8rem; }
+      .sp-prod-img { height: 150px; }
+      .sp-prod-body { padding: 0.6rem; }
+      .sp-prod-name { font-size: 12px; }
+      .sp-price { font-size: 14px; }
+      .sp-cart-btn { font-size: 10px; padding: 7px; }
+      .sp-topbar { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    }
+    @media(max-width:480px){
+      .sp-prod-grid { grid-template-columns: repeat(2,1fr); gap: 0.6rem; }
+      .sp-prod-img { height: 130px; }
+      .sp-main { padding: 0.8rem; }
+      .sp-hero-inner { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <script src="navbar.js"></script>
+<div class="sp-wrap">
+
+  <!-- HERO (HighCodeX) -->
+  <div class="sp-hero">
+    <div class="sp-hero-inner">
+      <p class="sp-hero-ey">Our Services</p>
+      <h1 class="sp-hero-title">HighCodeX <em>Tech</em> Solutions</h1>
+      <p class="sp-hero-sub">Professional web & mobile development — clean code, on‑time delivery</p>
+      <div class="sp-hero-stats">
+        <div><div class="sp-stat-num" id="totalProductsCount">0</div><div class="sp-stat-lbl">Services</div></div>
+        <div><div class="sp-stat-num" id="totalCategoriesCount">0</div><div class="sp-stat-lbl">Categories</div></div>
+        <div><div class="sp-stat-num">100%</div><div class="sp-stat-lbl">On‑Time</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="sp-main">
+    <!-- SIDEBAR (FILTERS) -->
+    <aside class="sp-sidebar">
+      <button class="sp-mobile-filter-btn" onclick="toggleMobileFilter()">
+        <i class="bi bi-sliders"></i> Show Filters
+      </button>
+      <div class="sp-filter-box" id="filterBox">
+        <div class="sp-filter-hdr"><i class="bi bi-sliders"></i> Filters</div>
+        <div class="sp-filter-body">
+          <!-- SEARCH -->
+          <div class="sp-filter-section">
+            <span class="sp-filter-lbl">Search</span>
+            <div class="sp-search-wrap">
+              <input type="text" id="searchInput" class="sp-search-input" placeholder="Search services...">
+              <button class="sp-search-btn" onclick="applyFilters()"><i class="bi bi-search"></i></button>
+            </div>
+          </div>
+          <div class="sp-divider"></div>
+
+          <!-- CATEGORIES -->
+          <div class="sp-filter-section">
+            <span class="sp-filter-lbl">Categories</span>
+            <div class="sp-cat-list" id="categoryList"></div>
+          </div>
+          <div class="sp-divider"></div>
+
+          <!-- SORT -->
+          <div class="sp-filter-section">
+            <span class="sp-filter-lbl">Sort By</span>
+            <select id="sortSelect" class="sp-sort-select" onchange="applyFilters()">
+              <option value="latest">Latest First</option>
+              <option value="price_low">Price: Low → High</option>
+              <option value="price_high">Price: High → Low</option>
+            </select>
+          </div>
+
+          <button class="sp-clear-btn" onclick="clearFilters()">✕ Clear All Filters</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- PRODUCTS CONTENT -->
+    <div class="sp-content">
+      <div class="sp-topbar">
+        <span class="sp-count" id="productCountDisplay">Showing <strong>0</strong> results</span>
+      </div>
+      <div id="productsGrid" class="sp-prod-grid"></div>
+      <div id="paginationContainer" class="sp-pagination"></div>
+      <div id="emptyState" style="display:none;" class="sp-empty">
+        <span class="sp-empty-icon">🔍</span>
+        <div class="sp-empty-title">No services found</div>
+        <div class="sp-empty-sub">Try a different search or browse all categories</div>
+        <button class="sp-empty-btn" onclick="clearFilters()">View All Services</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // --------------------------------------------------------------
+  // PRODUCT DATA (from HighCodeX PDF)
+  // --------------------------------------------------------------
+  const productsData = [
+    { id: 1, name: "Basic Web Package (3-4 pages)", category: "Web Development", price: 8000, salePrice: null, image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=300&h=180&fit=crop", slug: "basic-web", rating: 4.8, reviewCount: 24, isNew: true },
+    { id: 2, name: "Standard Web Package (5-6 pages)", category: "Web Development", price: 12000, salePrice: 10000, image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=300&h=180&fit=crop", slug: "standard-web", rating: 4.9, reviewCount: 18, isNew: false },
+    { id: 3, name: "Premium Web (All pages)", category: "Web Development", price: 18000, salePrice: 16500, image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=300&h=180&fit=crop", slug: "premium-web", rating: 5.0, reviewCount: 32, isNew: false },
+    { id: 4, name: "Mobile App (Cross‑platform)", category: "Mobile Apps", price: 12000, salePrice: null, image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=300&h=180&fit=crop", slug: "mobile-app", rating: 4.7, reviewCount: 15, isNew: true },
+    { id: 5, name: "E‑Commerce Store (Basic)", category: "E‑Commerce", price: 15000, salePrice: 13500, image: "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=300&h=180&fit=crop", slug: "ecom-basic", rating: 4.6, reviewCount: 22, isNew: false },
+    { id: 6, name: "E‑Commerce Premium (Full store)", category: "E‑Commerce", price: 25000, salePrice: 22000, image: "https://images.unsplash.com/photo-1556742031-c6961e8560b0?w=300&h=180&fit=crop", slug: "ecom-premium", rating: 4.9, reviewCount: 28, isNew: false },
+    { id: 7, name: "Backend API Development", category: "Backend API", price: 12000, salePrice: null, image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300&h=180&fit=crop", slug: "backend-api", rating: 5.0, reviewCount: 12, isNew: true },
+    { id: 8, name: "Custom Database Design", category: "Backend API", price: 8000, salePrice: null, image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=180&fit=crop", slug: "database-design", rating: 4.5, reviewCount: 9, isNew: false },
+    { id: 9, name: "UI/UX Design Package", category: "Design", price: 5000, salePrice: 4500, image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=300&h=180&fit=crop", slug: "ui-ux", rating: 4.8, reviewCount: 20, isNew: true },
+    { id: 10, name: "Cloud Hosting Setup", category: "DevOps", price: 3000, salePrice: null, image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=300&h=180&fit=crop", slug: "cloud-hosting", rating: 4.7, reviewCount: 14, isNew: false },
+    { id: 11, name: "SEO Optimization", category: "Marketing", price: 4000, salePrice: 3500, image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=300&h=180&fit=crop", slug: "seo", rating: 4.6, reviewCount: 19, isNew: false },
+    { id: 12, name: "Laravel Development (Full stack)", category: "Web Development", price: 20000, salePrice: 18000, image: "https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?w=300&h=180&fit=crop", slug: "laravel", rating: 5.0, reviewCount: 26, isNew: true }
+  ];
+
+  // Extract unique categories
+  const categories = [...new Set(productsData.map(p => p.category))];
+  let filteredProducts = [...productsData];
+  let currentPage = 1;
+  const itemsPerPage = 8;
+
+  // Helper: render stars
+  function renderStars(rating) {
+    let full = Math.floor(rating);
+    let half = rating % 1 >= 0.5 ? 1 : 0;
+    let stars = '';
+    for (let i = 0; i < full; i++) stars += '★';
+    if (half) stars += '½';
+    while (stars.length < 5) stars += '☆';
+    return stars;
+  }
+
+  // Main render function
+  function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    const emptyDiv = document.getElementById('emptyState');
+    const paginationDiv = document.getElementById('paginationContainer');
+
+    if (filteredProducts.length === 0) {
+      grid.innerHTML = '';
+      paginationDiv.innerHTML = '';
+      emptyDiv.style.display = 'block';
+      document.getElementById('productCountDisplay').innerHTML = 'Showing <strong>0</strong> results';
+      return;
+    }
+    emptyDiv.style.display = 'none';
+
+    // Pagination
+    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+    if (currentPage > totalPages) currentPage = totalPages;
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageProducts = filteredProducts.slice(start, end);
+
+    // Update count display
+    document.getElementById('productCountDisplay').innerHTML = `Showing <strong>${start+1}–${Math.min(end, filteredProducts.length)}</strong> of <strong>${filteredProducts.length}</strong> services`;
+
+    // Build grid HTML
+    let html = '';
+    pageProducts.forEach(p => {
+      const price = p.salePrice !== null ? p.salePrice : p.price;
+      const oldPrice = p.salePrice !== null ? p.price : null;
+      const isSale = p.salePrice !== null;
+      const badgeClass = isSale ? 'sp-badge-sale' : 'sp-badge-new';
+      const badgeText = isSale ? 'Sale' : 'New';
+      const ratingStars = renderStars(p.rating);
+      html += `
+        <div class="sp-prod-card">
+          <div class="sp-prod-img">
+            <img src="${p.image}" alt="${p.name}">
+            <span class="sp-badge ${badgeClass}">${badgeText}</span>
+            <button class="sp-wish-btn" onclick="toggleWishlist(this, ${p.id})"><i class="bi bi-heart"></i></button>
+            <div class="sp-overlay">
+              <button class="sp-quick" onclick="quickView('${p.name}', ${price})">Quick View</button>
+            </div>
+          </div>
+          <div class="sp-prod-body">
+            <div class="sp-prod-cat">${p.category}</div>
+            <div class="sp-prod-name"><a href="#" onclick="productDetail('${p.name}', ${price}); return false;">${p.name}</a></div>
+            <div class="sp-prod-rating">
+              <span class="sp-stars">${ratingStars}</span>
+              <span class="sp-rating-cnt">(${p.reviewCount})</span>
+            </div>
+            <div class="sp-price-row">
+              <span class="sp-price">₹${price.toLocaleString('en-IN')}</span>
+              ${oldPrice ? `<span class="sp-old-price">₹${oldPrice.toLocaleString('en-IN')}</span>` : ''}
+            </div>
+            <button class="sp-cart-btn" onclick="addToCart('${p.name}', ${price}, 1)"><i class="bi bi-bag-plus"></i> Add to Cart</button>
+          </div>
+        </div>
+      `;
+    });
+    grid.innerHTML = html;
+
+    // Pagination UI
+    let pagHtml = '<ul class="pagination">';
+    pagHtml += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}"><a class="page-link" onclick="changePage(${currentPage-1})">Previous</a></li>`;
+    for (let i = 1; i <= totalPages; i++) {
+      pagHtml += `<li class="page-item ${i === currentPage ? 'active' : ''}"><a class="page-link" onclick="changePage(${i})">${i}</a></li>`;
+    }
+    pagHtml += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}"><a class="page-link" onclick="changePage(${currentPage+1})">Next</a></li>`;
+    pagHtml += '</ul>';
+    paginationDiv.innerHTML = pagHtml;
+  }
+
+  // Filter & sort logic
+  function applyFilters() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+    const activeCategory = document.querySelector('.sp-cat-btn.active')?.getAttribute('data-cat') || '';
+    const sortBy = document.getElementById('sortSelect').value;
+
+    let filtered = [...productsData];
+    if (searchTerm) {
+      filtered = filtered.filter(p => p.name.toLowerCase().includes(searchTerm));
+    }
+    if (activeCategory && activeCategory !== 'All') {
+      filtered = filtered.filter(p => p.category === activeCategory);
+    }
+    // SORT
+    if (sortBy === 'price_low') {
+      filtered.sort((a,b) => (a.salePrice ?? a.price) - (b.salePrice ?? b.price));
+    } else if (sortBy === 'price_high') {
+      filtered.sort((a,b) => (b.salePrice ?? b.price) - (a.salePrice ?? a.price));
+    } else {
+      // latest: by id descending
+      filtered.sort((a,b) => b.id - a.id);
+    }
+    filteredProducts = filtered;
+    currentPage = 1;
+    renderProducts();
+    updateCategoryActiveUI();
+  }
+
+  // Category UI generation
+  function buildCategoryUI() {
+    const container = document.getElementById('categoryList');
+    let html = `<button class="sp-cat-btn active" data-cat="All" onclick="selectCategory(this, 'All')"><span class="sp-cat-icon">✨</span> All Services</button>`;
+    categories.forEach(cat => {
+      let icon = '';
+      if (cat === 'Web Development') icon = '🌐';
+      else if (cat === 'Mobile Apps') icon = '📱';
+      else if (cat === 'E‑Commerce') icon = '🛒';
+      else if (cat === 'Backend API') icon = '⚙️';
+      else if (cat === 'Design') icon = '🎨';
+      else if (cat === 'DevOps') icon = '☁️';
+      else if (cat === 'Marketing') icon = '📈';
+      else icon = '✨';
+      html += `<button class="sp-cat-btn" data-cat="${cat}" onclick="selectCategory(this, '${cat}')"><span class="sp-cat-icon">${icon}</span> ${cat}</button>`;
+    });
+    container.innerHTML = html;
+  }
+
+  function selectCategory(btn, cat) {
+    document.querySelectorAll('.sp-cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+  }
+
+  function updateCategoryActiveUI() {
+    // No extra action needed
+  }
+
+  function clearFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('sortSelect').value = 'latest';
+    const allBtn = document.querySelector('.sp-cat-btn[data-cat="All"]');
+    if (allBtn) {
+      document.querySelectorAll('.sp-cat-btn').forEach(b => b.classList.remove('active'));
+      allBtn.classList.add('active');
+    }
+    applyFilters();
+  }
+
+  function changePage(page) {
+    if (page < 1) return;
+    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+    if (page > totalPages) return;
+    currentPage = page;
+    renderProducts();
+    // scroll to top of product grid
+    document.querySelector('.sp-content').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Demo interactions
+  function addToCart(name, price, qty) {
+    alert(`🛒 Added to cart:\n${name} x ${qty}\nTotal: ₹${(price * qty).toLocaleString('en-IN')}\n\nHighCodeX will contact you shortly.\n📞 +91 7868946689\n✉️ highcodextech@gmail.com`);
+  }
+  function toggleWishlist(btn, productId) {
+    const icon = btn.querySelector('i');
+    if (icon.classList.contains('bi-heart')) {
+      icon.classList.remove('bi-heart');
+      icon.classList.add('bi-heart-fill');
+      btn.style.borderColor = '#e53e3e';
+      btn.style.color = '#e53e3e';
+      alert('❤️ Added to wishlist');
+    } else {
+      icon.classList.remove('bi-heart-fill');
+      icon.classList.add('bi-heart');
+      btn.style.borderColor = '';
+      btn.style.color = '';
+      alert('Removed from wishlist');
+    }
+  }
+  function quickView(name, price) {
+    alert(`🔍 Quick View\n${name}\nPrice: ₹${price.toLocaleString('en-IN')}\n\nContact HighCodeX for custom requirements.`);
+  }
+  function productDetail(name, price) {
+    alert(`📄 Product Details\n${name}\nPrice: ₹${price.toLocaleString('en-IN')}\n\nReach out at highcodextech@gmail.com for a detailed quote.`);
+  }
+  function toggleMobileFilter() {
+    const box = document.getElementById('filterBox');
+    const btn = document.querySelector('.sp-mobile-filter-btn');
+    box.classList.toggle('open');
+    btn.innerHTML = box.classList.contains('open')
+      ? '<i class="bi bi-x-lg"></i> Hide Filters'
+      : '<i class="bi bi-sliders"></i> Show Filters';
+  }
+
+  // Initialize
+  function init() {
+    buildCategoryUI();
+    document.getElementById('searchInput').addEventListener('keyup', function(e) { if(e.key === 'Enter') applyFilters(); });
+    document.getElementById('totalProductsCount').innerText = productsData.length;
+    document.getElementById('totalCategoriesCount').innerText = categories.length;
+    // Initially show all products
+    filteredProducts = [...productsData];
+    currentPage = 1;
+    renderProducts();
+  }
+  init();
+</script>
+</body>
+</html>

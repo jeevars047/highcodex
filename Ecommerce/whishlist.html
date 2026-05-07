@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist – HighCodeX Technologies</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* EXACT STYLES FROM ORIGINAL */
+        .wl-wrap {
+            --gold: #B8860B;
+            --gold-pale: #FDF8EE;
+            --cream: #FEFCF7;
+            --dark: #1A1208;
+            --text: #3D2E0E;
+            --text-muted: #7A6845;
+            --border: #E8D9B8;
+            --section-bg: #F9F4EA;
+            --shadow-lg: 0 12px 48px rgba(184,134,11,0.16);
+            background: #FEFCF7;
+            font-family: 'Jost', sans-serif;
+            color: #3D2E0E;
+            min-height: 70vh;
+        }
+        .wl-hero {
+            background: linear-gradient(120deg, #FDF6E3, #FFF9EE, #FEF3D8);
+            border-bottom: 1px solid #E8D9B8;
+            padding: 2.5rem 0;
+        }
+        .wl-hero-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .wl-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #B8860B;
+            margin-bottom: 6px;
+        }
+        .wl-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 900;
+            color: #1A1208;
+        }
+        .wl-main {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .wl-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        .wl-card {
+            background: #fff;
+            border: 1.5px solid #E8D9B8;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.35s;
+        }
+        .wl-card:hover {
+            border-color: #B8860B;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .wl-img-wrap {
+            position: relative;
+            height: 210px;
+            background: #FDF8EE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .wl-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .wl-card:hover .wl-img-wrap img {
+            transform: scale(1.06);
+        }
+        .wl-no-img {
+            font-size: 70px;
+        }
+        .wl-badge-sale {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #E53E3E;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 3px;
+            letter-spacing: 1px;
+        }
+        .wl-remove-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            border: 1px solid #FEB2B2;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.25s;
+            color: #C53030;
+        }
+        .wl-remove-btn:hover {
+            background: #C53030;
+            color: #fff;
+            border-color: #C53030;
+        }
+        .wl-body {
+            padding: 1.2rem;
+        }
+        .wl-cat {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #7A6845;
+        }
+        .wl-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #1A1208;
+            margin-top: 4px;
+            line-height: 1.3;
+        }
+        .wl-price-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .wl-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #B8860B;
+        }
+        .wl-old-price {
+            font-size: 12px;
+            color: #bbb;
+            text-decoration: line-through;
+        }
+        .wl-cart-btn {
+            width: 100%;
+            background: #FDF8EE;
+            color: #B8860B;
+            border: 1.5px solid #E8D9B8;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.25s;
+            font-family: 'Jost', sans-serif;
+        }
+        .wl-cart-btn:hover {
+            background: #B8860B;
+            color: #fff;
+            border-color: #B8860B;
+        }
+        .wl-empty {
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+        .wl-empty-icon {
+            font-size: 70px;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        .wl-empty-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: #1A1208;
+            margin-bottom: 8px;
+        }
+        .wl-empty-sub {
+            color: #7A6845;
+            font-size: 15px;
+            margin-bottom: 2rem;
+        }
+        .wl-shop-btn {
+            display: inline-block;
+            background: #B8860B;
+            color: #fff;
+            padding: 13px 30px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            font-family: 'Jost', sans-serif;
+            transition: all 0.25s;
+            cursor: pointer;
+            border: none;
+        }
+        .wl-shop-btn:hover {
+            background: #D4A017;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 1024px) { .wl-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px)  { .wl-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px)  { .wl-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <script src="navbar.js"></script>
+<div class="wl-wrap">
+
+    <div class="wl-hero">
+        <div class="wl-hero-inner">
+            <p class="wl-eyebrow">Account</p>
+            <h1 class="wl-title">
+                <i class="bi bi-heart-fill" style="color:#B8860B;font-size:28px;"></i> My Wishlist
+                <span id="wishlistCount" style="font-size:16px;font-weight:400;color:#7A6845;font-family:'Jost',sans-serif;margin-left:10px;">(4 items)</span>
+            </h1>
+        </div>
+    </div>
+
+    <div class="wl-main">
+        <!-- Wishlist grid (demo items) -->
+        <div id="wishlistGrid" class="wl-grid">
+            <!-- Item 1: Basic Web Package (New) -->
+            <div class="wl-card" data-id="1">
+                <div class="wl-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&h=210&fit=crop" alt="Basic Web Package">
+                    <!-- No sale badge (isNew badge not in original, but we follow original: only sale badge) -->
+                    <button class="wl-remove-btn" onclick="removeWishlistItem(this, 1)" title="Remove">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+                <div class="wl-body">
+                    <div class="wl-cat">Web Development</div>
+                    <div class="wl-name">Basic Web Package (3-4 pages)</div>
+                    <div class="wl-price-row">
+                        <span class="wl-price">₹8,000</span>
+                    </div>
+                    <button class="wl-cart-btn" onclick="addToCart('Basic Web Package (3-4 pages)', 8000)">
+                        <i class="bi bi-bag-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 2: Mobile App (Standard) – with sale -->
+            <div class="wl-card" data-id="2">
+                <div class="wl-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=210&fit=crop" alt="Mobile App Standard">
+                    <span class="wl-badge-sale">SALE</span>
+                    <button class="wl-remove-btn" onclick="removeWishlistItem(this, 2)" title="Remove">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+                <div class="wl-body">
+                    <div class="wl-cat">Mobile Apps</div>
+                    <div class="wl-name">Mobile App – Standard Package</div>
+                    <div class="wl-price-row">
+                        <span class="wl-price">₹10,800</span>
+                        <span class="wl-old-price">₹12,000</span>
+                    </div>
+                    <button class="wl-cart-btn" onclick="addToCart('Mobile App – Standard Package', 10800)">
+                        <i class="bi bi-bag-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 3: E‑Commerce Premium – with sale -->
+            <div class="wl-card" data-id="3">
+                <div class="wl-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=400&h=210&fit=crop" alt="E-Commerce Premium">
+                    <span class="wl-badge-sale">SALE</span>
+                    <button class="wl-remove-btn" onclick="removeWishlistItem(this, 3)" title="Remove">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+                <div class="wl-body">
+                    <div class="wl-cat">E‑Commerce</div>
+                    <div class="wl-name">E‑Commerce – Premium Package</div>
+                    <div class="wl-price-row">
+                        <span class="wl-price">₹16,200</span>
+                        <span class="wl-old-price">₹18,000</span>
+                    </div>
+                    <button class="wl-cart-btn" onclick="addToCart('E‑Commerce – Premium Package', 16200)">
+                        <i class="bi bi-bag-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 4: Backend API Development (New) -->
+            <div class="wl-card" data-id="4">
+                <div class="wl-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=210&fit=crop" alt="Backend API">
+                    <button class="wl-remove-btn" onclick="removeWishlistItem(this, 4)" title="Remove">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+                <div class="wl-body">
+                    <div class="wl-cat">Backend API</div>
+                    <div class="wl-name">Custom Backend API Development</div>
+                    <div class="wl-price-row">
+                        <span class="wl-price">₹12,000</span>
+                    </div>
+                    <button class="wl-cart-btn" onclick="addToCart('Custom Backend API Development', 12000)">
+                        <i class="bi bi-bag-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty state (hidden initially) -->
+        <div id="emptyState" style="display: none;" class="wl-empty">
+            <span class="wl-empty-icon">🤍</span>
+            <div class="wl-empty-title">Your wishlist is empty</div>
+            <div class="wl-empty-sub">Save your favourite services here</div>
+            <button class="wl-shop-btn" onclick="goToShop()">Continue Shopping →</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Global counters
+    let wishlistCount = 4;
+
+    function updateWishlistCount() {
+        const countSpan = document.getElementById('wishlistCount');
+        if (wishlistCount === 0) {
+            countSpan.style.display = 'none';
+            document.getElementById('wishlistGrid').style.display = 'none';
+            document.getElementById('emptyState').style.display = 'block';
+        } else {
+            countSpan.style.display = 'inline-block';
+            countSpan.innerText = `(${wishlistCount} items)`;
+        }
+    }
+
+    function removeWishlistItem(btn, id) {
+        if (!confirm('Remove from wishlist?')) return;
+        const card = btn.closest('.wl-card');
+        if (card) {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.9)';
+            card.style.transition = 'all 0.3s';
+            setTimeout(() => {
+                card.remove();
+                wishlistCount--;
+                updateWishlistCount();
+            }, 300);
+        } else {
+            // fallback
+            wishlistCount--;
+            updateWishlistCount();
+        }
+    }
+
+    function addToCart(productName, price) {
+        alert(`🛒 Added to cart:\n${productName}\nPrice: ₹${price.toLocaleString('en-IN')}\n\nHighCodeX will contact you shortly.\n📞 +91 7868946689\n✉️ highcodextech@gmail.com`);
+    }
+
+    function goToShop() {
+        alert('Explore our services – Web Development, Mobile Apps, E‑Commerce, Backend API.\nContact us for a free quote!');
+        // In a real environment you would redirect: window.location.href = "/shop";
+    }
+</script>
+
+</body>
+</html>

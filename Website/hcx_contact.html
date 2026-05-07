@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>HighCodeX Technologies | Contact - Code Beyond Limits</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playball&family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0a;
+      color: #d3d3d3;
+      font-family: 'Quattrocento Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .fancy-title {
+      font-family: 'Playball', cursive;
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
+
+    h2 { font-size: 34px; color: #ecc371; margin-bottom: 20px; }
+    h5 { font-family: 'Quattrocento Sans', sans-serif; font-size: 18px; font-weight: 300; letter-spacing: 1px; color: #d3d3d3; }
+
+    .gold-text { color: #ecc371; }
+
+    .btn-gold {
+      background: #ecc371;
+      color: #000;
+      border: none;
+      padding: 14px 35px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      letter-spacing: 1px;
+      font-family: 'Quattrocento Sans', sans-serif;
+      font-size: 15px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .btn-gold:hover { background: #d6b05c; transform: translateY(-3px); }
+
+    /* NAV */
+    .site-header {
+      background: #0a0a0a;
+      border-bottom: 1px solid rgba(236,195,113,0.2);
+      padding: 18px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .logo-box {
+      width: 48px;
+      height: 48px;
+      background: #ecc371;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playball', cursive;
+      font-size: 22px;
+      color: #000;
+      font-weight: 700;
+    }
+    .logo-text { font-family: 'Playball', cursive; font-size: 22px; color: #ecc371; }
+    .logo-tagline { font-size: 10px; color: #888; letter-spacing: 2px; display: block; }
+
+    .nav-menu ul { list-style: none; display: flex; gap: 28px; flex-wrap: wrap; }
+    .nav-menu a { color: #d3d3d3; text-decoration: none; font-size: 15px; letter-spacing: 1px; transition: 0.3s; }
+    .nav-menu a:hover, .nav-menu a.active { color: #ecc371; }
+
+    /* PAGE HEADER */
+    .page-header {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1423666639041-f56000c27a6a?w=1400&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 100px 5%;
+      text-align: center;
+    }
+    .page-header h1 { font-size: 52px; color: #ecc371; }
+    .page-header p { font-size: 18px; color: #ccc; margin-top: 15px; }
+
+    .section-padding { padding: 80px 5%; }
+    .container { max-width: 1240px; margin: 0 auto; }
+
+    .divider-line { width: 80px; height: 2px; background: #ecc371; margin: 20px auto; }
+    .divider-left { width: 80px; height: 2px; background: #ecc371; margin: 20px 0; }
+
+    /* CONTACT GRID */
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+    }
+    .contact-info {
+      flex: 1;
+      min-width: 280px;
+    }
+    .contact-form {
+      flex: 1.5;
+      min-width: 300px;
+    }
+
+    /* INFO CARDS */
+    .info-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(236,195,113,0.1);
+      border-radius: 4px;
+      padding: 30px;
+      margin-bottom: 25px;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .info-card:hover { border-color: #ecc371; transform: translateX(5px); background: rgba(236,195,113,0.05); }
+    .info-icon {
+      width: 55px;
+      height: 55px;
+      background: rgba(236,195,113,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .info-icon i { font-size: 24px; color: #ecc371; }
+    .info-details h4 { color: #ecc371; font-family: 'Quattrocento Sans', sans-serif; font-size: 18px; margin-bottom: 5px; }
+    .info-details p, .info-details a { color: #aaa; text-decoration: none; font-size: 15px; transition: 0.3s; }
+    .info-details a:hover { color: #ecc371; }
+
+    /* BUSINESS HOURS */
+    .hours-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(236,195,113,0.1);
+      border-radius: 4px;
+      padding: 30px;
+      margin-top: 25px;
+    }
+    .hours-card h4 { color: #ecc371; font-family: 'Quattrocento Sans', sans-serif; font-size: 18px; margin-bottom: 15px; }
+    .hours-card h4 i { margin-right: 10px; }
+    .hour-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .hour-row .day { color: #ccc; }
+    .hour-row .time { color: #888; font-size: 14px; }
+
+    /* CONTACT FORM */
+    .form-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(236,195,113,0.1);
+      border-radius: 4px;
+      padding: 40px;
+    }
+    .form-group {
+      margin-bottom: 25px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #ccc;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+    .form-group label i { color: #ecc371; margin-right: 8px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(236,195,113,0.2);
+      color: #fff;
+      font-family: 'Quattrocento Sans', sans-serif;
+      font-size: 15px;
+      transition: 0.3s;
+      border-radius: 4px;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: #ecc371;
+      background: rgba(0,0,0,0.7);
+    }
+    .form-group textarea { resize: vertical; }
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .form-row .form-group {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    /* MAP SECTION */
+    .map-section {
+      padding: 0 5% 80px;
+    }
+    .map-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      border: 1px solid rgba(236,195,113,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 400px;
+      display: block;
+      filter: grayscale(0.3) invert(0.1);
+    }
+
+    /* SOCIAL LINKS */
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+    }
+    .social-link {
+      width: 45px;
+      height: 45px;
+      background: rgba(236,195,113,0.1);
+      border: 1px solid rgba(236,195,113,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+      color: #ecc371;
+      font-size: 20px;
+      text-decoration: none;
+    }
+    .social-link:hover { background: #ecc371; color: #000; transform: translateY(-3px); }
+
+    /* CTA */
+    .cta-overlay {
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      padding: 60px 20px;
+      position: relative;
+    }
+    .cta-overlay::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(10,10,10,0.85);
+      z-index: 1;
+    }
+    .cta-content {
+      position: relative; z-index: 2;
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .cta-content h2 { color: #ecc371; font-size: 36px; }
+    .cta-content p { color: #ccc; margin: 16px 0 28px; }
+
+    /* FOOTER */
+    .footer { background: #050505; border-top: 1px solid rgba(236,195,113,0.15); padding: 40px 20px; text-align: center; }
+    .footer-grid { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; max-width: 1000px; margin: 0 auto 30px; }
+    .footer-col { flex: 1; min-width: 180px; text-align: left; }
+    .footer-col h4 { color: #ecc371; font-family: 'Playball', cursive; font-size: 20px; margin-bottom: 14px; }
+    .footer-col p, .footer-col a { font-size: 14px; color: #888; line-height: 2; text-decoration: none; display: block; }
+    .footer-col a:hover { color: #ecc371; }
+    .footer-col i { color: #ecc371; margin-right: 8px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 22px; font-size: 13px; color: #555; }
+
+    /* ALERT MESSAGES */
+    .alert {
+      padding: 12px 20px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      display: none;
+      font-size: 14px;
+    }
+    .alert-success {
+      background: rgba(46, 204, 113, 0.2);
+      border: 1px solid #2ecc71;
+      color: #2ecc71;
+    }
+    .alert-error {
+      background: rgba(231, 76, 60, 0.2);
+      border: 1px solid #e74c3c;
+      color: #e74c3c;
+    }
+
+    @media (max-width: 768px) {
+      h2 { font-size: 26px; }
+      .page-header h1 { font-size: 32px; }
+      .page-header { padding: 60px 5%; }
+      .header-inner { flex-direction: column; align-items: flex-start; }
+      .form-card { padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-area" href="hcx_home.html">
+      <div class="logo-box">HCX</div>
+      <div>
+        <div class="logo-text">HighCodeX</div>
+        <span class="logo-tagline">// CODE BEYOND LIMITS</span>
+      </div>
+    </a>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="hcx_home.html">Home</a></li>
+        <li><a href="hcx_about.html">About</a></li>
+        <li><a href="hcx_services.html">Services</a></li>
+        <li><a href="hcx_contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <h1>Let's Talk</h1>
+  <p>Have a project in mind? We respond within 24 hours. Let's make something great together.</p>
+</div>
+
+<!-- CONTACT SECTION -->
+<section class="section-padding">
+  <div class="container">
+    <div class="contact-grid">
+      
+      <!-- LEFT: Contact Info -->
+      <div class="contact-info">
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <div class="info-details">
+            <h4>WhatsApp (Fastest Response)</h4>
+            <a href="https://wa.me/917868946689">+91 78689 46689</a>
+          </div>
+        </div>
+        
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="info-details">
+            <h4>Phone / Call</h4>
+            <a href="tel:+917868946689">+91 78689 46689</a>
+            <p style="font-size:12px; margin-top:5px;">Mon-Sat, 9am - 7pm</p>
+          </div>
+        </div>
+        
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="info-details">
+            <h4>Business Email</h4>
+            <a href="mailto:highcodextech@gmail.com">highcodextech@gmail.com</a>
+            <p style="font-size:12px; margin-top:5px;">For project inquiries</p>
+          </div>
+        </div>
+        
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="info-details">
+            <h4>Personal Email</h4>
+            <a href="mailto:jeevars047@gmail.com">jeevars047@gmail.com</a>
+            <p style="font-size:12px; margin-top:5px;">For general queries</p>
+          </div>
+        </div>
+        
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="info-details">
+            <h4>Location</h4>
+            <p>Chennai, Tamil Nadu<br>Native: Ariyalur<br><span style="font-size:12px;">Currently available for new projects</span></p>
+          </div>
+        </div>
+        
+        <!-- Business Hours -->
+        <div class="hours-card">
+          <h4><i class="fas fa-clock"></i> Business Hours</h4>
+          <div class="hour-row">
+            <span class="day">Monday - Saturday</span>
+            <span class="time">9:00 AM - 7:00 PM</span>
+          </div>
+          <div class="hour-row">
+            <span class="day">Sunday</span>
+            <span class="time">Closed (Emergency support available)</span>
+          </div>
+          <div class="hour-row">
+            <span class="day">Response Time</span>
+            <span class="time">Within 24 hours</span>
+          </div>
+        </div>
+        
+        <!-- Social Links -->
+        <div class="social-links">
+          <a href="https://wa.me/917868946689" class="social-link"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      
+      <!-- RIGHT: Contact Form -->
+      <div class="contact-form">
+        <div class="form-card">
+          <h2 style="font-size:28px; margin-bottom:10px;">Send a Message</h2>
+          <div class="divider-left" style="margin:10px 0 25px 0;"></div>
+          
+          <div id="formAlert" class="alert"></div>
+          
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-user"></i> Full Name</label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-phone"></i> Phone Number</label>
+                <input type="tel" id="phone" placeholder="Enter your phone number">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label><i class="fas fa-envelope"></i> Email Address</label>
+              <input type="email" id="email" placeholder="Enter your email address" required>
+            </div>
+            
+            <div class="form-group">
+              <label><i class="fas fa-tag"></i> I'm interested in</label>
+              <select id="service">
+                <option value="Web Design & Development">Web Design & Development</option>
+                <option value="Mobile App Development">Mobile App Development</option>
+                <option value="E-Commerce Solutions">E-Commerce Solutions</option>
+                <option value="Backend Development">Backend Development</option>
+                <option value="Other / Not Sure">Other / Not Sure</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label><i class="fas fa-comment"></i> Message / Project Details</label>
+              <textarea id="message" rows="5" placeholder="Tell us about your project, requirements, budget, timeline..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn-gold" style="width:100%;">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+            
+            <p style="text-align:center; margin-top:20px; font-size:12px; color:#666;">
+              <i class="fas fa-lock"></i> Your information is safe with us. We respond within 24 hours.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP SECTION -->
+<section class="map-section">
+  <div class="map-container">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248756.116913581!2d80.21047885!3d13.04786465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ea4f7d3361%3A0x6e4f7d5b8e5f8e0!2sChennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-overlay" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1400&q=80');">
+  <div class="cta-content">
+    <h2>Ready to Start Your Project?</h2>
+    <p>Whether you have a project idea, a question, or just want to say hello — we'd love to hear from you.</p>
+    <a href="https://wa.me/917868946689" class="btn-gold"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>HighCodeX</h4>
+      <p style="color:#888; font-size:13px; line-height:1.8;">Code Beyond Limits.<br>Web solutions that grow your business.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <a href="hcx_home.html">Home</a>
+      <a href="hcx_about.html">About</a>
+      <a href="hcx_services.html">Services</a>
+      <a href="hcx_contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+917868946689"><i class="fas fa-phone"></i>+91 78689 46689</a>
+      <a href="mailto:highcodextech@gmail.com"><i class="fas fa-envelope"></i>highcodextech@gmail.com</a>
+      <a href="#"><i class="fas fa-map-marker-alt"></i>Chennai, Tamil Nadu</a>
+    </div>
+    <div class="footer-col">
+      <h4>Reach Us</h4>
+      <a href="https://wa.me/917868946689"><i class="fab fa-whatsapp"></i>WhatsApp Us</a>
+      <a href="mailto:jeevars047@gmail.com"><i class="fas fa-user"></i>jeevars047@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 HighCodeX Technologies. All Rights Reserved. &nbsp;|&nbsp; Code Beyond Limits
+  </div>
+</footer>
+
+<script>
+  const contactForm = document.getElementById('contactForm');
+  const formAlert = document.getElementById('formAlert');
+
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value.trim();
+    
+    // Basic validation
+    if (!name || !email || !message) {
+      showAlert('Please fill in all required fields (Name, Email, and Message).', 'error');
+      return;
+    }
+    
+    if (!email.includes('@') || !email.includes('.')) {
+      showAlert('Please enter a valid email address.', 'error');
+      return;
+    }
+    
+    // Prepare email content
+    const subject = `New Project Inquiry from ${name} - ${service}`;
+    const body = `Name: ${name}%0AEmail: ${email}%0APhone: ${phone || 'Not provided'}%0AService: ${service}%0A%0AMessage:%0A${message}%0A%0A---%0ASent from HighCodeX Technologies Contact Form`;
+    
+    // Open default email client
+    window.location.href = `mailto:highcodextech@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Show success message
+    showAlert('Thank you! Your email client has been opened. We\'ll respond within 24 hours.', 'success');
+    
+    // Optional: Clear form
+    // contactForm.reset();
+  });
+  
+  function showAlert(message, type) {
+    formAlert.textContent = message;
+    formAlert.className = `alert alert-${type === 'success' ? 'success' : 'error'}`;
+    formAlert.style.display = 'block';
+    
+    // Scroll to alert
+    formAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    // Hide after 5 seconds
+    setTimeout(() => {
+      formAlert.style.display = 'none';
+    }, 5000);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders – HighCodeX Technologies</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ── EXACT STYLES FROM ORIGINAL ── */
+        .ord-wrap {
+            --gold: #B8860B;
+            --gold-pale: #FDF8EE;
+            --cream: #FEFCF7;
+            --dark: #1A1208;
+            --text: #3D2E0E;
+            --text-muted: #7A6845;
+            --border: #E8D9B8;
+            --section-bg: #F9F4EA;
+            background: #FEFCF7;
+            font-family: 'Jost', sans-serif;
+            color: #3D2E0E;
+            min-height: 70vh;
+        }
+        .ord-hero {
+            background: linear-gradient(120deg, #FDF6E3, #FFF9EE, #FEF3D8);
+            border-bottom: 1px solid #E8D9B8;
+            padding: 2.5rem 0;
+        }
+        .ord-hero-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .ord-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #B8860B;
+            margin-bottom: 6px;
+        }
+        .ord-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 900;
+            color: #1A1208;
+        }
+        .ord-main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* ORDER CARD */
+        .ord-card {
+            background: #fff;
+            border: 1.5px solid #E8D9B8;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            transition: box-shadow 0.3s;
+        }
+        .ord-card:hover {
+            box-shadow: 0 8px 32px rgba(184, 134, 11, 0.12);
+        }
+        .ord-card-hdr {
+            background: #F9F4EA;
+            border-bottom: 1.5px solid #E8D9B8;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .ord-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1A1208;
+        }
+        .ord-date {
+            font-size: 12px;
+            color: #7A6845;
+            margin-top: 2px;
+        }
+        .ord-total {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #B8860B;
+        }
+        .ord-card-body {
+            padding: 1.5rem;
+        }
+
+        /* STATUS BADGES */
+        .ord-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .ord-status-pending    { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
+        .ord-status-processing { background: #DBEAFE; color: #1E40AF; border: 1px solid #BFDBFE; }
+        .ord-status-shipped    { background: #E0F2FE; color: #075985; border: 1px solid #BAE6FD; }
+        .ord-status-delivered  { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
+        .ord-status-cancelled  { background: #FEE2E2; color: #991B1B; border: 1px solid #FECACA; }
+        .ord-pay-paid    { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .ord-pay-pending { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+
+        /* ITEMS */
+        .ord-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 1.2rem;
+        }
+        .ord-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #F9F4EA;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .ord-item-img {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #E8D9B8;
+            flex-shrink: 0;
+        }
+        .ord-item-placeholder {
+            width: 48px;
+            height: 48px;
+            background: #FDF8EE;
+            border-radius: 6px;
+            border: 1px solid #E8D9B8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .ord-item-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1A1208;
+            line-height: 1.3;
+        }
+        .ord-item-qty {
+            font-size: 11px;
+            color: #7A6845;
+            margin-top: 2px;
+        }
+
+        /* INFO ROW */
+        .ord-info-row {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 13px;
+            color: #7A6845;
+            margin-bottom: 1.2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid #F0E8D4;
+        }
+        .ord-info-row i {
+            color: #B8860B;
+        }
+
+        /* TIMELINE */
+        .ord-timeline-wrap {
+            background: #F9F4EA;
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+        }
+        .ord-timeline-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #7A6845;
+            margin-bottom: 10px;
+        }
+        .ord-timeline {
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            position: relative;
+        }
+        .ord-timeline-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+            position: relative;
+        }
+        .ord-timeline-step::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: #E8D9B8;
+            z-index: 0;
+        }
+        .ord-timeline-step:last-child::before {
+            display: none;
+        }
+        .ord-timeline-dot {
+            width: 14px;
+            height: 14px;
+            background: #B8860B;
+            border-radius: 50%;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px #B8860B;
+        }
+        .ord-timeline-status {
+            font-size: 11px;
+            color: #B8860B;
+            font-weight: 700;
+            text-align: center;
+        }
+        .ord-timeline-date {
+            font-size: 10px;
+            color: #7A6845;
+            text-align: center;
+            margin-top: 2px;
+        }
+        .ord-timeline-note {
+            font-size: 10px;
+            color: #aaa;
+            text-align: center;
+            margin-top: 2px;
+            max-width: 70px;
+        }
+
+        /* EMPTY */
+        .ord-empty {
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+        .ord-empty-icon {
+            font-size: 70px;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        .ord-empty-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: #1A1208;
+            margin-bottom: 8px;
+        }
+        .ord-empty-sub {
+            color: #7A6845;
+            font-size: 15px;
+            margin-bottom: 2rem;
+        }
+        .ord-shop-btn {
+            display: inline-block;
+            background: #B8860B;
+            color: #fff;
+            padding: 13px 30px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            font-family: 'Jost', sans-serif;
+            transition: all 0.25s;
+        }
+        .ord-shop-btn:hover {
+            background: #D4A017;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .ord-items {
+                grid-template-columns: 1fr 1fr;
+            }
+            .ord-card-hdr {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+        @media (max-width: 480px) {
+            .ord-items {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script src="navbar.js"></script>
+<div class="ord-wrap">
+
+    <div class="ord-hero">
+        <div class="ord-hero-inner">
+            <p class="ord-eyebrow">Account</p>
+            <h1 class="ord-title"><i class="bi bi-bag" style="color:#B8860B;"></i> My Orders</h1>
+        </div>
+    </div>
+
+    <div class="ord-main">
+        <!-- Demo Order 1: Web Development (Processing) -->
+        <div class="ord-card">
+            <div class="ord-card-hdr">
+                <div>
+                    <div class="ord-num">Order #HCX-1001</div>
+                    <div class="ord-date">15 Apr 2025, 12:30 PM</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                    <span class="ord-status ord-status-processing">Processing</span>
+                    <span class="ord-pay-paid">✓ Paid</span>
+                    <span class="ord-total">₹8,000</span>
+                </div>
+            </div>
+            <div class="ord-card-body">
+                <div class="ord-items">
+                    <div class="ord-item">
+                        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=100&h=100&fit=crop" class="ord-item-img" alt="Web Dev">
+                        <div><div class="ord-item-name">Web Development – Basic Package</div><div class="ord-item-qty">Qty: 1 × ₹8,000</div></div>
+                    </div>
+                </div>
+                <div class="ord-info-row">
+                    <span><i class="bi bi-credit-card"></i> RAZORPAY</span>
+                    <span><i class="bi bi-truck"></i> Shipping: ₹0</span>
+                    <span style="color:#276749;"><i class="bi bi-tag"></i> Discount: −₹0</span>
+                    <span><i class="bi bi-ticket-perforated"></i> Coupon: WELCOME10</span>
+                </div>
+                <div class="ord-timeline-wrap">
+                    <div class="ord-timeline-label">Order Timeline</div>
+                    <div class="ord-timeline">
+                        <div class="ord-timeline-step"><div class="ord-timeline-dot"></div><div class="ord-timeline-status">Placed</div><div class="ord-timeline-date">15 Apr</div></div>
+                        <div class="ord-timeline-step"><div class="ord-timeline-dot"></div><div class="ord-timeline-status">Confirmed</div><div class="ord-timeline-date">15 Apr</div></div>
+                        <div class="ord-timeline-step"><div class="ord-timeline-dot"></div><div class="ord-timeline-status">Processing</div><div class="ord-timeline-date">16 Apr</div><div class="ord-timeline-note">Design phase started</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo Order 2: Mobile App (Shipped – meaning dev completed) -->
+        <div class="ord-card">
+            <div class="ord-card-hdr">
+                <div>
+                    <div class="ord-num">Order #HCX-1002</div>
+                    <div class="ord-date">28 Mar 2025, 09:15 AM</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                    <span class="ord-status ord-status-shipped">Shipped</span>
+                    <span class="ord-pay-paid">✓ Paid</span>
+                    <span class="ord-total">₹12,000</span>
+                </div>
+            </div>
+            <div class="ord-card-body">
+                <div class="ord-items">
+                    <div class="ord-item">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=100&h=100&fit=crop" class="ord-item-img" alt="Mobile App">
+                        <div><div class="ord-item-name">Mobile App – Standard Package</div><div class="ord-item-qty">Qty: 1 × ₹12,000</div></div>
+                    </div>
+                </div>
+                <div class="ord-info-row">
+                    <span><i class="bi bi-credit-card"></i> RAZORPAY</span>
+                    <span><i class="bi bi-truck"></i> Shipping: ₹0</span>
+                    <span style="color:#276749;"><i class="bi bi-tag"></i> Discount: −₹1,200</span>
+                    <span><i class="bi bi-ticket-perforated"></i> Coupon: SAVE10</span>
+                </div>
+                <div class="ord-timeline-wrap">
+                    <div class="ord-timeline-label">Order Timeline</div>
+                    <div class="ord-timeline">
+                        <div class="ord-timeline-step"><div class="ord-timeline-dot"></div><div class="ord-timeline-status">Placed</div><div class="ord-timeline-date">28 Mar</div></div>
+                        <div class="ord-timeline-step"><div class="ord-timeline-dot"></div><div class="ord-timeline-status">Confirmed</div><div class="ord-timeline-date">29 Mar</div></div>
+                        <div class="ord-timeline-step"><div class="ord-timeline-dot"></div><div class="ord-timeline-status">Processing</div><div class="ord-timeline-date">30 Mar</div></div>
+                        <div class="ord-timeline-step"><div class="ord-timeline-dot"></div><div class="ord-timeline-status">Completed</div><div class="ord-timeline-date">10 Apr</div><div class="ord-timeline-note">App delivered</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo Order 3: E-Commerce + Backend (Delivered) -->
+        <div class="ord-card">
+            <div class="ord-card-hdr">
+                <div>
+                    <div class="ord-num">Order #HCX-1003</div>
+                    <div class="ord-date">10 Feb 2025, 04:20 PM</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                    <span class="ord-status ord-status-delivered">Delivered</span>
+                    <span class="ord-pay-paid">✓ Paid</span>
+                    <span class="ord-total">₹30,000</span>
+                </div>
+            </div>
+            <div class="ord-card-body">
+                <div class="ord-items">
+                    <div class="ord-item">
+                        <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=100&h=100&fit=crop" class="ord-item-img" alt="E-Commerce">
+                        <div><div class="ord-item-name">E-Commerce – Premium Package</div><div class="ord-item-qty">Qty: 1 × ₹18,000</div></div>
+                    </div>
+                    <div class="ord-item">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=100&h=100&fit=crop" class="ord-item-img" alt="Backend API">
+                        <div><div class="ord-item-name">Backend API – Custom</div><div class="ord-item-qty">Qty: 1 × ₹12,000</div></div>
+                    </div>
+                </div>
+                <div class="ord-info-row">
+                    <span><i class="bi bi-credit-card"></i> RAZORPAY</span>
+                    <span><i class="bi bi-truck"></i> Shipping: ₹0</span>
+                    <span style="color:#276749;"><i class="bi bi-tag"></i> Discount: −₹0</span>
+                </div>
+                <div class="ord-timeline-wrap">
+                    <div class="ord-timeline-label">Order Timeline</div>
+                    <div class="ord-timeline">
+                        <div class="ord-timeline-step"><div class="ord-timeline-dot"></div><div class="ord-timeline-status">Placed</div><div class="ord-timeline-date">10 Feb</div></div>
+                        <div class="ord-timeline-step"><div class="ord-timeline-dot"></div><div class="ord-timeline-status">Confirmed</div><div class="ord-timeline-date">11 Feb</div></div>
+                        <div class="ord-timeline-step"><div class="ord-timeline-dot"></div><div class="ord-timeline-status">Processing</div><div class="ord-timeline-date">12 Feb</div></div>
+                        <div class="ord-timeline-step"><div class="ord-timeline-dot"></div><div class="ord-timeline-status">Delivered</div><div class="ord-timeline-date">25 Mar</div><div class="ord-timeline-note">Both projects completed</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- To demonstrate empty state, you can comment out the above orders. But for now we show demo orders -->
+    </div>
+</div>
+</body>
+</html>

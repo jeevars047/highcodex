@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HighCodeX Technologies — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --cream: #f9f9f9;
+      --dark: #1a0505;
+      --dark2: #2d0a0a;
+      --gold: #d4af37;
+      --gold-light: #f3de8a;
+      --accent: #c0392b;
+      --accent2: #9b2c1d;
+      --cyan: #e74c3c;
+      --text: #2d2a2a;
+      --muted: #6b5252;
+      --border: #e8d0d0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: rgba(26,14,14,0.97);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(200,150,12,0.25);
+    }
+    .navbar-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      height: 68px; padding: 0 28px;
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px; font-weight: 700;
+      color: var(--gold); text-decoration: none;
+    }
+    .logo span { color: white; }
+    .logo small {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px; font-weight: 500;
+      color: rgba(200,150,12,0.6);
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-left: 6px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 4px; list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      padding: 8px 16px; border-radius: 30px;
+      font-size: 14px; font-weight: 500; transition: 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--accent) !important; color: white !important;
+      font-weight: 600 !important; padding: 9px 22px !important;
+      border-radius: 0 !important;
+      display: inline-flex !important; align-items: center; gap: 8px;
+    }
+    .nav-cta:hover { background: var(--accent2) !important; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(192,57,43,0.4); }
+
+    /* MARQUEE */
+    .marquee-strip {
+      background: var(--accent); padding: 10px 0;
+      overflow: hidden; margin-top: 68px;
+    }
+    .marquee-track {
+      display: inline-flex; white-space: nowrap;
+      animation: marqueeScroll 30s linear infinite;
+    }
+    .marquee-item {
+      padding: 0 36px; font-size: 12px; font-weight: 600;
+      color: white; letter-spacing: 0.5px;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .marquee-item i { color: var(--gold-light); }
+    @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* HERO - layout.js navbar height accommodate */
+    .hero { padding: 48px 0 56px; text-align: center; position: relative; }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(14,165,233,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      font-size: 11px; text-transform: uppercase;
+      letter-spacing: 4px; font-weight: 700;
+      color: var(--accent); margin-bottom: 14px; display: inline-block;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 700; line-height: 1.15;
+      color: var(--dark2); margin-bottom: 16px;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+    .hero p {
+      font-size: 15.5px; color: var(--muted);
+      max-width: 520px; margin: 0 auto 36px; line-height: 1.7;
+    }
+    .hero-stats {
+      display: inline-flex; gap: 48px;
+      background: white; border-radius: 0;
+      padding: 26px 44px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      border: 2px solid #e8d0d0;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem; font-weight: 700; color: var(--dark2); line-height: 1;
+    }
+    .stat-num span { color: var(--accent); }
+    .stat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+
+    /* SECTION HEADER */
+    .section-header { text-align: center; margin-bottom: 52px; }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.7rem);
+      font-weight: 700; color: var(--dark2); line-height: 1.2;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+    .section-desc { font-size: 14.5px; color: var(--muted); max-width: 500px; margin: 12px auto 0; line-height: 1.7; }
+
+    /* PORTFOLIO SECTION */
+    .portfolio-section { padding: 76px 0; }
+
+    .project-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      margin-bottom: 56px;
+      background: white; border-radius: 0; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      border: 2px solid #d9b3b3;
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.75s ease, transform 0.75s ease, box-shadow 0.3s;
+    }
+    .project-row.visible { opacity: 1; transform: translateY(0); }
+    .project-row:hover { box-shadow: 0 8px 40px rgba(192,57,43,0.18); border-color: var(--accent); }
+
+    /* alternating layout */
+    .project-row.odd  .preview-box { order: 1; }
+    .project-row.odd  .detail-box  { order: 2; border-left: 1px solid var(--border); }
+    .project-row.even .preview-box { order: 2; }
+    .project-row.even .detail-box  { order: 1; border-right: 1px solid var(--border); }
+
+    /* PREVIEW BOX */
+    .preview-box { position: relative; background: #111827; min-height: 500px; }
+    .preview-browser {
+      position: absolute; top: 0; left: 0; right: 0; height: 36px;
+      background: #1e2535;
+      display: flex; align-items: center; padding: 0 12px; gap: 6px;
+      border-bottom: 1px solid rgba(255,255,255,0.06); z-index: 5;
+    }
+    .bdot { width: 10px; height: 10px; border-radius: 50%; }
+    .bdot.r { background: #ff5f57; }
+    .bdot.y { background: #ffbd2e; }
+    .bdot.g { background: #28ca41; }
+    .bbar {
+      flex: 1; height: 20px; background: rgba(255,255,255,0.07);
+      border-radius: 4px; margin-left: 8px;
+      display: flex; align-items: center; padding: 0 10px; overflow: hidden;
+    }
+    .burl { font-size: 10px; color: rgba(255,255,255,0.28); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* iframe container — scrollable, interactive */
+ .iframe-wrap {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.iframe-wrap iframe {
+  display: block;
+  width: 1280px;
+  height: 900px;
+  border: none;
+  transform: scale(0.52);
+  transform-origin: top left;
+  pointer-events: none;  /* default: no interaction */
+}
+
+/* preview box hover ஆகும்போது மட்டும் interactive */
+.preview-box:hover .iframe-wrap iframe {
+  pointer-events: auto;
+}
+.iframe-scale-wrapper {
+  width: 100%;
+  height: calc(900px * 0.52);
+  overflow: hidden;
+  position: relative;
+}
+.preview-box {
+  position: relative;
+  background: #111827;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+    .live-badge {
+      position: absolute; top: 48px; left: 14px; z-index: 9;
+      background: rgba(192,57,43,0.12); border: 1px solid rgba(192,57,43,0.35);
+      color: var(--accent); font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 0;
+    }
+
+    /* DETAIL BOX */
+    .detail-box { padding: 42px 38px; display: flex; flex-direction: column; justify-content: center; }
+    .proj-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+    .proj-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.95rem; font-weight: 700; color: var(--dark2); line-height: 1.2; margin-bottom: 14px;
+    }
+    .proj-desc { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 22px; }
+    .tech-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 26px; }
+    .pill {
+      padding: 4px 13px; background: #fff0ee; color: var(--accent);
+      border-radius: 0; font-size: 11.5px; font-weight: 600;
+      border: 1px solid rgba(192,57,43,0.2);
+    }
+    .price-block {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 18px;
+      background: linear-gradient(135deg, #fff0ee, #fde8e8);
+      border-radius: 0; border: 1px solid rgba(192,57,43,0.2);
+      margin-bottom: 22px;
+    }
+    .price-ico {
+      width: 42px; height: 42px; background: var(--accent);
+      border-radius: 0; display: flex; align-items: center;
+      justify-content: center; color: white; font-size: 17px; flex-shrink: 0;
+    }
+    .price-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .price-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem; font-weight: 700; color: var(--dark2); line-height: 1;
+    }
+    .price-val sub { font-size: 13px; font-family: 'Inter', sans-serif; color: var(--muted); font-weight: 400; }
+    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-buy {
+      background: var(--accent); color: white; border: none;
+      padding: 12px 26px; border-radius: 0; font-size: 14px; font-weight: 600;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.25s; text-decoration: none;
+      box-shadow: 0 4px 14px rgba(192,57,43,0.22);
+    }
+    .btn-buy:hover { background: var(--accent2); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(192,57,43,0.35); }
+    .btn-view {
+      background: transparent; border: 2px solid var(--accent); color: var(--accent);
+      padding: 11px 22px; border-radius: 0; font-size: 14px; font-weight: 500;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+      transition: 0.2s; text-decoration: none;
+    }
+    .btn-view:hover { background: var(--accent); color: white; }
+
+    /* FEATURES */
+    .features-strip {
+      background: white; padding: 52px 0;
+      border-top: 2px solid var(--accent); border-bottom: 2px solid var(--accent);
+    }
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    .feat-card { text-align: center; padding: 26px 18px; border-radius: 0; transition: 0.25s; border: 1px solid transparent; }
+    .feat-card:hover { background: #fff0ee; transform: translateY(-5px); border-color: #f5c6c6; }
+    .feat-ico {
+      width: 54px; height: 54px; border-radius: 0;
+      background: linear-gradient(135deg, #fff0ee, #fddcdc);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px; font-size: 22px; color: var(--accent);
+    }
+    .feat-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--dark2); }
+    .feat-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* PRICING */
+    .pricing-section { padding: 78px 0; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 880px; margin: 0 auto; }
+    .price-card {
+      background: white; border-radius: 0; padding: 34px 26px;
+      border: 2px solid #e8d0d0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      position: relative; overflow: hidden;
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.65s ease, transform 0.65s ease, box-shadow 0.3s;
+    }
+    .price-card.visible { opacity: 1; transform: translateY(0); }
+    .price-card:hover { box-shadow: 0 12px 40px rgba(192,57,43,0.14); transform: translateY(-6px); border-color: var(--accent); }
+    .price-card.popular { border-color: var(--accent); border-width: 2px; }
+    .pop-badge {
+      position: absolute; top: 16px; right: 16px;
+      background: var(--accent); color: white;
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 4px 11px; border-radius: 0;
+    }
+    .pc-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 700; color: var(--dark2); margin-bottom: 8px; }
+    .pc-price { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .pc-price sub { font-size: 13px; font-family: 'Inter', sans-serif; color: var(--muted); font-weight: 400; }
+    .pc-pages { font-size: 12px; color: var(--muted); margin: 4px 0 18px; }
+    .pc-feats { list-style: none; margin-bottom: 26px; }
+    .pc-feats li { font-size: 13px; color: #444; padding: 6px 0; border-bottom: 1px solid #f5eeee; display: flex; align-items: center; gap: 9px; }
+    .pc-feats li i { color: var(--accent); }
+    .btn-pc {
+      width: 100%; padding: 12px; border-radius: 0;
+      font-weight: 600; font-size: 14px; cursor: pointer; transition: 0.2s;
+    }
+    .btn-pc.filled { background: var(--accent); color: white; border: none; }
+    .btn-pc.outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+    .btn-pc:hover { background: var(--accent2); color: white; border-color: var(--accent2); }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      padding: 80px 0; text-align: center;
+    }
+    .cta-section .eyebrow { color: var(--gold-light); }
+    .cta-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 2.9rem); font-weight: 700; color: white; margin-bottom: 14px;
+    }
+    .cta-section h2 em { font-style: italic; color: var(--gold-light); }
+    .cta-section p { color: rgba(255,255,255,0.75); font-size: 15px; margin-bottom: 34px; }
+    .contact-chips { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 34px; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+      padding: 11px 20px; border-radius: 0; color: white;
+      font-size: 14px; text-decoration: none; transition: 0.2s;
+    }
+    .chip i { color: var(--gold-light); font-size: 15px; }
+    .chip:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+    .btn-main {
+      background: white; color: var(--accent);
+      border: none; padding: 14px 38px; border-radius: 0;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 9px;
+      transition: 0.25s; box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    .btn-main:hover { background: var(--gold-light); transform: translateY(-3px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.45);
+      padding: 30px 0; text-align: center;
+      border-top: 1px solid rgba(200,150,12,0.15);
+    }
+    footer .flogo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 700; color: var(--gold);
+      display: inline-block; margin-bottom: 8px; text-decoration: none;
+    }
+    footer .flogo span { color: white; }
+    footer p { font-size: 12.5px; }
+    footer strong { color: var(--gold); }
+
+    /* FADE UP */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .project-row { grid-template-columns: 1fr; }
+      .project-row .preview-box { order: 1 !important; min-height: 280px; }
+      .project-row .detail-box  { order: 2 !important; border: none !important; border-top: 1px solid var(--border) !important; padding: 28px 22px; }
+      .features-grid { grid-template-columns: repeat(2,1fr); }
+      .pricing-grid  { grid-template-columns: 1fr; max-width: 360px; }
+      .nav-links     { display: none; }
+      .hero-stats    { gap: 28px; padding: 20px 28px; flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+   <script src="layout.js" defer></script>
+
+  <!-- NAVBAR handled by layout.js -->
+  <div id="main-header"></div>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip" style="margin-top:0">
+    <div class="marquee-track">
+      <span class="marquee-item"><i class="bi bi-check-circle-fill"></i> Clean & Scalable Code</span>
+      <span class="marquee-item"><i class="bi bi-lightning-fill"></i> Fast Delivery — On Time</span>
+      <span class="marquee-item"><i class="bi bi-phone-fill"></i> Mobile-First & SEO Ready</span>
+      <span class="marquee-item"><i class="bi bi-shield-fill-check"></i> Secure Architecture</span>
+      <span class="marquee-item"><i class="bi bi-headset"></i> 24/7 Support</span>
+      <span class="marquee-item"><i class="bi bi-layers-fill"></i> Full-Stack Expertise</span>
+      <span class="marquee-item"><i class="bi bi-check-circle-fill"></i> Clean & Scalable Code</span>
+      <span class="marquee-item"><i class="bi bi-lightning-fill"></i> Fast Delivery — On Time</span>
+      <span class="marquee-item"><i class="bi bi-phone-fill"></i> Mobile-First & SEO Ready</span>
+      <span class="marquee-item"><i class="bi bi-shield-fill-check"></i> Secure Architecture</span>
+      <span class="marquee-item"><i class="bi bi-headset"></i> 24/7 Support</span>
+      <span class="marquee-item"><i class="bi bi-layers-fill"></i> Full-Stack Expertise</span>
+    </div>
+  </div>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio-section" id="portfolio">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="eyebrow">Portfolio</span>
+        <h2 class="section-title">Projects We've <em>Built</em></h2>
+        <p class="section-desc">Click any preview to explore the full website. Each is a real, working product.</p>
+      </div>
+      <div id="projects-container"></div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <div class="features-strip">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feat-card fade-up">
+          <div class="feat-ico"><i class="bi bi-lightning-charge-fill"></i></div>
+          <div class="feat-title">Fast Delivery</div>
+          <div class="feat-text">Rapid turnaround without compromising quality or performance. On-Time, every time.</div>
+        </div>
+        <div class="feat-card fade-up" style="transition-delay:.1s">
+          <div class="feat-ico"><i class="bi bi-shield-lock-fill"></i></div>
+          <div class="feat-title">Secure Code</div>
+          <div class="feat-text">Clean, secure and maintainable code with industry best practices built in.</div>
+        </div>
+        <div class="feat-card fade-up" style="transition-delay:.2s">
+          <div class="feat-ico"><i class="bi bi-phone-fill"></i></div>
+          <div class="feat-title">Mobile First</div>
+          <div class="feat-text">Every design is mobile-first and SEO-ready for all screen sizes and devices.</div>
+        </div>
+        <div class="feat-card fade-up" style="transition-delay:.3s">
+          <div class="feat-ico"><i class="bi bi-headset"></i></div>
+          <div class="feat-title">24/7 Support</div>
+          <div class="feat-text">Round-the-clock support to keep your digital products running smoothly.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="eyebrow">Transparent Pricing</span>
+        <h2 class="section-title">Simple, <em>Affordable</em> Plans</h2>
+        <p class="section-desc">No hidden charges. Pick the plan that fits your business.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card fade-up">
+          <div class="pc-name">Basic</div>
+          <div class="pc-price">₹8,000<sub>/project</sub></div>
+          <div class="pc-pages">3–4 Pages</div>
+          <ul class="pc-feats">
+            <li><i class="bi bi-check-lg"></i> Home, About, Gallery, Contact</li>
+            <li><i class="bi bi-check-lg"></i> Mobile-friendly design</li>
+            <li><i class="bi bi-check-lg"></i> Enquiry form setup</li>
+            <li><i class="bi bi-check-lg"></i> Basic SEO setup</li>
+          </ul>
+          <button class="btn-pc outline" onclick="window.open('https://wa.me/917868946689?text=Hi! I am interested in the Basic plan.','_blank')">Get Started</button>
+        </div>
+        <div class="price-card popular fade-up" style="transition-delay:.15s">
+          <div class="pop-badge">Popular</div>
+          <div class="pc-name">Standard</div>
+          <div class="pc-price">₹12,000<sub>/project</sub></div>
+          <div class="pc-pages">5–6 Pages</div>
+          <ul class="pc-feats">
+            <li><i class="bi bi-check-lg"></i> Premium design + better UI</li>
+            <li><i class="bi bi-check-lg"></i> Enquiry + WhatsApp integration</li>
+            <li><i class="bi bi-check-lg"></i> Basic SEO setup</li>
+            <li><i class="bi bi-check-lg"></i> Google listing setup</li>
+          </ul>
+          <button class="btn-pc filled" onclick="window.open('https://wa.me/917868946689?text=Hi! I am interested in the Standard plan.','_blank')">Get Started</button>
+        </div>
+        <div class="price-card fade-up" style="transition-delay:.3s">
+          <div class="pc-name">Premium</div>
+          <div class="pc-price">₹18,000<sub>/project</sub></div>
+          <div class="pc-pages">All Pages</div>
+          <ul class="pc-feats">
+            <li><i class="bi bi-check-lg"></i> Advanced design + performance</li>
+            <li><i class="bi bi-check-lg"></i> Enquiry + WhatsApp + Call</li>
+            <li><i class="bi bi-check-lg"></i> SEO optimized</li>
+            <li><i class="bi bi-check-lg"></i> Google ranking basic setup</li>
+          </ul>
+          <button class="btn-pc outline" onclick="window.open('https://wa.me/917868946689?text=Hi! I am interested in the Premium plan.','_blank')">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <span class="eyebrow">Let's Work Together</span>
+      <h2>Have a Project <em>in Mind?</em></h2>
+      <p>We respond within 24 hours. Let's build something amazing together.</p>
+      <div class="contact-chips">
+        <a href="https://wa.me/917868946689" target="_blank" class="chip"><i class="bi bi-whatsapp"></i> +91 78689 46689</a>
+        <a href="mailto:highcodextech@gmail.com" class="chip"><i class="bi bi-envelope-fill"></i> highcodextech@gmail.com</a>
+        <a href="tel:+917868946689" class="chip"><i class="bi bi-telephone-fill"></i> Mon–Sat, 9am–7pm</a>
+      </div>
+      <button class="btn-main" onclick="window.open('https://wa.me/917868946689?text=Hi Jeeva! I want to discuss a project.','_blank')">
+        <i class="bi bi-chat-dots-fill"></i> Start a Conversation
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER handled by layout.js -->
+  <div id="main-footer"></div>
+
+  <script>
+    // ═══════════════════════════════════════════════════
+    //  PROJECT DATA — உன் local HTML files இங்க add பண்ணு
+    //  file: "filename.html"  ← same folder-ல இருக்கணும்
+    // ═══════════════════════════════════════════════════
+   const projects = [
+  {
+    name: "Highcodex",
+    tag: "Digital Agency",
+    desc: "A modern digital agency website showcasing web development, branding, SEO, and business growth services with premium UI design.",
+    file: "HCX-WEBSITE/index.html",
+    price: "₹12,000",
+    techs: ["HTML5", "CSS3", "JavaScript", "Bootstrap Icons"]
+  },
+  {
+    name: "Ecommerce",
+    tag: "Online Shopping",
+    desc: "Feature-rich e-commerce platform with product listings, shopping cart, secure checkout, and responsive mobile-friendly design.",
+    file: "Ecommerce/home.html",
+    price: "₹8,000",
+    techs: ["HTML5", "CSS3", "JavaScript"]
+  },
+  {
+    name: "Website",
+    tag: "Corporate Website",
+    desc: "Professional business website crafted for startups and companies with modern layouts, animations, and lead generation features.",
+    file: "Website/hcx_home.html",
+    price: "₹18,000",
+    techs: ["Laravel", "MySQL", "Bootstrap", "PHP"]
+  },
+  {
+    name: "Booksky",
+    tag: "Booking Platform",
+    desc: "Smart booking platform designed for appointments, reservations, and event scheduling with clean UI and fast performance.",
+    file: "Booksky/index.html",
+    price: "₹12,000",
+    techs: ["HTML5", "CSS3", "JavaScript", "Bootstrap Icons"]
+  },
+  {
+    name: "ChatApp",
+    tag: "Messaging Application",
+    desc: "Real-time chat application with instant messaging, user authentication, online status, and modern responsive interface.",
+    file: "ChatApp/index.html",
+    price: "₹8,000",
+    techs: ["HTML5", "CSS3", "JavaScript"]
+  },
+  {
+    name: "Portfolio",
+    tag: "Personal Branding",
+    desc: "Creative personal portfolio website for developers, designers, and freelancers to showcase projects, skills, and achievements.",
+    file: "Portfolio/index.html",
+    price: "₹18,000",
+    techs: ["Laravel", "MySQL", "Bootstrap", "PHP"]
+  },
+];
+
+    // BUILD PROJECT ROWS
+    const container = document.getElementById('projects-container');
+    projects.forEach((proj, i) => {
+      const isOdd = i % 2 === 0;
+      const row = document.createElement('div');
+      row.className = `project-row ${isOdd ? 'odd' : 'even'}`;
+      row.innerHTML = `
+        <div class="preview-box">
+          <div class="preview-browser">
+            <div class="bdot r"></div>
+            <div class="bdot y"></div>
+            <div class="bdot g"></div>
+            <div class="bbar"><span class="burl">${proj.file}</span></div>
+          </div>
+          <div class="live-badge"><i class="bi bi-circle-fill" style="font-size:7px;color:#22c55e;margin-right:4px"></i>Live Preview</div>
+          <div class="iframe-wrap">
+            <div class="iframe-scale-wrapper">
+              <iframe src="${proj.file}"
+                loading="lazy"
+                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation"
+                title="${proj.name}"
+                scrolling="yes"></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="detail-box">
+          <div class="proj-tag">${proj.tag}</div>
+          <div class="proj-name">${proj.name}</div>
+          <div class="proj-desc">${proj.desc}</div>
+          <div class="tech-pills">${proj.techs.map(t=>`<span class="pill">${t}</span>`).join('')}</div>
+          <div class="price-block">
+            <div class="price-ico"><i class="bi bi-tag-fill"></i></div>
+            <div>
+              <div class="price-lbl">Starting from</div>
+              <div class="price-val">${proj.price}<sub> / project</sub></div>
+            </div>
+          </div>
+          <div class="btn-row">
+            <a href="https://wa.me/917868946689?text=Hi! I want to buy a site like ${encodeURIComponent(proj.name)}" target="_blank" class="btn-buy">
+              <i class="bi bi-whatsapp"></i> Buy This
+            </a>
+            <a href="${proj.file}" target="_blank" class="btn-view">
+              <i class="bi bi-eye"></i> Full View
+            </a>
+          </div>
+        </div>
+      `;
+      container.appendChild(row);
+    });
+
+    // SCROLL ANIMATIONS
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up, .project-row, .price-card').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

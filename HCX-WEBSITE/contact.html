@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
+<title>Contact — HighCodeX Technologies</title>
+<meta name="description" content="Get in touch with HighCodeX Technologies for your web development project. Based in Chennai, Tamil Nadu."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#050d1f;--navy2:#081428;--navy3:#0b1c36;
+  --blue:#1a6fc4;--blue2:#2182e0;--blue3:#56a0f0;--accent:#00c8ff;
+  --text:#e8f0fe;--text2:#8ba4c8;--text3:#3d5878;
+  --border:rgba(26,111,196,0.18);--border2:rgba(26,111,196,0.35);
+  --white:#ffffff;--wbg:#f4f7fb;--wtext:#1a2540;--wtext2:#4a5f82;--wborder:#e2eafc;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(0,200,255,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
+@media (max-width:768px){
+  .cursor, .cursor-ring{display:none}
+  body{cursor:auto}
+}
+
+/* TOP BAR */
+.top-bar{background:var(--navy2);border-bottom:1px solid var(--border);position:relative;z-index:998}
+.top-bar-inner{max-width:1400px;margin:0 auto;padding:9px 5%;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--text2);flex-wrap:wrap;gap:8px}
+.tb-left{display:flex;gap:20px;flex-wrap:wrap}
+.tbi{display:flex;align-items:center;gap:8px}
+.tbi-ico{width:26px;height:26px;border-radius:50%;background:rgba(26,111,196,.15);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px}
+.tb-right{display:flex;gap:7px}
+.soc{width:28px;height:28px;border-radius:50%;background:rgba(26,111,196,.1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text2);text-decoration:none;font-size:11px;transition:background .3s,border-color .3s,color .3s}
+.soc:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+@media (max-width:600px){
+  .top-bar-inner{flex-direction:column;align-items:center;gap:12px}
+  .tb-left{gap:12px;justify-content:center}
+  .tbi{font-size:11px}
+  .tbi-ico{width:22px;height:22px;font-size:9px}
+  .tb-left .tbi:nth-child(3){display:flex}
+}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:1000;background:rgba(5,13,31,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow .4s}
+nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.5)}
+.nav-inner{max-width:1400px;margin:0 auto;padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:66px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-lbox{width:38px;height:38px;border:1.5px solid var(--border2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;color:var(--blue3);background:rgba(26,111,196,.08);transition:box-shadow .3s}
+.nav-logo:hover .nav-lbox{box-shadow:0 0 18px rgba(26,111,196,.4)}
+.nav-brand{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:var(--text);letter-spacing:.5px}
+.nav-links{display:flex;list-style:none;gap:30px;align-items:center}
+.nav-links a{font-size:13px;font-weight:600;color:var(--text2);text-decoration:none;letter-spacing:.7px;text-transform:uppercase;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--blue3);transform:scaleX(0);transition:transform .3s;border-radius:1px}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-cta{padding:8px 20px!important;border-radius:6px!important;background:var(--blue)!important;color:#fff!important;font-weight:700!important;transition:background .3s,box-shadow .3s!important}
+.nav-cta:hover{background:var(--blue2)!important;box-shadow:0 8px 24px rgba(26,111,196,.45)!important}
+.nav-cta::after{display:none!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:900;background:rgba(5,13,31,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:26px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Rajdhani',sans-serif;font-size:28px;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .3s}
+.mobile-menu a:hover,.mobile-menu a.active{color:var(--blue3)}
+@media (max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .nav-brand{font-size:13px}
+  .nav-lbox{width:32px;height:32px;font-size:11px}
+}
+
+/* PAGE HERO */
+.page-hero{padding:110px 5% 70px;text-align:center;position:relative;overflow:hidden;background:var(--navy2);border-bottom:1px solid var(--border)}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(26,111,196,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(26,111,196,.05) 1px,transparent 1px);background-size:60px 60px}
+.page-hero-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(26,111,196,.12) 0%,transparent 65%);pointer-events:none}
+.ph-content{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.ph-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid var(--border2);border-radius:100px;font-size:11px;font-family:'Space Mono',monospace;color:var(--blue3);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;background:rgba(26,111,196,.08)}
+.ph-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(34px,5.5vw,64px);line-height:1;letter-spacing:-1px;margin-bottom:16px}
+.ph-title span{background:linear-gradient(90deg,var(--blue3),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ph-sub{font-size:15px;color:var(--text2);line-height:1.75;font-weight:300}
+@media (max-width:768px){
+  .page-hero{padding:70px 5% 50px}
+  .ph-title{font-size:clamp(28px,6vw,44px)}
+  .ph-sub{font-size:13px}
+}
+
+/* BUTTONS */
+.btn-p{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:var(--blue);color:#fff;text-decoration:none;border-radius:7px;font-weight:700;font-size:13px;font-family:'Rajdhani',sans-serif;letter-spacing:1px;text-transform:uppercase;transition:background .3s,box-shadow .3s,transform .3s;border:none;cursor:pointer}
+.btn-p:hover{background:var(--blue2);transform:translateY(-2px);box-shadow:0 14px 36px rgba(26,111,196,.45)}
+.btn-p:disabled{background:var(--text3);cursor:not-allowed;transform:none;box-shadow:none}
+
+/* ========== MIDDLE SECTION - FULL WHITE BACKGROUND ========== */
+.middle-section-white {
+  background: var(--white);
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Contact Section Layout */
+.contact-sec {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 90px 5%;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 68px;
+  align-items: start;
+}
+
+/* Left Info - White Theme */
+.white-theme .contact-heading {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--wtext);
+  margin-bottom: 12px;
+  letter-spacing: .5px;
+}
+.white-theme .contact-desc {
+  font-size: 14px;
+  color: var(--wtext2);
+  line-height: 1.75;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+.white-theme .contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.white-theme .cc {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--white);
+  border: 1px solid var(--wborder);
+  border-radius: 10px;
+  padding: 16px 18px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.white-theme .cc:hover {
+  border-color: var(--blue);
+  transform: translateX(5px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+}
+.white-theme .cc-ico {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  background: rgba(26,111,196,0.08);
+  border: 1px solid var(--wborder);
+}
+.white-theme .cc-lbl {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  font-family: 'Space Mono', monospace;
+}
+.white-theme .cc-val {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--wtext);
+  margin-bottom: 1px;
+  word-break: break-word;
+}
+.white-theme .cc-note {
+  font-size: 11px;
+  color: #6c7a91;
+}
+.white-theme .avail {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: rgba(39,201,63,0.08);
+  border-radius: 50px;
+  border: 1px solid rgba(39,201,63,0.2);
+  font-size: 13px;
+  font-weight: 600;
+  color: #1c8b2f;
+}
+.white-theme .avail-dot {
+  width: 9px;
+  height: 9px;
+  background: #27C93F;
+  border-radius: 50%;
+  animation: adot 2s ease-in-out infinite;
+}
+@keyframes adot {
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.4;transform:scale(1.3)}
+}
+
+/* Right Form Card - White Theme */
+.white-theme .contact-form-card {
+  background: var(--white);
+  border: 1px solid var(--wborder);
+  border-radius: 16px;
+  padding: 38px 36px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+}
+.white-theme .contact-form-card h3 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--wtext);
+  margin-bottom: 5px;
+  letter-spacing: .5px;
+}
+.white-theme .contact-form-card > p {
+  font-size: 13px;
+  color: var(--wtext2);
+  margin-bottom: 26px;
+  font-weight: 300;
+}
+.white-theme .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.white-theme .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.white-theme .form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4a5f82;
+  letter-spacing: .5px;
+  font-family: 'Space Mono', monospace;
+}
+.white-theme .form-group input,
+.white-theme .form-group select,
+.white-theme .form-group textarea {
+  border: 1.5px solid #e2eafc;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 14px;
+  font-family: 'Barlow', sans-serif;
+  color: #1a2540;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  outline: none;
+  resize: vertical;
+  width: 100%;
+}
+.white-theme .form-group input:focus,
+.white-theme .form-group select:focus,
+.white-theme .form-group textarea:focus {
+  border-color: var(--blue3);
+  background: #f9fcff;
+  box-shadow: 0 0 0 3px rgba(26,111,196,0.08);
+}
+.white-theme .form-group input::placeholder,
+.white-theme .form-group textarea::placeholder {
+  color: #b7c4dd;
+}
+.white-theme .form-group select option {
+  background: white;
+  color: #1a2540;
+}
+.white-theme .submit-btn {
+  width: 100%;
+  justify-content: center;
+  font-size: 15px;
+  padding: 14px;
+  margin-top: 6px;
+}
+.white-theme .form-success {
+  display: none;
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: rgba(39,201,63,0.08);
+  border: 1px solid rgba(39,201,63,0.3);
+  border-radius: 10px;
+  color: #1f9c3a;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* FAQ SECTION - Dark Navy */
+.faq-sec{padding:90px 5%;background:var(--navy2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.sec-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-family:'Space Mono',monospace;color:var(--blue3);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.sec-tag::before{content:'—';color:var(--blue3)}
+.sec-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(26px,4vw,46px);letter-spacing:-1px;line-height:1;margin-bottom:12px;color:var(--text)}
+.sec-title span{background:linear-gradient(90deg,var(--blue3),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1200px;margin:0 auto}
+.faq-item{background:var(--navy3);border:1px solid var(--border);border-radius:12px;padding:26px;transition:border-color .3s,transform .3s,box-shadow .3s}
+.faq-item:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.faq-item h4{font-family:'Rajdhani',sans-serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:10px;letter-spacing:.3px}
+.faq-item p{font-size:13px;color:var(--text2);line-height:1.72;font-weight:300}
+@media (max-width:768px){
+  .faq-sec{padding:60px 5%}
+  .faq-grid{grid-template-columns:1fr}
+  .faq-item{padding:20px}
+}
+
+/* CTA SECTION */
+.cta-wrap{padding:0 5% 88px;background:var(--navy)}
+.cta-banner{padding:70px 56px;text-align:center;background:linear-gradient(135deg,rgba(26,111,196,.15),rgba(0,200,255,.06));border:1px solid rgba(26,111,196,.25);border-radius:16px;position:relative;overflow:hidden}
+.cta-banner::before{content:'';position:absolute;inset:-50%;background:radial-gradient(ellipse at center,rgba(26,111,196,.06) 0%,transparent 60%);animation:cP 6s ease-in-out infinite alternate}
+@keyframes cP{from{transform:scale(.9)}to{transform:scale(1.1)}}
+.cta-c{position:relative;z-index:1}
+.cta-banner h2{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(24px,4vw,46px);letter-spacing:-1px;margin-bottom:11px}
+.cta-banner p{font-size:14px;color:var(--text2);font-weight:300;margin-bottom:28px}
+@media (max-width:768px){
+  .cta-wrap{padding:0 5% 60px}
+  .cta-banner{padding:40px 20px}
+  .cta-banner h2{font-size:clamp(20px,5vw,32px)}
+}
+
+/* FOOTER */
+footer{background:var(--navy2);border-top:1px solid var(--border)}
+.fcbar{padding:30px 5%;display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border);gap:14px}
+.fci{display:flex;align-items:flex-start;gap:12px}
+.fci-ico{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:rgba(26,111,196,.15);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:15px}
+.fci-lbl{font-size:10px;font-family:'Space Mono',monospace;color:var(--blue3);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.fci-info{font-size:12px;color:var(--text2);line-height:1.7;font-weight:300}
+.fmain{padding:40px 5%;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:40px}
+.flogo{display:flex;align-items:center;gap:9px;margin-bottom:12px;text-decoration:none}
+.flogo-box{width:34px;height:34px;border:1.5px solid var(--border2);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;color:var(--blue3);background:rgba(26,111,196,.08)}
+.fbrand{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:var(--text);letter-spacing:.5px}
+.fdesc{font-size:12px;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:16px;max-width:240px}
+.fsocs{display:flex;gap:7px;flex-wrap:wrap}
+.fcol h4{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--text);margin-bottom:14px}
+.fcol ul{list-style:none}
+.fcol li{margin-bottom:8px}
+.fcol a{font-size:12px;color:var(--text2);text-decoration:none;font-weight:300;transition:color .3s;display:flex;align-items:center;gap:5px}
+.fcol a:hover{color:var(--blue3)}
+.fcol a::before{content:'›';color:var(--text3)}
+.nl-form{display:flex;margin-top:9px}
+.nl-inp{flex:1;padding:10px 12px;background:rgba(26,111,196,.06);border:1px solid var(--border);border-right:none;border-radius:6px 0 0 6px;color:var(--text);font-size:12px;font-family:'Barlow',sans-serif;outline:none;transition:border-color .3s}
+.nl-inp:focus{border-color:var(--blue3)}
+.nl-inp::placeholder{color:var(--text3)}
+.nl-btn{padding:10px 13px;background:var(--blue);border:none;border-radius:0 6px 6px 0;cursor:pointer;color:#fff;font-size:13px;transition:background .3s}
+.nl-btn:hover{background:var(--blue2)}
+.fbot{padding:18px 5%;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text3);font-family:'Space Mono',monospace;flex-wrap:wrap;gap:8px}
+@media (max-width:1024px){
+  .fcbar{grid-template-columns:1fr;gap:16px}
+  .fmain{grid-template-columns:1fr 1fr;gap:30px}
+}
+@media (max-width:768px){
+  .fmain{grid-template-columns:1fr;gap:24px}
+  .fbot{flex-direction:column;text-align:center}
+  .fci{flex-direction:column;align-items:center;text-align:center}
+  .fci-ico{margin-bottom:5px}
+  .flogo{justify-content:center}
+  .fdesc{max-width:100%;text-align:center}
+  .fsocs{justify-content:center}
+  .fcol{text-align:center}
+  .fcol a{justify-content:center}
+  .nl-form{max-width:280px;margin:0 auto}
+}
+@media (max-width:768px){
+  .contact-sec{grid-template-columns:1fr;gap:40px;padding:50px 5%}
+  .white-theme .contact-form-card{padding:24px 20px}
+  .white-theme .form-row{grid-template-columns:1fr}
+  .white-theme .cc{padding:12px 14px}
+  .white-theme .cc-ico{width:40px;height:40px;font-size:18px}
+  .white-theme .contact-heading{font-size:26px}
+}
+@media (max-width:480px){
+  .tb-left{gap:8px;flex-wrap:wrap}
+  .white-theme .cc-val{font-size:12px}
+  .white-theme .avail{font-size:11px;padding:8px 16px}
+}
+
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:9990;width:54px;height:54px;border-radius:50%;background:#25D366;box-shadow:0 6px 24px rgba(37,211,102,.5);display:flex;align-items:center;justify-content:center;text-decoration:none;animation:waPulse 2.5s ease-in-out infinite}
+.wa-float svg{width:28px;height:28px;fill:#fff}
+@keyframes waPulse{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,.35)}50%{box-shadow:0 6px 24px rgba(37,211,102,.5),0 0 0 12px rgba(37,211,102,0)}}
+@media (max-width:480px){
+  .wa-float{width:48px;height:48px;bottom:20px;right:20px}
+  .wa-float svg{width:24px;height:24px}
+}
+
+/* FADE UP ANIMATION */
+.fade-up{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="tb-left">
+      <div class="tbi"><span class="tbi-ico">📞</span><span>+91 78689 46689</span></div>
+      <div class="tbi"><span class="tbi-ico">✉️</span><span>highcodextech@gmail.com</span></div>
+      <div class="tbi"><span class="tbi-ico">📍</span><span>Chennai, TN</span></div>
+    </div>
+    <div class="tb-right">
+      <a href="https://wa.me/917868946689" class="soc">💬</a>
+      <a href="mailto:highcodextech@gmail.com" class="soc">✉</a>
+      <a href="#" class="soc">in</a>
+      <a href="#" class="soc">▶</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-lbox">HCX</div>
+      <span class="nav-brand">HighCodeX Technologies</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="contact.html" class="nav-cta active">Contact Us</a></li>
+    </ul>
+    <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mob">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="#">Portfolio</a>
+  <a href="contact.html" class="active">Contact</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-glow"></div>
+  <div class="ph-content fade-up">
+    <div class="ph-tag">Contact Us</div>
+    <h1 class="ph-title">Let's Build Something <span>Amazing</span></h1>
+    <p class="ph-sub">Have a project in mind? Let's talk. We respond within 24 hours.</p>
+  </div>
+</section>
+
+<!-- MIDDLE SECTION - WHITE BACKGROUND -->
+<div class="middle-section-white white-theme">
+  <div class="contact-sec">
+    <!-- LEFT INFO -->
+    <div class="fade-up">
+      <h2 class="contact-heading">Get In Touch</h2>
+      <p class="contact-desc">Whether you have a project idea, a question, or just want to say hello — I'd love to hear from you. Let's make something great together.</p>
+      <div class="contact-cards">
+        <a href="https://wa.me/917868946689" class="cc" target="_blank">
+          <div class="cc-ico">💬</div>
+          <div><div class="cc-lbl">WhatsApp</div><div class="cc-val">+91 7868946689</div><div class="cc-note">Fastest response</div></div>
+        </a>
+        <a href="tel:+917868946689" class="cc">
+          <div class="cc-ico">📞</div>
+          <div><div class="cc-lbl">Phone</div><div class="cc-val">+91 7868946689</div><div class="cc-note">Mon–Sat, 9am–7pm</div></div>
+        </a>
+        <a href="mailto:highcodextech@gmail.com" class="cc">
+          <div class="cc-ico">✉️</div>
+          <div><div class="cc-lbl">Business Email</div><div class="cc-val">highcodextech@gmail.com</div><div class="cc-note">For project inquiries</div></div>
+        </a>
+        <a href="mailto:jeevars047@gmail.com" class="cc">
+          <div class="cc-ico">📧</div>
+          <div><div class="cc-lbl">Personal Email</div><div class="cc-val">jeevars047@gmail.com</div><div class="cc-note">For general queries</div></div>
+        </a>
+        <div class="cc">
+          <div class="cc-ico">📍</div>
+          <div><div class="cc-lbl">Location</div><div class="cc-val">Chennai, Tamil Nadu</div><div class="cc-note">Native: Ariyalur</div></div>
+        </div>
+      </div>
+      <div class="avail">
+        <div class="avail-dot"></div>
+        <span>Currently available for new projects</span>
+      </div>
+    </div>
+
+    <!-- RIGHT FORM with EmailJS -->
+    <div class="fade-up d2">
+      <div class="contact-form-card">
+        <h3>Send a Message</h3>
+        <p>Fill in the details below and I'll get back to you within 24 hours.</p>
+
+        <div class="form-group">
+          <label>Your Name *</label>
+          <input type="text" placeholder="John Doe" id="name"/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" placeholder="john@example.com" id="email"/>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+91 98765 43210" id="phone"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Service Required *</label>
+          <select id="service">
+            <option value="">Select a service...</option>
+            <option>Web Design & Development</option>
+            <option>Mobile App Development</option>
+            <option>E-Commerce Solutions</option>
+            <option>Backend Development</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Project Budget</label>
+          <select id="budget">
+            <option value="">Select budget range...</option>
+            <option>Under ₹10,000</option>
+            <option>₹10,000 – ₹25,000</option>
+            <option>₹25,000 – ₹50,000</option>
+            <option>₹50,000 – ₹1,00,000</option>
+            <option>Above ₹1,00,000</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell Me About Your Project *</label>
+          <textarea rows="5" placeholder="Describe your project, goals, and any specific requirements..." id="message"></textarea>
+        </div>
+        <button class="btn-p submit-btn" id="submitBtn">Send Message 🚀</button>
+        <div class="form-success" id="formSuccess">✅ Message sent! I'll get back to you within 24 hours.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ SECTION -->
+<section class="faq-sec">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="fade-up" style="margin-bottom:48px;text-align:center">
+      <div class="sec-tag" style="justify-content:center">FAQ</div>
+      <h2 class="sec-title">Common <span>Questions</span></h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item fade-up">
+        <h4>How much does a website cost?</h4>
+        <p>It depends on the project scope. A simple landing page starts from ₹5,000, while full web applications can be quoted based on requirements. Contact us for a free estimate!</p>
+      </div>
+      <div class="faq-item fade-up d1">
+        <h4>How long does a project take?</h4>
+        <p>A basic website takes 3–7 days. Complex projects like e-commerce or apps may take 2–6 weeks depending on features. We always give a clear timeline upfront.</p>
+      </div>
+      <div class="faq-item fade-up d2">
+        <h4>Do you provide support after delivery?</h4>
+        <p>Yes! We provide post-launch support and maintenance. Any bugs or issues after delivery are fixed at no extra charge within the support period.</p>
+      </div>
+      <div class="faq-item fade-up d3">
+        <h4>What technologies do you use?</h4>
+        <p>We work with HTML, CSS, JavaScript, Python, Django, Flask, PHP, Laravel, MySQL, React, WordPress, and more. We pick the best stack for your project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-wrap" style="padding-top:88px">
+  <div class="cta-banner fade-up">
+    <div class="cta-c">
+      <h2>Ready to Build Something Amazing?</h2>
+      <p>Let's turn your idea into a powerful digital product.</p>
+      <a href="https://wa.me/917868946689" class="btn-p" target="_blank">💬 WhatsApp Us Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fcbar">
+    <div class="fci"><div class="fci-ico">📞</div><div><div class="fci-lbl">Phone</div><div class="fci-info">Office: +91 78689 46689<br/>Sales: +91 78689 46689</div></div></div>
+    <div class="fci"><div class="fci-ico">✉️</div><div><div class="fci-lbl">Email</div><div class="fci-info">highcodextech@gmail.com</div></div></div>
+    <div class="fci"><div class="fci-ico">📍</div><div><div class="fci-lbl">Chennai</div><div class="fci-info">Chennai, Tamil Nadu 600000</div></div></div>
+  </div>
+  <div class="fmain">
+    <div>
+      <a href="index.html" class="flogo"><div class="flogo-box">HCX</div><span class="fbrand">HighCodeX Technologies</span></a>
+      <p class="fdesc">Powering your digital presence with clean code and creative design. Chennai-based, globally delivered.</p>
+      <div class="fsocs"><a href="https://wa.me/917868946689" class="soc">💬</a><a href="mailto:highcodextech@gmail.com" class="soc">✉</a><a href="#" class="soc">in</a><a href="#" class="soc">▶</a></div>
+    </div>
+    <div class="fcol"><h4>Quick Links</h4><ul><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="#">Portfolio</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="fcol"><h4>Services</h4><ul><li><a href="services.html">Web Development</a></li><li><a href="services.html">Mobile Apps</a></li><li><a href="services.html">E-Commerce</a></li><li><a href="services.html">Backend Dev</a></li></ul></div>
+    <div class="fcol"><h4>Newsletter</h4><p style="font-size:12px;color:var(--text2);font-weight:300;margin-bottom:9px">Get latest updates from us.</p><div class="nl-form"><input type="email" class="nl-inp" placeholder="Your Email"/><button class="nl-btn">→</button></div></div>
+  </div>
+  <div class="fbot"><span>© 2026 HighCodeX Technologies. All Rights Reserved.</span><span>Code Beyond Limits 🚀</span></div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/917868946689" class="wa-float" target="_blank" title="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.425.638 4.7 1.757 6.675L2 30l7.528-1.733A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.44 11.44 0 01-5.834-1.597l-.418-.248-4.468 1.028 1.059-4.355-.272-.447A11.463 11.463 0 014.5 16C4.5 9.649 9.649 4.5 16 4.5S27.5 9.649 27.5 16 22.351 27.5 16 27.5zm6.29-8.617c-.344-.172-2.036-1.004-2.352-1.119-.315-.115-.545-.172-.774.172-.23.344-.888 1.119-1.088 1.349-.2.23-.4.258-.744.086-.344-.172-1.452-.535-2.766-1.708-1.022-.913-1.712-2.04-1.912-2.384-.2-.344-.021-.53.15-.701.155-.154.344-.402.516-.603.172-.2.229-.344.344-.573.115-.23.057-.43-.029-.602-.086-.172-.774-1.866-1.06-2.555-.28-.672-.564-.58-.774-.591l-.659-.011c-.23 0-.602.086-.917.43s-1.203 1.176-1.203 2.868 1.232 3.327 1.404 3.556c.172.23 2.424 3.7 5.874 5.19.821.354 1.462.566 1.962.724.824.262 1.574.225 2.167.137.661-.099 2.036-.832 2.323-1.636.287-.803.287-1.492.2-1.636-.086-.143-.315-.23-.659-.401z"/></svg>
+</a>
+
+<script>
+  // EmailJS Configuration
+  (function() {
+    emailjs.init({
+      publicKey: "l2D0kKGaC-HDZFG3Y",
+    });
+  })();
+
+  async function submitForm() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const service = document.getElementById('service').value;
+    const budget = document.getElementById('budget').value;
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !email || !service || !message) {
+      alert('Please fill in all required fields: Name, Email, Service, and Project details.');
+      return;
+    }
+
+    const btn = document.getElementById('submitBtn');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = 'Sending... 🚀';
+    btn.disabled = true;
+
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      phone_number: phone || 'Not provided',
+      service_type: service,
+      project_budget: budget || 'Not specified',
+      project_message: message,
+      to_email: 'highcodextech@gmail.com',
+      reply_to: email
+    };
+
+    try {
+      const serviceId = "service_3een0mk";
+      const templateId = "template_vn1evha";
+
+      const response = await emailjs.send(serviceId, templateId, templateParams);
+      console.log('EmailJS success:', response);
+      document.getElementById('formSuccess').style.display = 'block';
+      btn.innerHTML = 'Message Sent ✓';
+      btn.style.background = '#27C93F';
+      setTimeout(() => { 
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+      }, 3000);
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      alert('Failed to send message. Please try again or contact via WhatsApp directly.');
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    }
+  }
+
+  document.getElementById('submitBtn').onclick = submitForm;
+
+  // Cursor effect (hide on mobile)
+  if(window.innerWidth > 768){
+    const curEl = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function tick() {
+      curEl.style.left = mx + 'px'; curEl.style.top = my + 'px';
+      rx += (mx - rx) * 0.11; ry += (my - ry) * 0.11;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(tick);
+    })();
+    document.querySelectorAll('a,button,.cc,.faq-item').forEach(el => {
+      el.addEventListener('mouseenter', () => { ring.style.width = '50px'; ring.style.height = '50px'; ring.style.borderColor = 'rgba(0,200,255,.7)'; });
+      el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(0,200,255,.5)'; });
+    });
+  }
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', scrollY > 40));
+  
+  // Mobile menu
+  const ham = document.getElementById('ham'), mob = document.getElementById('mob');
+  ham.addEventListener('click', () => mob.classList.toggle('open'));
+  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+
+  // Intersection Observer for animations
+  const obs = new IntersectionObserver(entries => { 
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); 
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up,.cc,.faq-item').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

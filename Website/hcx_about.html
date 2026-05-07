@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>HighCodeX Technologies | About Us - Code Beyond Limits</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playball&family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0a;
+      color: #d3d3d3;
+      font-family: 'Quattrocento Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .fancy-title {
+      font-family: 'Playball', cursive;
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
+
+    h2 { font-size: 34px; color: #ecc371; margin-bottom: 20px; }
+    h5 { font-family: 'Quattrocento Sans', sans-serif; font-size: 18px; font-weight: 300; letter-spacing: 1px; color: #d3d3d3; }
+
+    .gold-text { color: #ecc371; }
+
+    .btn-gold {
+      background: #ecc371;
+      color: #000;
+      border: none;
+      padding: 12px 30px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      letter-spacing: 1px;
+      font-family: 'Quattrocento Sans', sans-serif;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .btn-gold:hover { background: #d6b05c; transform: translateY(-3px); }
+
+    .btn-outline-gold {
+      background: transparent;
+      color: #ecc371;
+      border: 1px solid #ecc371;
+      padding: 12px 30px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      letter-spacing: 1px;
+      font-family: 'Quattrocento Sans', sans-serif;
+      font-size: 15px;
+    }
+    .btn-outline-gold:hover { background: #ecc371; color: #000; transform: translateY(-3px); }
+
+    /* NAV */
+    .site-header {
+      background: #0a0a0a;
+      border-bottom: 1px solid rgba(236,195,113,0.2);
+      padding: 18px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .logo-box {
+      width: 48px;
+      height: 48px;
+      background: #ecc371;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playball', cursive;
+      font-size: 22px;
+      color: #000;
+      font-weight: 700;
+    }
+    .logo-text { font-family: 'Playball', cursive; font-size: 22px; color: #ecc371; }
+    .logo-tagline { font-size: 10px; color: #888; letter-spacing: 2px; display: block; }
+
+    .nav-menu ul { list-style: none; display: flex; gap: 28px; flex-wrap: wrap; }
+    .nav-menu a { color: #d3d3d3; text-decoration: none; font-size: 15px; letter-spacing: 1px; transition: 0.3s; }
+    .nav-menu a:hover, .nav-menu a.active { color: #ecc371; }
+
+    /* PAGE HEADER */
+    .page-header {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 100px 5%;
+      text-align: center;
+    }
+    .page-header h1 { font-size: 52px; color: #ecc371; }
+    .page-header p { font-size: 18px; color: #ccc; margin-top: 15px; }
+
+    .section-padding { padding: 80px 5%; }
+    .container { max-width: 1240px; margin: 0 auto; }
+
+    .divider-line { width: 80px; height: 2px; background: #ecc371; margin: 20px auto; }
+    .divider-left { width: 80px; height: 2px; background: #ecc371; margin: 20px 0; }
+
+    /* MISSION VISION */
+    .mv-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 50px;
+    }
+    .mv-card {
+      flex: 1;
+      min-width: 280px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(236,195,113,0.1);
+      padding: 45px 35px;
+      border-radius: 4px;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .mv-card:hover { border-color: #ecc371; transform: translateY(-5px); background: rgba(236,195,113,0.05); }
+    .mv-card i { font-size: 48px; color: #ecc371; margin-bottom: 20px; }
+    .mv-card h3 { color: #ecc371; font-size: 28px; margin-bottom: 15px; }
+    .mv-card p { color: #aaa; line-height: 1.8; }
+
+    /* VALUES */
+    .values-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 50px;
+    }
+    .value-card {
+      flex: 1;
+      min-width: 220px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 30px 25px;
+      text-align: center;
+      border-radius: 4px;
+    }
+    .value-card i { font-size: 36px; color: #ecc371; margin-bottom: 20px; }
+    .value-card h4 { color: #ecc371; font-family: 'Quattrocento Sans', sans-serif; font-size: 18px; margin-bottom: 12px; }
+    .value-card p { font-size: 14px; color: #888; }
+
+    /* TEAM */
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      margin-top: 50px;
+    }
+    .team-card {
+      flex: 1;
+      min-width: 260px;
+      max-width: 320px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(236,195,113,0.1);
+      border-radius: 4px;
+      padding: 35px 25px;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .team-card:hover { transform: translateY(-5px); border-color: #ecc371; }
+    .team-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 3px solid #ecc371;
+    }
+    .team-card h4 { color: #ecc371; font-size: 22px; margin-bottom: 5px; }
+    .team-card p { color: #888; font-size: 14px; margin-bottom: 15px; }
+    .team-card .role { font-size: 13px; color: #aaa; font-style: italic; }
+
+    /* SKILLS */
+    .skills-section {
+      background: #0d0d0d;
+    }
+    .skill-item {
+      margin-bottom: 25px;
+    }
+    .skill-name {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .skill-bar {
+      background: rgba(255,255,255,0.1);
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .skill-progress {
+      background: #ecc371;
+      height: 100%;
+      width: 0%;
+      border-radius: 4px;
+      transition: width 1s ease;
+    }
+
+    /* STATS */
+    .stats-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+    .stat-card {
+      text-align: center;
+      flex: 1;
+      min-width: 160px;
+    }
+    .stat-number {
+      font-size: 48px;
+      font-family: 'Playball', cursive;
+      color: #ecc371;
+    }
+    .stat-label {
+      font-size: 14px;
+      color: #888;
+    }
+
+    /* CTA */
+    .cta-overlay {
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      padding: 80px 20px;
+      position: relative;
+    }
+    .cta-overlay::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(10,10,10,0.85);
+      z-index: 1;
+    }
+    .cta-content {
+      position: relative; z-index: 2;
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .cta-content h2 { color: #ecc371; font-size: 36px; }
+
+    /* FOOTER */
+    .footer { background: #050505; border-top: 1px solid rgba(236,195,113,0.15); padding: 40px 20px; text-align: center; }
+    .footer-grid { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; max-width: 1000px; margin: 0 auto 30px; }
+    .footer-col { flex: 1; min-width: 180px; text-align: left; }
+    .footer-col h4 { color: #ecc371; font-family: 'Playball', cursive; font-size: 20px; margin-bottom: 14px; }
+    .footer-col p, .footer-col a { font-size: 14px; color: #888; line-height: 2; text-decoration: none; display: block; }
+    .footer-col a:hover { color: #ecc371; }
+    .footer-col i { color: #ecc371; margin-right: 8px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 22px; font-size: 13px; color: #555; }
+
+    @media (max-width: 768px) {
+      h2 { font-size: 26px; }
+      .page-header h1 { font-size: 32px; }
+      .page-header { padding: 60px 5%; }
+      .header-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-area" href="hcx_home.html">
+      <div class="logo-box">HCX</div>
+      <div>
+        <div class="logo-text">HighCodeX</div>
+        <span class="logo-tagline">// CODE BEYOND LIMITS</span>
+      </div>
+    </a>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="hcx_home.html">Home</a></li>
+        <li><a href="hcx_about.html" class="active">About</a></li>
+        <li><a href="hcx_services.html">Services</a></li>
+        <li><a href="hcx_contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-header">
+  <h1>About HighCodeX</h1>
+  <p>We don't just write code — we engineer solutions that grow your business</p>
+</div>
+
+<!-- Mission & Vision -->
+<section class="section-padding">
+  <div class="container">
+    <div class="mv-grid">
+      <div class="mv-card">
+        <i class="fas fa-bullseye"></i>
+        <h3>Our Mission</h3>
+        <p>To provide smart, modern and affordable web solutions that improve everyday business growth across South India. We deliver world-class digital solutions with clean code, on-time delivery, and honest communication.</p>
+      </div>
+      <div class="mv-card">
+        <i class="fas fa-eye"></i>
+        <h3>Our Vision</h3>
+        <p>To grow HighCodeX Technologies into a full-scale digital agency based in Chennai — serving clients across India and beyond. To become a trusted name in web development, known for quality, on-time delivery and innovation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Values -->
+<section class="section-padding" style="background:#0d0d0d;">
+  <div class="container">
+    <div style="text-align:center;">
+      <h2>Our Core Values</h2>
+      <div class="divider-line"></div>
+      <h5>Transparency, quality, and continuous learning — the principles that drive us</h5>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <i class="fas fa-gem"></i>
+        <h4>Transparency</h4>
+        <p>Honest communication at every step. No hidden costs, no surprises — just clear, open collaboration.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-star"></i>
+        <h4>Quality</h4>
+        <p>We never compromise on quality. Clean, maintainable code that performs and scales beautifully.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-graduation-cap"></i>
+        <h4>Continuous Learning</h4>
+        <p>We believe the best code comes from curiosity, commitment, and staying ahead of technology.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-handshake"></i>
+        <h4>Client Success</h4>
+        <p>Your growth is our success. We're committed to building solutions that drive real business results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section-padding">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">45+</div>
+        <div class="stat-label">Happy Clients</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">98%</div>
+        <div class="stat-label">On-Time Delivery</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Customer Support</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Technologies & Skills -->
+<section class="section-padding skills-section">
+  <div class="container">
+    <div style="display:flex; flex-wrap:wrap; gap:50px;">
+      <div style="flex:1; min-width:280px;">
+        <h2>Technologies We Master</h2>
+        <div class="divider-left"></div>
+        <p style="color:#aaa; margin-bottom:30px;">We use modern, industry-standard technologies to build robust digital solutions that stand the test of time.</p>
+        
+        <div class="skill-item">
+          <div class="skill-name"><span>HTML5/CSS3/JavaScript</span><span>95%</span></div>
+          <div class="skill-bar"><div class="skill-progress" style="width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>React / React Native</span><span>88%</span></div>
+          <div class="skill-bar"><div class="skill-progress" style="width:88%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>Python / Django</span><span>85%</span></div>
+          <div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>PHP / Laravel</span><span>82%</span></div>
+          <div class="skill-bar"><div class="skill-progress" style="width:82%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>WordPress / WooCommerce</span><span>78%</span></div>
+          <div class="skill-bar"><div class="skill-progress" style="width:78%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>MySQL / MongoDB</span><span>80%</span></div>
+          <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
+        </div>
+      </div>
+      <div style="flex:1; min-width:280px;">
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=700&q=80" alt="Coding" style="width:100%; border-radius:4px; border:1px solid rgba(236,195,113,0.2); margin-bottom:30px;">
+        <div style="background:rgba(236,195,113,0.05); padding:25px; border:1px solid rgba(236,195,113,0.1); border-radius:4px;">
+          <i class="fas fa-quote-left" style="color:#ecc371; font-size:30px; opacity:0.5;"></i>
+          <p style="margin-top:15px; font-style:italic; color:#ccc;">"Code is our craft, and we take it seriously. Every line we write is built with precision, performance, and purpose."</p>
+          <p style="margin-top:15px; color:#ecc371;">— Jeeva R, Founder</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Founder Section -->
+<section class="section-padding">
+  <div class="container">
+    <div style="text-align:center;">
+      <h2>Meet The Founder</h2>
+      <div class="divider-line"></div>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&q=80" alt="Founder" class="team-img">
+        <h4>Jeeva R</h4>
+        <div class="role">Founder & Lead Developer</div>
+        <p>With over 8 years of experience in full-stack development, Jeeva leads HighCodeX with a vision to deliver quality solutions that genuinely help businesses grow. Passionate about clean code and client success.</p>
+        <div style="margin-top:20px;">
+          <i class="fab fa-linkedin" style="color:#ecc371; margin:0 8px; font-size:20px;"></i>
+          <i class="fab fa-github" style="color:#ecc371; margin:0 8px; font-size:20px;"></i>
+          <i class="fab fa-twitter" style="color:#ecc371; margin:0 8px; font-size:20px;"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-overlay" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1400&q=80');">
+  <div class="cta-content">
+    <h2>Ready to Work With Us?</h2>
+    <p>Let's bring your ideas to life. We're just a message away — response within 24 hours.</p>
+    <a href="hcx_contact.html" class="btn-gold">Start a Project <i class="fas fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>HighCodeX</h4>
+      <p style="color:#888; font-size:13px; line-height:1.8;">Code Beyond Limits.<br>Web solutions that grow your business.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <a href="hcx_home.html">Home</a>
+      <a href="hcx_about.html">About</a>
+      <a href="hcx_services.html">Services</a>
+      <a href="hcx_contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+917868946689"><i class="fas fa-phone"></i>+91 78689 46689</a>
+      <a href="mailto:highcodextech@gmail.com"><i class="fas fa-envelope"></i>highcodextech@gmail.com</a>
+      <a href="#"><i class="fas fa-map-marker-alt"></i>Chennai, Tamil Nadu</a>
+    </div>
+    <div class="footer-col">
+      <h4>Reach Us</h4>
+      <a href="https://wa.me/917868946689"><i class="fab fa-whatsapp"></i>WhatsApp Us</a>
+      <a href="mailto:jeevars047@gmail.com"><i class="fas fa-user"></i>jeevars047@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 HighCodeX Technologies. All Rights Reserved. &nbsp;|&nbsp; Code Beyond Limits
+  </div>
+</footer>
+
+<script>
+  // Animate skill bars on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        const bars = entry.target.querySelectorAll('.skill-progress');
+        bars.forEach(bar => {
+          const width = bar.style.width;
+          bar.style.width = width;
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  const skillsSection = document.querySelector('.skills-section');
+  if(skillsSection) observer.observe(skillsSection);
+</script>
+</body>
+</html>

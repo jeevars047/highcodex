@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio — HighCodeX Technologies</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+  .page-hero {
+  background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+  padding: 140px 5% 80px;
+  text-align: center;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: center;
+}
+.page-hero-content { max-width: 700px; }
+
+.portfolio-section { padding: 80px 5%; }
+
+/* FILTER TABS */
+.filter-tabs {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.filter-btn {
+  padding: 10px 24px;
+  border-radius: 50px;
+  border: 1px solid var(--gray-200);
+  background: white;
+  color: var(--gray-600);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: var(--font-body);
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* PORTFOLIO GRID */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 60px;
+}
+
+.portfolio-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.portfolio-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+  border-color: transparent;
+}
+
+.portfolio-thumb {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.web-thumb { background: linear-gradient(135deg, #EEF2FF, #D8E2FF); }
+.ecom-thumb { background: linear-gradient(135deg, #FFF3E0, #FFE0B2); }
+.backend-thumb { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); }
+.app-thumb { background: linear-gradient(135deg, #F3E5F5, #E1BEE7); }
+
+.thumb-icon {
+  font-size: 64px;
+  opacity: 0.6;
+  transition: var(--transition);
+}
+
+.portfolio-card:hover .thumb-icon { transform: scale(1.1); opacity: 0.4; }
+
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,87,255,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.portfolio-card:hover .portfolio-overlay { opacity: 1; }
+
+.coming-soon-badge {
+  background: white;
+  color: var(--primary);
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.portfolio-info { padding: 24px; flex: 1; }
+
+.portfolio-cat {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.portfolio-info h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.portfolio-info p {
+  font-size: 14px;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.portfolio-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.portfolio-tags span {
+  background: var(--gray-100);
+  color: var(--gray-600);
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* PORTFOLIO NOTE */
+.portfolio-note {
+  text-align: center;
+  background: var(--gray-50);
+  border: 2px dashed var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 60px 40px;
+}
+
+.note-icon { font-size: 48px; margin-bottom: 16px; }
+
+.portfolio-note h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+
+.portfolio-note p {
+  font-size: 16px;
+  color: var(--gray-600);
+  max-width: 500px;
+  margin: 0 auto 28px;
+  line-height: 1.7;
+}
+
+.cta-banner {
+  background: linear-gradient(135deg, var(--primary), var(--dark2));
+  text-align: center;
+  padding: 80px 5%;
+}
+.cta-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  color: white;
+  margin-bottom: 16px;
+}
+.cta-content p {
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 36px;
+}
+
+@media (max-width: 1024px) {
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="hcx-logo.png" alt="HighCodeX Technologies"/>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-content fade-up">
+    <div class="section-tag">Our Work</div>
+    <h1 class="section-title">Projects We've <span>Built</span></h1>
+    <p class="section-subtitle">A showcase of our work across web, mobile, and e-commerce. Real projects coming soon — these demonstrate our capabilities.</p>
+  </div>
+</section>
+
+<!-- FILTER TABS -->
+<section class="portfolio-section">
+  <div class="filter-tabs fade-up">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="web">Web Design</button>
+    <button class="filter-btn" data-filter="app">Mobile App</button>
+    <button class="filter-btn" data-filter="ecom">E-Commerce</button>
+    <button class="filter-btn" data-filter="backend">Backend</button>
+  </div>
+
+  <div class="portfolio-grid">
+
+    <div class="portfolio-card fade-up" data-category="web">
+      <div class="portfolio-thumb web-thumb">
+        <div class="thumb-icon">🌐</div>
+        <div class="portfolio-overlay">
+          <span class="coming-soon-badge">Sample Project</span>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-cat">Web Design</div>
+        <h3>Business Landing Page</h3>
+        <p>A modern, conversion-focused landing page for a local business with contact form and service showcase.</p>
+        <div class="portfolio-tags">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card fade-up fade-up-delay-1" data-category="ecom">
+      <div class="portfolio-thumb ecom-thumb">
+        <div class="thumb-icon">🛒</div>
+        <div class="portfolio-overlay">
+          <span class="coming-soon-badge">Sample Project</span>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-cat">E-Commerce</div>
+        <h3>Online Store — Fashion</h3>
+        <p>A fully functional e-commerce store with product listing, cart, and Razorpay payment integration.</p>
+        <div class="portfolio-tags">
+          <span>Laravel</span><span>MySQL</span><span>Bootstrap</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card fade-up fade-up-delay-2" data-category="backend">
+      <div class="portfolio-thumb backend-thumb">
+        <div class="thumb-icon">🔧</div>
+        <div class="portfolio-overlay">
+          <span class="coming-soon-badge">Sample Project</span>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-cat">Backend</div>
+        <h3>REST API — Task Manager</h3>
+        <p>A scalable REST API for a task management app with user authentication, CRUD operations, and JWT security.</p>
+        <div class="portfolio-tags">
+          <span>Django</span><span>Python</span><span>MySQL</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card fade-up" data-category="app">
+      <div class="portfolio-thumb app-thumb">
+        <div class="thumb-icon">📱</div>
+        <div class="portfolio-overlay">
+          <span class="coming-soon-badge">Sample Project</span>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-cat">Mobile App</div>
+        <h3>Delivery Tracking App</h3>
+        <p>A cross-platform mobile app for order and delivery tracking with real-time status updates and notifications.</p>
+        <div class="portfolio-tags">
+          <span>React Native</span><span>Flask</span><span>API</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card fade-up fade-up-delay-1" data-category="web">
+      <div class="portfolio-thumb web-thumb">
+        <div class="thumb-icon">🎨</div>
+        <div class="portfolio-overlay">
+          <span class="coming-soon-badge">Sample Project</span>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-cat">Web Design</div>
+        <h3>Portfolio Website — Freelancer</h3>
+        <p>A sleek portfolio website for a graphic designer with project gallery, testimonials, and contact integration.</p>
+        <div class="portfolio-tags">
+          <span>HTML</span><span>CSS</span><span>WordPress</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card fade-up fade-up-delay-2" data-category="ecom">
+      <div class="portfolio-thumb ecom-thumb">
+        <div class="thumb-icon">🍕</div>
+        <div class="portfolio-overlay">
+          <span class="coming-soon-badge">Sample Project</span>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-cat">E-Commerce</div>
+        <h3>Restaurant Ordering System</h3>
+        <p>Online food ordering system for a local restaurant with menu management, orders, and admin dashboard.</p>
+        <div class="portfolio-tags">
+          <span>PHP</span><span>MySQL</span><span>Bootstrap</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Add More Note -->
+  <div class="portfolio-note fade-up">
+    <div class="note-icon">🚀</div>
+    <h3>Real Projects Coming Soon!</h3>
+    <p>The above are sample projects showcasing our capabilities. As we complete client work, real projects will be added here. Got a project? Let's make it the first one!</p>
+    <a href="contact.html" class="btn btn-primary">Start Your Project →</a>
+  </div>
+
+</section>
+
+<!-- CTA -->
+<section class="cta-banner fade-up">
+  <div class="cta-content">
+    <h2>Want to Be In Our Portfolio?</h2>
+    <p>Let's build something incredible together. Your project could be featured here.</p>
+    <a href="contact.html" class="btn btn-primary" style="background:white;color:var(--primary);">Let's Work Together →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo"><img src="hcx-logo.png" alt="HighCodeX Technologies"/></a>
+      <p>Powering your digital presence with clean code and creative design.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/917868946689" class="social-link">💬</a>
+        <a href="mailto:highcodextech@gmail.com" class="social-link">✉️</a>
+        <a href="#" class="social-link">in</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+917868946689">+91 7868946689</a></li>
+        <li><a href="mailto:highcodextech@gmail.com">highcodextech@gmail.com</a></li>
+        <li><a href="#">Chennai, Tamil Nadu</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 HighCodex Technologies. All rights reserved.</span>
+    <span>Code Beyond Limits 🚀</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // Filter functionality
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const portfolioCards = document.querySelectorAll('.portfolio-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      portfolioCards.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.style.display = 'flex';
+          setTimeout(() => card.style.opacity = '1', 10);
+        } else {
+          card.style.opacity = '0';
+          setTimeout(() => card.style.display = 'none', 300);
+        }
+      });
+    });
+  });
+</script>
+
+<script src="js/main.js"></script>
+</body>
+</html>

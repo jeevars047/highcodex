@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>About HighCodeX | Full‑Stack Web & Mobile Agency</title>
+  
+  <!-- Google Fonts + Bootstrap Icons (consistent with home page) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-burgundy: #9b2c1d;
+      --primary-rose: #c0392b;
+      --gold: #d4af37;
+      --gold-light: #f3de8a;
+      --cream: #fff9f2;
+      --dark-charcoal: #2c1a1a;
+      --text-muted: #6b4e4e;
+      --border-light: #f0e2d4;
+      --white: #ffffff;
+      --shadow-sm: 0 10px 30px -12px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cream);
+      color: #2d2a2a;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--dark-charcoal);
+      letter-spacing: -0.01em;
+    }
+
+    .section-title span {
+      color: var(--primary-rose);
+      font-style: italic;
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 600;
+      color: var(--primary-rose);
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: var(--primary-rose);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 8px rgba(192, 57, 43, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: #9b2c1d;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(192, 57, 43, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--primary-rose);
+      color: var(--primary-rose);
+      padding: 10px 26px;
+      border-radius: 40px;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-rose);
+      color: white;
+    }
+
+    /* skill bar style */
+    .skill-item {
+      margin-bottom: 1.2rem;
+    }
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+      margin-bottom: 6px;
+      font-size: 0.85rem;
+    }
+    .progress-bar-bg {
+      background-color: #e9dbcf;
+      border-radius: 30px;
+      height: 8px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      background: var(--primary-rose);
+      width: 0%;
+      height: 100%;
+      border-radius: 30px;
+      transition: width 1s ease;
+    }
+    .skill-category {
+      background: white;
+      border-radius: 28px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+    .founder-card {
+      background: white;
+      border-radius: 32px;
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow-md);
+      margin-top: 2rem;
+    }
+    @media (max-width: 768px) {
+      .section-title { font-size: 2.2rem; }
+      section { padding: 50px 0; }
+      .founder-card { flex-direction: column; }
+    }
+    .value-card {
+      background: white;
+      border-radius: 28px;
+      padding: 30px 20px;
+      transition: transform 0.2s;
+      height: 100%;
+      border: 1px solid var(--border-light);
+    }
+    .value-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-sm);
+    }
+    .stats-badge {
+      background: var(--primary-burgundy);
+      color: white;
+      border-radius: 60px;
+      padding: 4px 16px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      display: inline-block;
+    }
+    .inline-icon {
+      font-size: 1.6rem;
+      color: var(--primary-rose);
+    }
+    .divider-gold {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin: 16px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- header will be injected by layout.js (exactly like home.html) -->
+  <div id="main-header"></div>
+
+  <main>
+    <!-- ========== ABOUT HERO (minimal, elegant) ========== -->
+    <section style="padding-top: 100px; padding-bottom: 40px; background: linear-gradient(135deg, #fff5eb 0%, #fef2e4 100%); margin-top: 68px;">
+      <div class="container fade-up">
+        <div class="eyebrow" style="background: rgba(212,175,55,0.15); display: inline-block; padding: 5px 18px; border-radius: 40px;">✦ our story & soul</div>
+        <h1 class="section-title" style="font-size: 3.2rem;">Crafting digital excellence <span>from Chennai</span></h1>
+        <div class="divider-gold"></div>
+        <p style="max-width: 720px; font-size: 1.2rem; color: var(--text-muted); margin-top: 8px;">
+          HighCodeX isn’t just a development agency — it’s a promise of clean code, on-time delivery, and authentic partnerships.
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== THE STORY + FOUNDER SECTION (based on PDF content) ========== -->
+    <section style="padding-top: 20px;">
+      <div class="container">
+        <div class="fade-up" style="margin-bottom: 30px;">
+          <div class="eyebrow">meet the force behind highcodex</div>
+          <h2 class="section-title">The story behind <span>HighCodeX Technologies</span></h2>
+          <p style="color: var(--text-muted); max-width: 700px;">A passionate full-stack developer from Chennai, building digital products that make a difference.</p>
+        </div>
+
+        <div class="founder-card fade-up">
+          <div style="flex: 1.2; padding: 2rem 2rem 2rem 2rem; background: white;">
+            <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px;">
+              <div style="background: var(--primary-rose); width: 70px; height: 70px; border-radius: 70px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; box-shadow: 0 10px 15px -5px rgba(192,57,43,0.3);">
+                <i class="bi bi-person-workspace"></i>
+              </div>
+              <div>
+                <h3 style="font-size: 2rem; font-family: 'Cormorant Garamond', serif;">Jeeva R</h3>
+                <p style="color: var(--primary-rose); font-weight: 600;">Founder, HighCodeX Technologies | Full Stack Developer</p>
+              </div>
+            </div>
+            <p style="line-height: 1.6; color: #3e2c2c; margin-top: 8px;">
+              Hi, I'm <strong>Jeeva R</strong> — a passionate full-stack developer based in Chennai with a strong drive to build web solutions that actually work for businesses. 
+              I started <strong>HighCodeX Technologies</strong> with a simple mission: to deliver professional, high-quality digital products that help clients grow online. 
+              From my hometown in <strong>Ariyalur</strong> to working in the heart of Chennai, every line of code I write is driven by a commitment to excellence. 
+              I believe great software isn't just about functionality — it's about creating experiences that users love. Currently growing as a freelance developer, 
+              I'm focused on building a strong portfolio and helping businesses establish their digital presence. 
+              <strong>HighCodeX is more than a brand — it's a promise to go beyond limits.</strong>
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 24px; margin-top: 28px;">
+              <div><i class="bi bi-geo-alt-fill" style="color: var(--primary-rose);"></i> <strong>Chennai, Tamil Nadu</strong><br><span style="font-size: 0.8rem;">Native: Ariyalur</span></div>
+              <div><i class="bi bi-briefcase-fill" style="color: var(--primary-rose);"></i> <strong>Full-Stack Expert</strong><br><span style="font-size: 0.8rem;">8+ yrs experience</span></div>
+              <div><i class="bi bi-rocket-takeoff" style="color: var(--primary-rose);"></i> <strong>Available for new projects</strong><br><span style="font-size: 0.8rem;">remote & onsite</span></div>
+            </div>
+            <div style="margin-top: 24px;">
+              <a href="#contact-cta" class="btn-primary" style="background: var(--primary-burgundy);"><i class="bi bi-chat-right-quote"></i> Let's collaborate</a>
+            </div>
+          </div>
+          <div style="flex: 0.8; background: linear-gradient(125deg, #f5e7db, #fdefe2); display: flex; align-items: center; justify-content: center; padding: 2rem;">
+            <div style="text-align: center;">
+              <i class="bi bi-quote" style="font-size: 3rem; color: var(--gold); opacity: 0.4;"></i>
+              <p style="font-style: italic; font-size: 1.2rem; max-width: 280px; font-family: 'Cormorant Garamond', serif;">"Code that converts, support that never sleeps."</p>
+              <div class="stats-badge" style="background: var(--primary-rose); margin-top: 20px;">📍 Chennai | Ariyalur roots</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MISSION, VISION & VALUES (PDF precise) ========== -->
+    <section style="background: white;">
+      <div class="container">
+        <div class="fade-up" style="text-align: center; margin-bottom: 48px;">
+          <div class="eyebrow">our north star</div>
+          <h2 class="section-title">Mission · Vision · <span>Values</span></h2>
+        </div>
+        <div class="grid-values" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+          <div class="value-card fade-up">
+            <i class="bi bi-bullseye inline-icon"></i>
+            <h3 style="font-size: 1.6rem; margin: 16px 0 8px;">Mission</h3>
+            <p style="color: var(--text-muted);">To deliver world-class digital solutions that empower businesses to thrive online — with clean code, on-time delivery, and honest communication.</p>
+          </div>
+          <div class="value-card fade-up">
+            <i class="bi bi-eye-fill inline-icon"></i>
+            <h3 style="font-size: 1.6rem; margin: 16px 0 8px;">Vision</h3>
+            <p style="color: var(--text-muted);">To grow HighCodeX Technologies into a full-scale digital agency based in Chennai — serving clients across India and beyond.</p>
+          </div>
+          <div class="value-card fade-up">
+            <i class="bi bi-gem inline-icon"></i>
+            <h3 style="font-size: 1.6rem; margin: 16px 0 8px;">Values</h3>
+            <p style="color: var(--text-muted);"><strong>Transparency, quality, and continuous learning.</strong> The best code comes from curiosity, commitment, and care for the client's success.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TECHNICAL SKILLS (from PDF table - fully detailed) ========== -->
+    <section>
+      <div class="container">
+        <div class="fade-up" style="margin-bottom: 40px;">
+          <div class="eyebrow">tech proficiency</div>
+          <h2 class="section-title">Our <span>technical arsenal</span></h2>
+          <p style="color: var(--text-muted); max-width: 580px;">Modern stacks, industry best practices, and scalable architectures.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+          <!-- Frontend Skills -->
+          <div class="skill-category fade-up">
+            <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 24px;">
+              <i class="bi bi-display" style="font-size: 1.8rem; color: var(--primary-rose);"></i>
+              <h3 style="font-size: 1.5rem;">Frontend</h3>
+            </div>
+            <div class="skill-item"><div class="skill-header"><span>HTML5</span><span>95%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="95"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span>CSS3</span><span>92%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="92"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span>JavaScript</span><span>88%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="88"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span>Bootstrap</span><span>90%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="90"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span>React</span><span>70%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="70"></div></div></div>
+          </div>
+
+          <!-- Backend Skills -->
+          <div class="skill-category fade-up">
+            <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 24px;">
+              <i class="bi bi-hdd-stack" style="font-size: 1.8rem; color: var(--primary-rose);"></i>
+              <h3 style="font-size: 1.5rem;">Backend</h3>
+            </div>
+            <div class="skill-item"><div class="skill-header"><span>Python</span><span>88%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="88"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span>Django</span><span>85%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="85"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span>Flask</span><span>82%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="82"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span>PHP</span><span>80%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="80"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span>Laravel</span><span>75%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="75"></div></div></div>
+          </div>
+
+          <!-- Database & tools -->
+          <div class="skill-category fade-up">
+            <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 24px;">
+              <i class="bi bi-database" style="font-size: 1.8rem; color: var(--primary-rose);"></i>
+              <h3 style="font-size: 1.5rem;">Database & Tools</h3>
+            </div>
+            <div class="skill-item"><div class="skill-header"><span>MySQL</span><span>88%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="88"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span>WordPress</span><span>78%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="78"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span>Java</span><span>70%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="70"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span>Spring Boot</span><span>65%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="65"></div></div></div>
+            <div class="skill-item"><div class="skill-header"><span>REST APIs & Cloud</span><span>85%</span></div><div class="progress-bar-bg"><div class="progress-fill" data-width="85"></div></div></div>
+          </div>
+        </div>
+
+        <!-- extra note: additional stacks mentioned in PDF -->
+        <div style="margin-top: 32px; text-align: center;" class="fade-up">
+          <span class="stats-badge" style="background: var(--gold); color: #2c1a1a;"><i class="bi bi-trophy"></i> Also skilled in React Native, Flutter, Node.js (API), Git & CI/CD</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== WHAT MAKES US DIFFERENT (from PDF / homepage philosophy) ========== -->
+    <section style="background: #fef7ef;">
+      <div class="container">
+        <div class="fade-up" style="text-align: center; max-width: 800px; margin: 0 auto 48px;">
+          <div class="eyebrow">the highcodex edge</div>
+          <h2 class="section-title">Built different. <span>Delivered better.</span></h2>
+          <p style="color: var(--text-muted);">We don't just write code — we engineer growth-oriented solutions with care and precision.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px;">
+          <div class="fade-up" style="background: white; border-radius: 28px; padding: 28px 20px; text-align: center; transition: 0.2s;">
+            <i class="bi bi-rocket" style="font-size: 2.2rem; color: var(--primary-rose);"></i>
+            <h4 style="margin: 15px 0 8px;">Fast Delivery</h4>
+            <p style="font-size: 0.9rem;">Rapid turnaround without compromising quality. On-time, every time.</p>
+          </div>
+          <div class="fade-up" style="background: white; border-radius: 28px; padding: 28px 20px; text-align: center;">
+            <i class="bi bi-shield-check" style="font-size: 2.2rem; color: var(--primary-rose);"></i>
+            <h4 style="margin: 15px 0 8px;">Secure Code</h4>
+            <p style="font-size: 0.9rem;">Clean, maintainable code with industry best practices & security.</p>
+          </div>
+          <div class="fade-up" style="background: white; border-radius: 28px; padding: 28px 20px; text-align: center;">
+            <i class="bi bi-phone-landscape" style="font-size: 2.2rem; color: var(--primary-rose);"></i>
+            <h4 style="margin: 15px 0 8px;">Mobile-First & SEO</h4>
+            <p style="font-size: 0.9rem;">Every design is responsive, SEO-ready, and performance-optimized.</p>
+          </div>
+          <div class="fade-up" style="background: white; border-radius: 28px; padding: 28px 20px; text-align: center;">
+            <i class="bi bi-headset" style="font-size: 2.2rem; color: var(--primary-rose);"></i>
+            <h4 style="margin: 15px 0 8px;">24/7 Expert Support</h4>
+            <p style="font-size: 0.9rem;">Round-the-clock support to keep your digital products running smoothly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== STATS + PROMISE / CALL TO ACTION (non-intrusive, align with PDF Vision) ========== -->
+    <section style="background: var(--dark-charcoal); color: white;">
+      <div class="container fade-up">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 40px;">
+          <div>
+            <div class="eyebrow" style="color: var(--gold-light);">available for collaborations</div>
+            <h3 style="font-size: 2rem; font-family: 'Cormorant Garamond', serif;">Let’s turn your idea<br>into a high-impact digital reality.</h3>
+            <p style="margin: 20px 0; max-width: 450px; opacity: 0.85;">From startups to enterprises, we’ve got the expertise to bring your vision to life with modern tech stacks and transparent process.</p>
+            <button id="aboutContactBtn" class="btn-primary" style="background: var(--gold); color: #2c1a1a; font-weight: bold;"><i class="bi bi-chat-dots"></i> Start a conversation</button>
+          </div>
+          <div style="background: rgba(255,255,240,0.05); border-radius: 48px; padding: 28px 32px; text-align: center; min-width: 240px;">
+            <i class="bi bi-envelope-paper" style="font-size: 2rem; color: var(--gold);"></i>
+            <p style="margin-top: 12px;"><strong>highcodextech@gmail.com</strong></p>
+            <p><i class="bi bi-whatsapp"></i> +91 7868946689</p>
+            <p style="font-size: 0.75rem; margin-top: 12px;">📍 Chennai, Tamil Nadu — available globally</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="main-footer"></div>
+
+  <script>
+    (function() {
+      document.addEventListener('DOMContentLoaded', () => {
+        // fade-up observer exactly like home page
+        const fadeElements = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.1 });
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Skill bar reveal animation when visible
+        const skillBars = document.querySelectorAll('.progress-fill');
+        const animateSkills = () => {
+          skillBars.forEach(bar => {
+            const widthVal = bar.getAttribute('data-width');
+            if (widthVal && !bar.style.width) {
+              const parentSection = bar.closest('.skill-category');
+              if (parentSection && parentSection.getBoundingClientRect().top < window.innerHeight - 100) {
+                bar.style.width = widthVal + '%';
+              } else if (parentSection === null && bar.getBoundingClientRect().top < window.innerHeight - 100) {
+                bar.style.width = widthVal + '%';
+              }
+            }
+          });
+        };
+        // initial trigger after a small delay
+        setTimeout(() => {
+          skillBars.forEach(bar => {
+            const w = bar.getAttribute('data-width');
+            if (w && bar.getBoundingClientRect().top < window.innerHeight - 80) {
+              bar.style.width = w + '%';
+            } else {
+              // fallback: listen scroll
+            }
+          });
+        }, 300);
+        window.addEventListener('scroll', () => {
+          skillBars.forEach(bar => {
+            const w = bar.getAttribute('data-width');
+            if (w && !bar.style.width && bar.getBoundingClientRect().top < window.innerHeight - 80) {
+              bar.style.width = w + '%';
+            }
+          });
+        });
+
+        // button interactions (CTA, contact)
+        const contactBtn = document.getElementById('aboutContactBtn');
+        if(contactBtn) {
+          contactBtn.addEventListener('click', () => {
+            alert("📬 Thanks for reaching out! We'll respond within 24 hours. Meanwhile, drop a WhatsApp to +91 7868946689 for quick discussion.");
+          });
+        }
+
+        // Also handle smooth scroll from "Let's collaborate" link
+        const collaborateLink = document.querySelector('a[href="#contact-cta"]');
+        if(collaborateLink) {
+          collaborateLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const ctaSection = document.querySelector('#aboutContactBtn')?.closest('section');
+            if(ctaSection) ctaSection.scrollIntoView({ behavior: 'smooth' });
+            else window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+          });
+        }
+
+        // optional: add any inline marquee? not needed but keep consistent elegance
+        // no errors for layout.js (header/footer injection)
+      });
+    })();
+  </script>
+
+  <!-- load layout.js exactly like home.html to get unified navbar + footer -->
+  <script src="layout.js" defer></script>
+  <style>
+    .progress-fill {
+      width: 0%;
+      transition: width 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .value-card, .skill-category, .founder-card .btn-primary {
+      transition: all 0.2s;
+    }
+    .global-navbar .nav-link.active-nav {
+      color: var(--gold) !important;
+    }
+  </style>
+</body>
+</html>

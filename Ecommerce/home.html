@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HighCodeX – Web & Mobile Solutions</title>
+  <!-- Google Fonts + Bootstrap Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <style>
+    /* ── RESET BOOTSTRAP CONFLICTS ── */
+    .container-home { max-width: 1240px; margin: 0 auto; padding: 0 2rem; }
+    .home-wrap * { box-sizing: border-box; }
+
+    /* ── CSS VARIABLES ── */
+    .home-wrap {
+      --gold: #B8860B;
+      --gold-light: #D4A017;
+      --gold-pale: #FDF8EE;
+      --cream: #FEFCF7;
+      --dark: #1A1208;
+      --text: #3D2E0E;
+      --text-muted: #7A6845;
+      --border: #E8D9B8;
+      --section-bg: #F9F4EA;
+      --shadow: 0 4px 24px rgba(184,134,11,0.10);
+      --shadow-lg: 0 12px 48px rgba(184,134,11,0.16);
+      --radius-lg: 16px;
+      background: var(--cream);
+      font-family: 'Jost', sans-serif;
+    }
+
+    /* ── TOPBAR ── */
+    .h-topbar {
+      background: #B8860B;
+      color: #fff;
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      padding: 7px 0;
+      font-weight: 500;
+    }
+
+    /* ── CATEGORY NAV ── */
+    .h-catbar { background: #fff; border-bottom: 1px solid #E8D9B8; }
+    .h-catbar-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 2rem;
+      display: flex; overflow-x: auto; scrollbar-width: none;
+    }
+    .h-catbar-inner::-webkit-scrollbar { display: none; }
+    .h-catlink {
+      display: flex; align-items: center; gap: 6px;
+      padding: 11px 16px; font-size: 13px; font-weight: 500;
+      color: #7A6845; white-space: nowrap;
+      border-bottom: 2.5px solid transparent;
+      transition: all 0.25s; text-decoration: none;
+      font-family: 'Jost', sans-serif;
+    }
+    .h-catlink:hover { color: #B8860B; border-bottom-color: #B8860B; }
+    .h-catlink .ci { font-size: 16px; }
+
+    /* ── HORIZONTAL SCROLL ── */
+    .h-hscroll {
+      overflow: hidden;
+      padding: 1rem 0 1.5rem;
+    }
+    .h-hscroll-track {
+      display: flex;
+      gap: 1.2rem;
+      width: max-content;
+    }
+    .h-hscroll-track.running {
+      animation: hInfiniteScroll linear infinite;
+    }
+    .h-hscroll-track.running:hover {
+      animation-play-state: paused;
+    }
+    @keyframes hInfiniteScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .h-hcard {
+      min-width: 240px; max-width: 240px;
+      background: #fff; border: 1.5px solid #E8D9B8;
+      border-radius: 16px; overflow: hidden;
+      transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+      flex-shrink: 0;
+    }
+    .h-hcard:hover {
+      border-color: #B8860B;
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(184,134,11,0.18);
+    }
+
+    .h-hcard-btn {
+      width: 100%; background: #FDF8EE; color: #B8860B;
+      border: 1.5px solid #E8D9B8; border-radius: 8px;
+      padding: 9px; font-size: 13px; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+      gap: 6px; cursor: pointer; font-family: 'Jost', sans-serif;
+      transition: all 0.25s;
+    }
+    .h-hcard-btn:hover { background: #B8860B; color: #fff; border-color: #B8860B; }
+
+    .h-scroll-arr {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 42px; height: 42px; border-radius: 50%;
+      background: #fff; border: 1.5px solid #E8D9B8;
+      color: #B8860B; font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 10; box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      transition: all 0.25s;
+    }
+    .h-scroll-arr:hover { background: #B8860B; color: #fff; border-color: #B8860B; }
+
+    /* TESTI CARD */
+    .h-tcard {
+      min-width: 300px; max-width: 300px;
+      background: #fff; border: 1.5px solid #E8D9B8;
+      border-radius: 16px; padding: 1.8rem;
+      flex-shrink: 0; transition: all 0.35s;
+    }
+    .h-tcard:hover {
+      border-color: #B8860B;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(184,134,11,0.14);
+    }
+
+    /* ── HERO SLIDER ── */
+    .h-slider {
+      position: relative; overflow: hidden;
+      height: 520px; background: #fff;
+    }
+    .h-slides-wrap {
+      display: flex; height: 100%;
+      transition: transform 0.9s cubic-bezier(0.77,0,0.18,1);
+    }
+    .h-slide {
+      min-width: 100%; height: 100%;
+      display: flex; align-items: center;
+    }
+    .h-slide-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 4rem;
+      width: 100%; display: grid;
+      grid-template-columns: 1fr 1fr; align-items: center; gap: 2rem;
+    }
+    .h-slide-tag {
+      display: inline-block; background: #B8860B; color: #fff;
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      padding: 5px 14px; border-radius: 30px;
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .h-slide-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 46px; font-weight: 900;
+      line-height: 1.1; color: #1A1208; margin-bottom: 1rem;
+    }
+    .h-slide-title .hl  { color: #B8860B; }
+    .h-slide-title .hl2 { color: #388E3C; }
+    .h-slide-title .hl3 { color: #6C3483; }
+    .h-slide-desc {
+      color: #7A6845; font-size: 15px; line-height: 1.7;
+      margin-bottom: 1.8rem; max-width: 380px;
+    }
+    .h-slide-btns { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .h-slide-stats { display: flex; gap: 2rem; margin-top: 2rem; }
+    .h-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 700; color: #B8860B; line-height: 1;
+    }
+    .h-stat-lbl { font-size: 11px; color: #7A6845; letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; }
+
+    .h-arr {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: #fff; border: 1.5px solid #E8D9B8;
+      color: #7A6845; width: 46px; height: 46px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; z-index: 10; cursor: pointer;
+      transition: all 0.25s; box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    .h-arr:hover { border-color: #B8860B; color: #B8860B; }
+    .h-arr-prev { left: 20px; }
+    .h-arr-next { right: 20px; }
+    .h-dots {
+      position: absolute; bottom: 20px; left: 50%;
+      transform: translateX(-50%); display: flex; gap: 8px; z-index: 10;
+    }
+    .h-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #E8D9B8; transition: all 0.3s; cursor: pointer;
+    }
+    .h-dot.active { background: #B8860B; width: 24px; border-radius: 4px; }
+
+    /* ── BUTTONS ── */
+    .hbtn-gold {
+      display: inline-block; background: #B8860B; color: #fff !important;
+      border: none; padding: 13px 26px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; letter-spacing: 0.5px;
+      transition: all 0.25s; text-decoration: none; cursor: pointer;
+      font-family: 'Jost', sans-serif;
+    }
+    .hbtn-gold:hover { background: #D4A017; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(184,134,11,0.3); }
+    .hbtn-outline {
+      display: inline-block; background: #fff; color: #B8860B !important;
+      border: 1.5px solid #B8860B; padding: 11px 24px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; transition: all 0.25s;
+      text-decoration: none; cursor: pointer; font-family: 'Jost', sans-serif;
+    }
+    .hbtn-outline:hover { background: #B8860B; color: #fff !important; }
+    .hbtn-green {
+      display: inline-block; background: #388E3C; color: #fff !important;
+      border: none; padding: 13px 26px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; transition: all 0.25s;
+      text-decoration: none; cursor: pointer; font-family: 'Jost', sans-serif;
+    }
+    .hbtn-green:hover { background: #2E7D32; transform: translateY(-2px); }
+    .hbtn-purple {
+      display: inline-block; background: #6C3483; color: #fff !important;
+      border: none; padding: 13px 26px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; transition: all 0.25s;
+      text-decoration: none; cursor: pointer; font-family: 'Jost', sans-serif;
+    }
+    .hbtn-purple:hover { background: #5B2C6F; transform: translateY(-2px); }
+
+    /* ── MARQUEE ── */
+    .h-marquee { background: #B8860B; padding: 10px 0; overflow: hidden; }
+    .h-marquee-track {
+      display: flex; gap: 50px;
+      animation: hMarquee 22s linear infinite; white-space: nowrap;
+    }
+    .h-marquee-item {
+      color: #fff; font-size: 12px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+    .h-marquee-item::before { content: '✦ '; }
+    @keyframes hMarquee { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+    /* ── SECTION COMMON ── */
+    .h-section { padding: 5rem 0; }
+    .h-section-bg { background: #F9F4EA; }
+    .h-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #B8860B; margin-bottom: 6px;
+      font-family: 'Jost', sans-serif;
+    }
+    .h-sec-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px; font-weight: 700; color: #1A1208; line-height: 1.2;
+    }
+    .h-sec-sub { color: #7A6845; font-size: 14px; margin-top: 5px; }
+    .h-sec-hdr {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 2.5rem;
+    }
+    .h-view-all {
+      color: #B8860B; font-size: 13px; font-weight: 600;
+      border: 1.5px solid #B8860B; padding: 8px 18px;
+      border-radius: 6px; transition: all 0.25s; text-decoration: none;
+      font-family: 'Jost', sans-serif; white-space: nowrap;
+    }
+    .h-view-all:hover { background: #B8860B; color: #fff; }
+    .h-divider { height: 1.5px; background: linear-gradient(90deg,transparent,#E8D9B8,transparent); }
+
+    /* ── CATEGORY CARDS (now services) ── */
+    .h-cat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; }
+    .h-cat-card {
+      background: #fff; border: 1.5px solid #E8D9B8;
+      border-radius: 16px; padding: 2rem 1rem 1.5rem;
+      text-align: center; transition: all 0.35s;
+      display: block; text-decoration: none;
+    }
+    .h-cat-card:hover { border-color: #B8860B; transform: translateY(-6px); box-shadow: 0 12px 48px rgba(184,134,11,0.16); }
+    .h-cat-icon { font-size: 44px; display: block; margin-bottom: 12px; }
+    .h-cat-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #1A1208; }
+    .h-cat-count { font-size: 12px; color: #7A6845; margin-top: 4px; }
+    .h-cat-arr {
+      display: inline-block; background: #FDF8EE; color: #B8860B;
+      width: 28px; height: 28px; border-radius: 50%;
+      line-height: 28px; font-size: 13px; margin-top: 10px; transition: all 0.3s;
+    }
+    .h-cat-card:hover .h-cat-arr { background: #B8860B; color: #fff; }
+
+    /* ── PROMO BANNERS ── */
+    .h-banner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .h-promo {
+      border-radius: 16px; padding: 2.5rem 2rem;
+      display: flex; align-items: center;
+      justify-content: space-between; min-height: 180px;
+    }
+    .h-promo-1 { background: linear-gradient(120deg,#FFF8E1,#FFE082); }
+    .h-promo-2 { background: linear-gradient(120deg,#E8F5E9,#A5D6A7); }
+    .h-promo-ey { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7A6845; margin-bottom: 6px; }
+    .h-promo-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 800; color: #1A1208; line-height: 1.2; margin-bottom: 12px; }
+    .h-promo-emoji { font-size: 90px; opacity: 0.6; }
+
+    /* ── FEATURES ── */
+    .h-features { background: #1A1208; padding: 3.5rem 0; }
+    .h-feat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
+    .h-feat-card { text-align: center; padding: 1.5rem 1rem; }
+    .h-feat-icon {
+      width: 60px; height: 60px;
+      background: rgba(184,134,11,0.15);
+      border: 1px solid rgba(184,134,11,0.3); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin: 0 auto 1.2rem; color: #B8860B;
+    }
+    .h-feat-title { color: #fff; font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+    .h-feat-desc { color: #888; font-size: 13px; line-height: 1.6; }
+
+    /* ── NEWSLETTER ── */
+    .h-newsletter { background: linear-gradient(135deg,#B8860B,#8B6914); padding: 4rem 0; text-align: center; }
+    .h-nl-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .h-nl-sub { color: rgba(255,255,255,0.8); font-size: 15px; margin-bottom: 2rem; }
+    .h-nl-form { display: flex; gap: 10px; max-width: 480px; margin: 0 auto; }
+    .h-nl-input { flex: 1; border: none; border-radius: 8px; padding: 13px 18px; font-size: 14px; font-family: 'Jost', sans-serif; outline: none; }
+    .h-nl-btn { background: #1A1208; color: #fff; border: none; padding: 13px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Jost', sans-serif; transition: opacity 0.25s; white-space: nowrap; }
+    .h-nl-btn:hover { opacity: 0.85; }
+
+    /* ── FADE UP ── */
+    .h-fade { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .h-fade.on { opacity: 1; transform: translateY(0); }
+
+    /* ── SLIDER IMAGE ZOOM ── */
+    @keyframes kZoom { 0% { transform: scale(1.0); } 100% { transform: scale(1.08); } }
+    @keyframes slideTextIn { from { opacity:0; transform:translateX(-30px); } to { opacity:1; transform:translateX(0); } }
+    .h-slide-inner > div:first-child { animation: slideTextIn 0.8s ease forwards; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1024px){
+      .h-cat-grid { grid-template-columns: repeat(4,1fr); }
+    }
+    @media(max-width:768px){
+      .h-slider { height: 420px; }
+      .h-slide-inner { grid-template-columns: 1fr; padding: 0 1.5rem; }
+      .h-slide-title { font-size: 30px; }
+      .h-cat-grid { grid-template-columns: repeat(2,1fr); }
+      .h-feat-grid { grid-template-columns: repeat(2,1fr); }
+      .h-banner-grid { grid-template-columns: 1fr; }
+      .h-nl-form { flex-direction: column; }
+      .h-sec-hdr { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <script src="navbar.js"></script>
+<div class="home-wrap">
+
+
+<div class="h-topbar">
+  <marquee behavior="scroll" direction="left" scrollamount="4">
+    ✦ Free Consultation on First Project &nbsp;&nbsp;
+    ✦ 100% On-Time Delivery &nbsp;&nbsp;
+    ✦ Secure & Scalable Code &nbsp;&nbsp;
+    ✦ 24/7 Technical Support &nbsp;&nbsp;
+    ✦ New: AI Integration Services Now Available
+  </marquee>
+</div>
+
+
+<div class="h-catbar">
+  <div class="h-catbar-inner">
+    <a href="#" class="h-catlink"><span class="ci">🌐</span> Web Dev</a>
+    <a href="#" class="h-catlink"><span class="ci">📱</span> Mobile Apps</a>
+    <a href="#" class="h-catlink"><span class="ci">🛒</span> E‑Commerce</a>
+    <a href="#" class="h-catlink"><span class="ci">⚙️</span> Backend API</a>
+    <a href="#" class="h-catlink"><span class="ci">🎨</span> UI/UX Design</a>
+    <a href="#" class="h-catlink"><span class="ci">🔐</span> Security</a>
+    <a href="#" class="h-catlink"><span class="ci">☁️</span> Cloud Hosting</a>
+    <a href="#" class="h-catlink"><span class="ci">🤖</span> AI Integration</a>
+  </div>
+</div>
+
+<div class="h-slider">
+  <div class="h-slides-wrap" id="hSlidesWrap">
+    <!-- Slide 1: Web Development -->
+    <div class="h-slide" style="position:relative;min-width:100%;height:100%;overflow:hidden;">
+      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=1920');background-size:cover;background-position:center;animation:kZoom 8s ease-in-out infinite alternate;"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(253,246,227,0.96) 45%,rgba(253,246,227,0.3) 100%);"></div>
+      <div class="h-slide-inner" style="position:relative;z-index:2;">
+        <div>
+          <span class="h-slide-tag">Stunning & Responsive</span>
+          <h1 class="h-slide-title">Websites <span class="hl">That Convert</span><br>Visitors to Customers</h1>
+          <p class="h-slide-desc">Custom web design, development & SEO. Mobile-first, blazing fast, and built to rank.</p>
+          <div class="h-slide-btns">
+            <a href="#" class="hbtn-gold" onclick="alert('Contact us for a free quote')">Get Quote →</a>
+            <a href="#" class="hbtn-outline" onclick="alert('View our portfolio')">View Projects</a>
+          </div>
+          <div class="h-slide-stats">
+            <div><div class="h-stat-num">20+</div><div class="h-stat-lbl">Projects</div></div>
+            <div><div class="h-stat-num">100%</div><div class="h-stat-lbl">On-Time</div></div>
+            <div><div class="h-stat-num">24/7</div><div class="h-stat-lbl">Support</div></div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+    <!-- Slide 2: Mobile Apps -->
+    <div class="h-slide" style="position:relative;min-width:100%;height:100%;overflow:hidden;">
+      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1920');background-size:cover;background-position:center;animation:kZoom 8s ease-in-out infinite alternate;"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(238,246,240,0.96) 45%,rgba(238,246,240,0.3) 100%);"></div>
+      <div class="h-slide-inner" style="position:relative;z-index:2;">
+        <div>
+          <span class="h-slide-tag" style="background:#388E3C;">Cross‑Platform</span>
+          <h1 class="h-slide-title">Powerful <span class="hl2">Mobile Apps</span><br>for iOS & Android</h1>
+          <p class="h-slide-desc">Native & cross-platform apps with seamless UX. React Native, Flutter, and more.</p>
+          <div class="h-slide-btns">
+            <a href="#" class="hbtn-green" onclick="alert('Let’s build your app!')">Start Your App →</a>
+            <span style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#388E3C;">From ₹12k</span>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+    <!-- Slide 3: E‑Commerce -->
+    <div class="h-slide" style="position:relative;min-width:100%;height:100%;overflow:hidden;">
+      <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=1920');background-size:cover;background-position:center;animation:kZoom 8s ease-in-out infinite alternate;"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(240,238,248,0.96) 45%,rgba(240,238,248,0.3) 100%);"></div>
+      <div class="h-slide-inner" style="position:relative;z-index:2;">
+        <div>
+          <span class="h-slide-tag" style="background:#6C3483;">Secure Payments</span>
+          <h1 class="h-slide-title">Scale Your Sales with<br><span class="hl3">E‑Commerce</span> Solutions</h1>
+          <p class="h-slide-desc">Full-featured online stores with payment gateways, inventory & admin dashboard.</p>
+          <div class="h-slide-btns">
+            <a href="#" class="hbtn-purple" onclick="alert('Launch your store today')">Launch Store →</a>
+            <a href="#" class="hbtn-outline" style="border-color:#6C3483;color:#6C3483 !important;">Learn More</a>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <button class="h-arr h-arr-prev" id="hPrev"><i class="bi bi-chevron-left"></i></button>
+  <button class="h-arr h-arr-next" id="hNext"><i class="bi bi-chevron-right"></i></button>
+  <div class="h-dots">
+    <div class="h-dot active" data-i="0"></div>
+    <div class="h-dot" data-i="1"></div>
+    <div class="h-dot" data-i="2"></div>
+  </div>
+</div>
+
+<div class="h-marquee">
+  <div class="h-marquee-track">
+    @foreach(['Web Development','Mobile Apps','E‑Commerce','Backend API','UI/UX Design','Cloud Hosting','SEO Optimization','AI Integration','Web Development','Mobile Apps','E‑Commerce','Backend API','UI/UX Design','Cloud Hosting','SEO Optimization','AI Integration'] as $item)
+      <span class="h-marquee-item">{{ $item }}</span>
+    @endforeach
+  </div>
+</div>
+
+<div class="h-section h-section-bg">
+  <div class="container-home">
+    <div class="h-sec-hdr h-fade">
+      <div>
+        <p class="h-eyebrow">What We Build</p>
+        <h2 class="h-sec-title">Our Core Services</h2>
+        <p class="h-sec-sub">End-to-end digital solutions tailored for your business</p>
+      </div>
+      <a href="#" class="h-view-all" onclick="alert('See all services')">All Services <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="h-cat-grid">
+      <a href="#" class="h-cat-card h-fade"><span class="h-cat-icon">🌐</span><div class="h-cat-name">Web Development</div><div class="h-cat-count">Responsive & SEO</div><div class="h-cat-arr"><i class="bi bi-arrow-right"></i></div></a>
+      <a href="#" class="h-cat-card h-fade"><span class="h-cat-icon">📱</span><div class="h-cat-name">Mobile Apps</div><div class="h-cat-count">iOS / Android</div><div class="h-cat-arr"><i class="bi bi-arrow-right"></i></div></a>
+      <a href="#" class="h-cat-card h-fade"><span class="h-cat-icon">🛒</span><div class="h-cat-name">E‑Commerce</div><div class="h-cat-count">Secure Checkout</div><div class="h-cat-arr"><i class="bi bi-arrow-right"></i></div></a>
+      <a href="#" class="h-cat-card h-fade"><span class="h-cat-icon">⚙️</span><div class="h-cat-name">Backend API</div><div class="h-cat-count">Scalable</div><div class="h-cat-arr"><i class="bi bi-arrow-right"></i></div></a>
+      <a href="#" class="h-cat-card h-fade"><span class="h-cat-icon">🎨</span><div class="h-cat-name">UI/UX Design</div><div class="h-cat-count">User First</div><div class="h-cat-arr"><i class="bi bi-arrow-right"></i></div></a>
+      <a href="#" class="h-cat-card h-fade"><span class="h-cat-icon">☁️</span><div class="h-cat-name">Cloud Hosting</div><div class="h-cat-count">AWS/Azure</div><div class="h-cat-arr"><i class="bi bi-arrow-right"></i></div></a>
+      <a href="#" class="h-cat-card h-fade"><span class="h-cat-icon">🔐</span><div class="h-cat-name">Security Audit</div><div class="h-cat-count">Pen Testing</div><div class="h-cat-arr"><i class="bi bi-arrow-right"></i></div></a>
+      <a href="#" class="h-cat-card h-fade"><span class="h-cat-icon">🤖</span><div class="h-cat-name">AI Integration</div><div class="h-cat-count">Chatbots & ML</div><div class="h-cat-arr"><i class="bi bi-arrow-right"></i></div></a>
+    </div>
+  </div>
+</div>
+
+<div class="h-divider"></div>
+
+<div class="h-section">
+  <div class="container-home">
+    <div class="h-sec-hdr h-fade">
+      <div>
+        <p class="h-eyebrow">Our Work</p>
+        <h2 class="h-sec-title">Recent Projects</h2>
+        <p class="h-sec-sub">Real solutions we've delivered for our clients</p>
+      </div>
+      <a href="#" class="h-view-all" onclick="alert('View full portfolio')">View All <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div style="position:relative;">
+      <button onclick="manualScroll('prodTrack',-1)" class="h-scroll-arr" style="left:-20px;"><i class="bi bi-chevron-left"></i></button>
+      <div class="h-hscroll">
+        <div class="h-hscroll-track" id="prodTrack">
+          <!-- Project 1: Business Landing Page -->
+          <div class="h-hcard">
+            <div style="position:relative;height:220px;background:#FDF8EE;overflow:hidden;">
+              <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&h=220&fit=crop" alt="Landing page" style="width:100%;height:100%;object-fit:cover;">
+              <span style="position:absolute;top:10px;left:10px;background:#B8860B;color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;">Web</span>
+            </div>
+            <div style="padding:1rem;">
+              <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7A6845;">Business Landing</div>
+              <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1A1208;margin-bottom:10px;">Local Business Site</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                <span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#B8860B;">₹8,000</span>
+              </div>
+              <div class="h-hcard-btn" onclick="alert('Contact for this project')"><i class="bi bi-bag-plus"></i> Enquire Now</div>
+            </div>
+          </div>
+          <!-- Project 2: Online Store -->
+          <div class="h-hcard">
+            <div style="position:relative;height:220px;background:#FDF8EE;overflow:hidden;">
+              <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=400&h=220&fit=crop" alt="E‑Commerce" style="width:100%;height:100%;object-fit:cover;">
+              <span style="position:absolute;top:10px;left:10px;background:#B8860B;color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;">E‑Commerce</span>
+            </div>
+            <div style="padding:1rem;">
+              <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7A6845;">Fashion Store</div>
+              <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1A1208;margin-bottom:10px;">Complete Online Store</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                <span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#B8860B;">₹18,000</span>
+              </div>
+              <div class="h-hcard-btn" onclick="alert('Contact for this project')"><i class="bi bi-bag-plus"></i> Enquire Now</div>
+            </div>
+          </div>
+          <!-- Project 3: REST API -->
+          <div class="h-hcard">
+            <div style="position:relative;height:220px;background:#FDF8EE;overflow:hidden;">
+              <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=220&fit=crop" alt="API" style="width:100%;height:100%;object-fit:cover;">
+              <span style="position:absolute;top:10px;left:10px;background:#B8860B;color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;">Backend</span>
+            </div>
+            <div style="padding:1rem;">
+              <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7A6845;">Task Manager API</div>
+              <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1A1208;margin-bottom:10px;">Scalable REST API</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                <span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#B8860B;">₹12,000</span>
+              </div>
+              <div class="h-hcard-btn" onclick="alert('Contact for this project')"><i class="bi bi-bag-plus"></i> Enquire Now</div>
+            </div>
+          </div>
+          <!-- Project 4: Mobile App -->
+          <div class="h-hcard">
+            <div style="position:relative;height:220px;background:#FDF8EE;overflow:hidden;">
+              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=220&fit=crop" alt="Mobile App" style="width:100%;height:100%;object-fit:cover;">
+              <span style="position:absolute;top:10px;left:10px;background:#B8860B;color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;">Mobile</span>
+            </div>
+            <div style="padding:1rem;">
+              <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7A6845;">Delivery Tracker</div>
+              <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1A1208;margin-bottom:10px;">Cross-Platform App</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                <span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#B8860B;">₹15,000</span>
+              </div>
+              <div class="h-hcard-btn" onclick="alert('Contact for this project')"><i class="bi bi-bag-plus"></i> Enquire Now</div>
+            </div>
+          </div>
+          <!-- Duplicates for infinite loop -->
+          <div class="h-hcard" aria-hidden="true">
+            <div style="position:relative;height:220px;background:#FDF8EE;overflow:hidden;"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&h=220&fit=crop" style="width:100%;height:100%;object-fit:cover;"><span style="position:absolute;top:10px;left:10px;background:#B8860B;color:#fff;font-size:10px;font-weight:700;padding:3px 10px;">Web</span></div>
+            <div style="padding:1rem;"><div style="font-size:10px;font-weight:700;letter-spacing:2px;">Business Landing</div><div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;">Local Business Site</div><div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#B8860B;">₹8,000</span></div><div class="h-hcard-btn" style="opacity:0.5;cursor:default;">Enquire Now</div></div>
+          </div>
+          <div class="h-hcard" aria-hidden="true">
+            <div style="position:relative;height:220px;background:#FDF8EE;overflow:hidden;"><img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=400&h=220&fit=crop" style="width:100%;height:100%;object-fit:cover;"><span style="position:absolute;top:10px;left:10px;background:#B8860B;color:#fff;">E‑Commerce</span></div>
+            <div style="padding:1rem;"><div style="font-size:10px;font-weight:700;">Fashion Store</div><div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;">Complete Online Store</div><div><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#B8860B;">₹18,000</span></div><div class="h-hcard-btn" style="opacity:0.5;cursor:default;">Enquire Now</div></div>
+          </div>
+          <div class="h-hcard" aria-hidden="true">
+            <div style="position:relative;height:220px;background:#FDF8EE;overflow:hidden;"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=220&fit=crop" style="width:100%;height:100%;object-fit:cover;"><span style="position:absolute;top:10px;left:10px;background:#B8860B;">Backend</span></div>
+            <div style="padding:1rem;"><div style="font-size:10px;font-weight:700;">Task Manager API</div><div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;">Scalable REST API</div><div><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#B8860B;">₹12,000</span></div><div class="h-hcard-btn" style="opacity:0.5;cursor:default;">Enquire Now</div></div>
+          </div>
+          <div class="h-hcard" aria-hidden="true">
+            <div style="position:relative;height:220px;background:#FDF8EE;overflow:hidden;"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=220&fit=crop" style="width:100%;height:100%;object-fit:cover;"><span style="position:absolute;top:10px;left:10px;background:#B8860B;">Mobile</span></div>
+            <div style="padding:1rem;"><div style="font-size:10px;font-weight:700;">Delivery Tracker</div><div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;">Cross-Platform App</div><div><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#B8860B;">₹15,000</span></div><div class="h-hcard-btn" style="opacity:0.5;cursor:default;">Enquire Now</div></div>
+          </div>
+        </div>
+      </div>
+      <button onclick="manualScroll('prodTrack',1)" class="h-scroll-arr" style="right:-20px;"><i class="bi bi-chevron-right"></i></button>
+    </div>
+  </div>
+</div>
+
+<div style="padding:0 0 5rem;">
+  <div class="container-home">
+    <div class="h-banner-grid h-fade">
+      <div class="h-promo h-promo-1">
+        <div>
+          <div class="h-promo-ey">Limited Time</div>
+          <div class="h-promo-title">Get 20% Off<br>on First Project</div>
+          <a href="#" class="hbtn-gold" style="padding:10px 22px;font-size:13px;" onclick="alert('Contact us to claim 20% off')">Claim Offer →</a>
+        </div>
+        <span class="h-promo-emoji">💸</span>
+      </div>
+      <div class="h-promo h-promo-2">
+        <div>
+          <div class="h-promo-ey">New Service</div>
+          <div class="h-promo-title">AI Chatbot<br>Integration</div>
+          <a href="#" class="hbtn-green" style="padding:10px 22px;font-size:13px;" onclick="alert('Add AI to your site')">Learn More →</a>
+        </div>
+        <span class="h-promo-emoji">🤖</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="h-features">
+  <div class="container-home">
+    <div class="h-feat-grid">
+      <div class="h-feat-card h-fade"><div class="h-feat-icon"><i class="bi bi-shield-check"></i></div><div class="h-feat-title">Secure Code</div><div class="h-feat-desc">Clean, maintainable & security-hardened code</div></div>
+      <div class="h-feat-card h-fade"><div class="h-feat-icon"><i class="bi bi-truck"></i></div><div class="h-feat-title">Fast Delivery</div><div class="h-feat-desc">On-time, every time. No delays.</div></div>
+      <div class="h-feat-card h-fade"><div class="h-feat-icon"><i class="bi bi-phone"></i></div><div class="h-feat-title">Mobile First</div><div class="h-feat-desc">Responsive designs that work everywhere</div></div>
+      <div class="h-feat-card h-fade"><div class="h-feat-icon"><i class="bi bi-headset"></i></div><div class="h-feat-title">24/7 Support</div><div class="h-feat-desc">Round-the-clock technical assistance</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="h-section h-section-bg">
+  <div class="container-home">
+    <div class="h-sec-hdr h-fade">
+      <div><p class="h-eyebrow">Client Love</p><h2 class="h-sec-title">What Our Clients Say</h2><p class="h-sec-sub">Trusted by businesses across India</p></div>
+    </div>
+    <div style="position:relative;">
+      <button onclick="manualScroll('testiTrack',-1)" class="h-scroll-arr" style="left:-20px;"><i class="bi bi-chevron-left"></i></button>
+      <div class="h-hscroll">
+        <div class="h-hscroll-track" id="testiTrack">
+          <div class="h-tcard"><div style="color:#F6AD55;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-size:13px;color:#7A6845;line-height:1.7;font-style:italic;">“HighCodeX delivered our e‑commerce site in just 2 weeks! The team was highly professional and the design is flawless.”</p><div style="display:flex;align-items:center;gap:12px;"><div style="width:42px;height:42px;border-radius:50%;background:#B8860B;color:#fff;display:flex;align-items:center;justify-content:center;">RK</div><div><div style="font-weight:600;">Ramesh Kumar</div><div style="font-size:12px;">Chennai</div></div></div></div>
+          <div class="h-tcard"><div style="color:#F6AD55;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-size:13px;color:#7A6845;line-height:1.7;font-style:italic;">“Their backend API is super fast and well documented. We saw a 40% improvement in performance after migration.”</p><div style="display:flex;align-items:center;gap:12px;"><div style="width:42px;height:42px;border-radius:50%;background:#B8860B;color:#fff;display:flex;align-items:center;justify-content:center;">PS</div><div><div style="font-weight:600;">Priya Sharma</div><div style="font-size:12px;">Mumbai</div></div></div></div>
+          <div class="h-tcard"><div style="color:#F6AD55;font-size:14px;margin-bottom:10px;">★★★★☆</div><p style="font-size:13px;color:#7A6845;line-height:1.7;font-style:italic;">“Great mobile app development. The team understood our requirements perfectly and delivered a smooth app.”</p><div style="display:flex;align-items:center;gap:12px;"><div style="width:42px;height:42px;border-radius:50%;background:#B8860B;color:#fff;display:flex;align-items:center;justify-content:center;">AV</div><div><div style="font-weight:600;">Arun Verma</div><div style="font-size:12px;">Delhi</div></div></div></div>
+          <div class="h-tcard"><div style="color:#F6AD55;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-size:13px;color:#7A6845;line-height:1.7;font-style:italic;">“Best developers I’ve worked with. They went above and beyond to ensure our launch was successful.”</p><div style="display:flex;align-items:center;gap:12px;"><div style="width:42px;height:42px;border-radius:50%;background:#B8860B;color:#fff;display:flex;align-items:center;justify-content:center;">MI</div><div><div style="font-weight:600;">Meena Iyer</div><div style="font-size:12px;">Bangalore</div></div></div></div>
+          <!-- duplicates for infinite -->
+          <div class="h-tcard" aria-hidden="true"><div style="color:#F6AD55;font-size:14px;">★★★★★</div><p style="font-size:13px;color:#7A6845;font-style:italic;">“HighCodeX delivered our e‑commerce site in just 2 weeks! The team was highly professional and the design is flawless.”</p><div><div style="font-weight:600;">Ramesh Kumar</div><div>Chennai</div></div></div>
+          <div class="h-tcard" aria-hidden="true"><div style="color:#F6AD55;font-size:14px;">★★★★★</div><p style="font-size:13px;color:#7A6845;font-style:italic;">“Their backend API is super fast and well documented. We saw a 40% improvement in performance after migration.”</p><div><div style="font-weight:600;">Priya Sharma</div><div>Mumbai</div></div></div>
+        </div>
+      </div>
+      <button onclick="manualScroll('testiTrack',1)" class="h-scroll-arr" style="right:-20px;"><i class="bi bi-chevron-right"></i></button>
+    </div>
+  </div>
+</div>
+
+<div class="h-newsletter">
+  <div class="container-home">
+    <h2 class="h-nl-title">Get Tech Updates</h2>
+    <p class="h-nl-sub">Subscribe for offers, new services & development tips</p>
+    <div class="h-nl-form">
+      <input class="h-nl-input" type="email" placeholder="Your email address">
+      <button class="h-nl-btn" onclick="alert('Thanks for subscribing!')">Subscribe ✦</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+// Hero Slider
+const wrap = document.getElementById('hSlidesWrap');
+const dots = document.querySelectorAll('.h-dot');
+let cur = 0, total = 3, tmr;
+function hGoTo(n){ cur=(n+total)%total; wrap.style.transform='translateX(-'+(cur*100)+'%)'; dots.forEach((d,i)=>d.classList.toggle('active',i===cur)); }
+function hNext(){ hGoTo(cur+1); }
+function hPrev(){ hGoTo(cur-1); }
+document.getElementById('hNext').addEventListener('click',()=>{hNext();hReset();});
+document.getElementById('hPrev').addEventListener('click',()=>{hPrev();hReset();});
+dots.forEach(d=>d.addEventListener('click',()=>{hGoTo(parseInt(d.dataset.i));hReset();}));
+function hReset(){ clearInterval(tmr); tmr=setInterval(hNext,5000); }
+tmr=setInterval(hNext,5000);
+
+// Infinite CSS scroll
+function startInfiniteScroll(trackId, speed) {
+  const track = document.getElementById(trackId);
+  if(!track) return;
+  const halfWidth = track.scrollWidth / 2;
+  const duration = halfWidth / speed;
+  track.style.animationDuration = duration + 's';
+  track.classList.add('running');
+}
+startInfiniteScroll('prodTrack', 60);
+startInfiniteScroll('testiTrack', 50);
+
+// Manual scroll arrows
+function manualScroll(trackId, dir) {
+  const track = document.getElementById(trackId);
+  if(!track) return;
+  track.style.animationPlayState = 'paused';
+  const style = window.getComputedStyle(track);
+  const matrix = new WebKitCSSMatrix(style.transform);
+  let currentX = matrix.m41;
+  let newX = currentX + (dir * -260);
+  const halfWidth = -(track.scrollWidth / 2);
+  if(newX < halfWidth) newX = 0;
+  if(newX > 0) newX = halfWidth + 260;
+  track.style.transition = 'transform 0.5s ease';
+  track.style.transform = `translateX(${newX}px)`;
+  setTimeout(() => {
+    track.style.transition = '';
+    track.style.animationPlayState = 'running';
+  }, 1500);
+}
+
+// Fade-up observer
+const fObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); fObs.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.h-fade').forEach(el => fObs.observe(el));
+</script>
+</body>
+</html>

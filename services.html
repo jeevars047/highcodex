@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>HighCodeX Technologies | Services – Web, Mobile & E‑Commerce</title>
+  
+  <!-- Google Fonts + Bootstrap Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-burgundy: #9b2c1d;
+      --primary-rose: #c0392b;
+      --gold: #d4af37;
+      --gold-light: #f3de8a;
+      --cream: #fff9f2;
+      --dark-charcoal: #2c1a1a;
+      --text-muted: #6b4e4e;
+      --border-light: #f0e2d4;
+      --white: #ffffff;
+      --shadow-sm: 0 10px 30px -12px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cream);
+      color: #2d2a2a;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--dark-charcoal);
+      letter-spacing: -0.01em;
+    }
+
+    .section-title span {
+      color: var(--primary-rose);
+      font-style: italic;
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 600;
+      color: var(--primary-rose);
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: var(--primary-rose);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 8px rgba(192, 57, 43, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: #9b2c1d;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(192, 57, 43, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--primary-rose);
+      color: var(--primary-rose);
+      padding: 10px 26px;
+      border-radius: 40px;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-rose);
+      color: white;
+    }
+
+    /* service card styling */
+    .service-detailed {
+      background: white;
+      border-radius: 32px;
+      padding: 2rem;
+      transition: all 0.3s;
+      border: 1px solid var(--border-light);
+      height: 100%;
+      box-shadow: var(--shadow-sm);
+    }
+    .service-detailed:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: #ecd9c9;
+    }
+    .tech-badge {
+      background: #fef2e6;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--primary-burgundy);
+      display: inline-block;
+      margin: 0 6px 8px 0;
+    }
+    .feature-list {
+      list-style: none;
+      margin: 18px 0 16px;
+    }
+    .feature-list li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #2d2a2a;
+    }
+    .feature-list li i {
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+    .process-step {
+      background: white;
+      border-radius: 28px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: 0.2s;
+      border: 1px solid var(--border-light);
+    }
+    .process-step .step-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      font-family: 'Cormorant Garamond', serif;
+      color: rgba(192,57,43,0.2);
+      line-height: 1;
+    }
+    @media (max-width: 992px) {
+      .section-title { font-size: 2.2rem; }
+      section { padding: 50px 0; }
+    }
+    .marquee-track {
+      display: inline-flex;
+      white-space: nowrap;
+      animation: scrollMarquee 26s linear infinite;
+    }
+    @keyframes scrollMarquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .tech-stack-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- header placeholder (will be injected by layout.js if exists, else we create inline to preserve style) -->
+  <div id="main-header"></div>
+
+  <main>
+    <!-- HERO for services page -->
+    <section style="padding-top: 100px; background: linear-gradient(115deg, #fdf7ef 0%, #fff4e8 100%); margin-top: 0;">
+      <div class="container">
+        <div class="fade-up" style="max-width: 780px;">
+          <div class="eyebrow">✦ what we build for you</div>
+          <h1 class="section-title">From concept to launch — we handle <span>every layer</span> of your digital product.</h1>
+          <p style="font-size: 1.1rem; color: var(--text-muted); margin: 20px 0 28px;">Stunning responsive websites, powerful mobile apps, scalable e‑commerce stores, and rock‑solid backend systems.</p>
+          <div style="display: flex; gap: 18px; flex-wrap: wrap;">
+            <button class="btn-primary" id="servicesCta"><i class="bi bi-chat-right-quote"></i> Request a consultation</button>
+            <a href="#service-list" style="text-decoration: none;"><button class="btn-outline"><i class="bi bi-arrow-down"></i> Explore all services</button></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAILED SERVICES (exactly from PDF: Web, Mobile, E‑Commerce, Backend) -->
+    <section id="service-list" style="background: var(--cream);">
+      <div class="container">
+        <div class="fade-up" style="text-align: center; margin-bottom: 56px;">
+          <div class="eyebrow">comprehensive expertise</div>
+          <h2 class="section-title">What we build for you — <span>powered by clean code</span></h2>
+          <p style="max-width: 680px; margin: 12px auto 0;">Every layer of your digital product, crafted with care and modern tech stacks.</p>
+        </div>
+        
+        <div class="services-grid-detailed" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 32px;">
+          
+          <!-- 01 — Web Design & Development -->
+          <div class="service-detailed fade-up">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+              <div style="background: rgba(192,57,43,0.1); border-radius: 60px; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;"><i class="bi bi-window-sidebar" style="font-size: 28px; color: var(--primary-rose);"></i></div>
+              <h3 style="font-size: 1.6rem; font-weight: 700;">Web Design & Development</h3>
+            </div>
+            <p style="color: #4d3a3a; margin-bottom: 14px;">We craft stunning, responsive websites that not only look beautiful but also drive real business results. From landing pages to complex web apps.</p>
+            <ul class="feature-list">
+              <li><i class="bi bi-check-circle-fill"></i> Responsive Design & SEO Optimized</li>
+              <li><i class="bi bi-check-circle-fill"></i> Fast Loading + Cross Browser</li>
+              <li><i class="bi bi-check-circle-fill"></i> Clean Code & CMS Integration</li>
+            </ul>
+            <div><span class="tech-badge">HTML5/CSS3</span><span class="tech-badge">JavaScript</span><span class="tech-badge">Bootstrap</span><span class="tech-badge">React</span><span class="tech-badge">WordPress</span><span class="tech-badge">PHP</span></div>
+          </div>
+          
+          <!-- 02 — Mobile App Development -->
+          <div class="service-detailed fade-up">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+              <div style="background: rgba(192,57,43,0.1); border-radius: 60px; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;"><i class="bi bi-phone" style="font-size: 28px; color: var(--primary-rose);"></i></div>
+              <h3 style="font-size: 1.6rem; font-weight: 700;">Mobile App Development</h3>
+            </div>
+            <p style="color: #4d3a3a;">Powerful cross-platform & native apps that deliver seamless experiences across Android & iOS. Intuitive UI/UX backed by robust functionality.</p>
+            <ul class="feature-list">
+              <li><i class="bi bi-check-circle-fill"></i> Android & iOS · Cross Platform</li>
+              <li><i class="bi bi-check-circle-fill"></i> API Integration & Push Notifications</li>
+              <li><i class="bi bi-check-circle-fill"></i> Performance Optimized</li>
+            </ul>
+            <div><span class="tech-badge">React Native</span><span class="tech-badge">Flutter</span><span class="tech-badge">Python Backend</span><span class="tech-badge">REST APIs</span></div>
+          </div>
+          
+          <!-- 03 — E-Commerce Solutions -->
+          <div class="service-detailed fade-up">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+              <div style="background: rgba(192,57,43,0.1); border-radius: 60px; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;"><i class="bi bi-cart3" style="font-size: 28px; color: var(--primary-rose);"></i></div>
+              <h3 style="font-size: 1.6rem; font-weight: 700;">E‑Commerce Solutions</h3>
+            </div>
+            <p style="color: #4d3a3a;">Launch your online store with a powerful, secure, and scalable platform. Payment gateways, inventory, admin dashboards — all included.</p>
+            <ul class="feature-list">
+              <li><i class="bi bi-check-circle-fill"></i> Secure Payment Gateway & Checkout</li>
+              <li><i class="bi bi-check-circle-fill"></i> Inventory Management + Order Tracking</li>
+              <li><i class="bi bi-check-circle-fill"></i> Admin Dashboard & Mobile Friendly</li>
+            </ul>
+            <div><span class="tech-badge">WooCommerce</span><span class="tech-badge">Shopify</span><span class="tech-badge">Laravel</span><span class="tech-badge">Django</span><span class="tech-badge">MySQL</span></div>
+          </div>
+          
+          <!-- 04 — Backend Development -->
+          <div class="service-detailed fade-up">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+              <div style="background: rgba(192,57,43,0.1); border-radius: 60px; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;"><i class="bi bi-server" style="font-size: 28px; color: var(--primary-rose);"></i></div>
+              <h3 style="font-size: 1.6rem; font-weight: 700;">Backend Development</h3>
+            </div>
+            <p style="color: #4d3a3a;">Scalable systems that power your apps. From REST APIs to database architecture & authentication — we build the foundation your product needs.</p>
+            <ul class="feature-list">
+              <li><i class="bi bi-check-circle-fill"></i> REST API Development · Database Design</li>
+              <li><i class="bi bi-check-circle-fill"></i> Authentication & Security</li>
+              <li><i class="bi bi-check-circle-fill"></i> Cloud Integration & Performance Tuning</li>
+            </ul>
+            <div><span class="tech-badge">Python/Django</span><span class="tech-badge">Flask</span><span class="tech-badge">PHP/Laravel</span><span class="tech-badge">Java/Spring Boot</span><span class="tech-badge">MySQL</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR PROCESS: exactly from PDF content (01 Discovery, etc) -->
+    <section style="background: white;">
+      <div class="container">
+        <div class="fade-up" style="text-align: center; margin-bottom: 48px;">
+          <div class="eyebrow">how we bring ideas to life</div>
+          <h2 class="section-title">Our <span>development process</span></h2>
+          <p style="max-width: 550px; margin: 12px auto;">A clear, transparent journey from concept to launch with quality at every step.</p>
+        </div>
+        <div class="process-steps" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px;">
+          <div class="process-step fade-up"><div class="step-number">01</div><h3 style="margin: 10px 0 8px;">Discovery</h3><p style="color: var(--text-muted);">We understand your requirements, goals, and audience through a detailed consultation.</p></div>
+          <div class="process-step fade-up"><div class="step-number">02</div><h3 style="margin: 10px 0 8px;">Planning</h3><p style="color: var(--text-muted);">Architecture, wireframes, project scope and timeline – defined upfront.</p></div>
+          <div class="process-step fade-up"><div class="step-number">03</div><h3 style="margin: 10px 0 8px;">Development</h3><p style="color: var(--text-muted);">Clean code, regular updates and quality assurance at each iteration.</p></div>
+          <div class="process-step fade-up"><div class="step-number">04</div><h3 style="margin: 10px 0 8px;">Launch & Support</h3><p style="color: var(--text-muted);">Deploy, test, handover — with full support to ensure smooth go‑live.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING PLANS from PDF (Basic/Standard/Premium) -->
+    <section style="background: #fff8f0;">
+      <div class="container">
+        <div class="fade-up" style="text-align: center;">
+          <div class="eyebrow">simple, transparent pricing</div>
+          <h2 class="section-title">Plans that fit <span>your business</span></h2>
+          <p style="margin-bottom: 48px;">Custom packages for every need – from startup websites to advanced web applications.</p>
+        </div>
+        <div class="pricing-cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+          <!-- Basic plan -->
+          <div class="pricing-card fade-up" style="background: white; border-radius: 32px; padding: 32px 24px; box-shadow: var(--shadow-sm); text-align: center;">
+            <h3 style="font-size: 1.8rem; font-weight: 700;">Basic</h3>
+            <div style="font-size: 2.5rem; font-weight: 700; margin: 18px 0 8px;">₹8,000</div>
+            <p style="color: var(--primary-rose); font-size: 0.9rem;">3–4 pages</p>
+            <hr style="margin: 20px 0; border-color: #f0e2d4;">
+            <ul style="list-style: none; text-align: left;">
+              <li style="margin: 8px 0;"><i class="bi bi-check-lg" style="color: var(--gold);"></i> Home, About, Gallery, Contact</li>
+              <li style="margin: 8px 0;"><i class="bi bi-check-lg"></i> Mobile-friendly design</li>
+              <li style="margin: 8px 0;"><i class="bi bi-check-lg"></i> Enquiry form setup</li>
+              <li style="margin: 8px 0;"><i class="bi bi-check-lg"></i> Basic SEO setup</li>
+            </ul>
+            <button class="btn-primary plan-inquiry" style="margin-top: 24px; width: 100%;" data-plan="Basic - ₹8,000">Choose Basic</button>
+          </div>
+          <!-- Standard plan -->
+          <div class="pricing-card fade-up" style="background: white; border-radius: 32px; padding: 32px 24px; box-shadow: var(--shadow-sm); border-top: 4px solid var(--gold); text-align: center;">
+            <h3 style="font-size: 1.8rem; font-weight: 700;">Standard</h3>
+            <div style="font-size: 2.5rem; font-weight: 700; margin: 18px 0 8px;">₹12,000</div>
+            <p style="color: var(--primary-rose); font-size: 0.9rem;">5–6 pages</p>
+            <hr style="margin: 20px 0;">
+            <ul style="list-style: none; text-align: left;">
+              <li><i class="bi bi-check-lg" style="color: var(--gold);"></i> Premium design + better UI</li>
+              <li><i class="bi bi-check-lg"></i> Enquiry + WhatsApp integration</li>
+              <li><i class="bi bi-check-lg"></i> Basic SEO + Google listing setup</li>
+              <li><i class="bi bi-check-lg"></i> 2 rounds of revisions</li>
+            </ul>
+            <button class="btn-primary plan-inquiry" style="margin-top: 24px; width: 100%;" data-plan="Standard - ₹12,000">Choose Standard</button>
+          </div>
+          <!-- Premium plan -->
+          <div class="pricing-card fade-up" style="background: white; border-radius: 32px; padding: 32px 24px; box-shadow: var(--shadow-sm); text-align: center;">
+            <h3 style="font-size: 1.8rem; font-weight: 700;">Premium</h3>
+            <div style="font-size: 2.5rem; font-weight: 700; margin: 18px 0 8px;">₹18,000</div>
+            <p style="color: var(--primary-rose); font-size: 0.9rem;">All pages / custom</p>
+            <hr style="margin: 20px 0;">
+            <ul style="list-style: none; text-align: left;">
+              <li><i class="bi bi-check-lg" style="color: var(--gold);"></i> Advanced design + fast performance</li>
+              <li><i class="bi bi-check-lg"></i> Enquiry + WhatsApp + Call integration</li>
+              <li><i class="bi bi-check-lg"></i> SEO optimized (keywords, speed)</li>
+              <li><i class="bi bi-check-lg"></i> Google ranking basic setup + priority support</li>
+            </ul>
+            <button class="btn-primary plan-inquiry" style="margin-top: 24px; width: 100%;" data-plan="Premium - ₹18,000">Choose Premium</button>
+          </div>
+        </div>
+        <p class="fade-up" style="text-align: center; margin-top: 36px; font-size: 0.85rem; color: #7a5a5a;">* Custom enterprise solutions also available. Contact us for detailed quote.</p>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGY STACK SHOWCASE (based on PDF data: frontend/backend proficiency) -->
+    <section style="background: white;">
+      <div class="container">
+        <div class="fade-up" style="text-align: center;">
+          <div class="eyebrow">technologies we master</div>
+          <h2 class="section-title">Modern stack for <span>modern solutions</span></h2>
+          <p style="max-width: 650px; margin: 12px auto 36px;">We pick the right tools for your project – from frontend frameworks to backend powerhouses.</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;" class="fade-up">
+          <span class="tech-badge" style="background: #e9dbd0; font-size: 0.9rem;">React 90%</span><span class="tech-badge">Python/Django 88%</span><span class="tech-badge">JavaScript 88%</span>
+          <span class="tech-badge">Flask 82%</span><span class="tech-badge">PHP/Laravel 80%</span><span class="tech-badge">MySQL 88%</span>
+          <span class="tech-badge">WordPress 78%</span><span class="tech-badge">Bootstrap 90%</span><span class="tech-badge">HTML5/CSS3 95%</span>
+          <span class="tech-badge">Java/Spring Boot 70%</span><span class="tech-badge">React Native</span>
+        </div>
+        <div class="fade-up" style="margin-top: 40px; background: var(--cream); border-radius: 32px; padding: 28px; text-align: center;">
+          <p style="font-weight: 500;">✨ Full-stack expertise under one roof — From database to deployment, we deliver.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS from PDF (FAQ meets services) -->
+    <section style="background: #fdf5eb;">
+      <div class="container">
+        <div class="fade-up" style="max-width: 800px; margin: 0 auto;">
+          <div class="eyebrow" style="text-align: center;">help & answers</div>
+          <h2 class="section-title" style="text-align: center;">Frequently asked <span>questions</span></h2>
+          <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 28px;">
+            <div><h3 style="font-weight: 700; font-size: 1.2rem;">💰 How much does a website cost?</h3><p style="color: var(--text-muted);">It depends on the project scope. A simple landing page starts from ₹5,000, while full web applications are quoted based on requirements. Contact us for a free estimate.</p></div>
+            <div><h3 style="font-weight: 700; font-size: 1.2rem;">⏱️ How long does a project take?</h3><p style="color: var(--text-muted);">A basic website takes 3-7 days. Complex projects like e-commerce or apps may take 2–6 weeks depending on features. Clear timeline upfront.</p></div>
+            <div><h3 style="font-weight: 700; font-size: 1.2rem;">🔧 Do you provide support after delivery?</h3><p style="color: var(--text-muted);">Yes! Post-launch support & maintenance. Any bugs or issues after delivery are fixed at no extra charge within the support period.</p></div>
+            <div><h3 style="font-weight: 700; font-size: 1.2rem;">🌐 What technologies do you use?</h3><p style="color: var(--text-muted);">HTML, CSS, JavaScript, Python/Django/Flask, PHP/Laravel, MySQL, React, WordPress, React Native, and more. We pick the best stack for your project.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section style="background: var(--dark-charcoal); color: white; text-align: center;">
+      <div class="container fade-up">
+        <h3 style="font-size: 2rem; font-family: 'Cormorant Garamond', serif;">Ready to bring your idea to life?</h3>
+        <p style="margin: 12px auto 24px;">Let's discuss your project, budget, and timeline – free consultation.</p>
+        <button class="btn-primary" id="globalCtaService" style="background: var(--gold); color: #2c1a1a;"><i class="bi bi-chat-dots"></i> Contact HighCodeX Today</button>
+        <p style="margin-top: 20px; font-size: 13px;">📞 +91 7868946689  |  ✉️ highcodextech@gmail.com</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="main-footer"></div>
+
+  <script>
+    (function() {
+      document.addEventListener('DOMContentLoaded', () => {
+        // Intersection Observer for fade-up
+        const fadeElements = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        fadeElements.forEach(el => observer.observe(el));
+        
+        // Pricing plan inquiry buttons
+        const planBtns = document.querySelectorAll('.plan-inquiry');
+        planBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const plan = btn.getAttribute('data-plan') || 'plan';
+            alert(`✨ Thank you for interest in ${plan} package! Our team will reach out within 2 hours with a detailed proposal. You can also WhatsApp +91 7868946689 for quick discussion.`);
+          });
+        });
+        
+        const servicesCta = document.getElementById('servicesCta');
+        if(servicesCta) servicesCta.addEventListener('click', () => alert('📬 Thanks for reaching out! We’ll get back within 24h. Tell us about your project idea – let’s build something amazing.'));
+        
+        const globalCta = document.getElementById('globalCtaService');
+        if(globalCta) globalCta.addEventListener('click', () => alert('📞 Call or WhatsApp: +91 7868946689 | Email: highcodextech@gmail.com — Let’s talk about your next digital product!'));
+        
+        // manual marquee fix for any missing track
+        const marqueeStyle = document.createElement('style');
+        if (!document.querySelector('#marqueeKeyframeStyle')) {
+          marqueeStyle.id = 'marqueeKeyframeStyle';
+          marqueeStyle.textContent = `@keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } } .marquee-track { animation: scrollMarquee 26s linear infinite; }`;
+          document.head.appendChild(marqueeStyle);
+        }
+      });
+    })();
+  </script>
+  <style>
+    .pricing-card ul li i { color: var(--gold); margin-right: 8px; }
+    .process-step, .service-detailed, .pricing-card { transition: all 0.25s; }
+    .service-detailed:hover .tech-badge { background: #f3e1d2; }
+    .plan-inquiry { background: var(--primary-rose); }
+    .plan-inquiry:hover { background: #8c2417; }
+    #main-header, #main-footer { transition: all 0.2s; }
+    @media (max-width: 768px) { .section-title { font-size: 1.9rem; } }
+  </style>
+  <script src="layout.js" defer></script>
+</body>
+</html>

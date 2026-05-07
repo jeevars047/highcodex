@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us – HighCodeX Technologies</title>
+  <!-- Google Fonts + Bootstrap Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    /* === Same styling as original, only renamed classes to keep consistency === */
+    .ab-wrap {
+      --gold: #B8860B;
+      --gold-pale: #FDF8EE;
+      --cream: #FEFCF7;
+      --dark: #1A1208;
+      --text: #3D2E0E;
+      --text-muted: #7A6845;
+      --border: #E8D9B8;
+      --section-bg: #F9F4EA;
+      --shadow-lg: 0 12px 48px rgba(184,134,11,0.16);
+      background: #FEFCF7;
+      font-family: 'Jost', sans-serif;
+      color: #3D2E0E;
+    }
+
+    .ab-hero {
+      background: linear-gradient(135deg, #FDF6E3 0%, #FFF9EE 50%, #FEF3D8 100%);
+      border-bottom: 1px solid #E8D9B8;
+      padding: 5rem 0 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .ab-hero::before {
+      content: '⚡';
+      position: absolute;
+      font-size: 300px;
+      color: rgba(184,134,11,0.04);
+      top: -60px;
+      right: -60px;
+      line-height: 1;
+    }
+    .ab-hero-inner { max-width: 800px; margin: 0 auto; padding: 0 2rem; position: relative; }
+    .ab-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #B8860B; margin-bottom: 1rem; }
+    .ab-hero-title { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; color: #1A1208; line-height: 1.1; margin-bottom: 1rem; }
+    .ab-hero-title span { color: #B8860B; }
+    .ab-hero-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; color: #7A6845; margin-bottom: 2rem; }
+    .ab-hero-desc { font-size: 16px; color: #7A6845; line-height: 1.8; max-width: 650px; margin: 0 auto; }
+
+    .ab-stats { background: #B8860B; padding: 2.5rem 0; }
+    .ab-stats-inner { max-width: 1000px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; text-align: center; }
+    .ab-stat-num { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; color: #fff; line-height: 1; }
+    .ab-stat-lbl { font-size: 12px; color: rgba(255,255,255,0.8); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 6px; }
+
+    .ab-section { padding: 5rem 0; }
+    .ab-section-bg { background: #F9F4EA; }
+    .ab-inner { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+    .ab-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .ab-section-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #B8860B; margin-bottom: 8px; }
+    .ab-section-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: #1A1208; line-height: 1.2; margin-bottom: 1.5rem; }
+    .ab-section-title span { color: #B8860B; }
+    .ab-text { font-size: 15px; color: #7A6845; line-height: 1.9; margin-bottom: 1rem; }
+    .ab-text strong { color: #3D2E0E; }
+    .ab-divider { width: 60px; height: 3px; background: #B8860B; margin: 1.5rem 0; border-radius: 2px; }
+
+    .ab-illus {
+      background: linear-gradient(135deg, #FDF6E3, #FEF3D8);
+      border: 1.5px solid #E8D9B8;
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .ab-illus img { max-width: 100%; border-radius: 16px; margin-bottom: 1rem; }
+    .ab-illus-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; color: #7A6845; line-height: 1.6; }
+
+    .ab-founder-card {
+      background: #fff;
+      border: 1.5px solid #E8D9B8;
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .ab-founder-avatar {
+      width: 120px;
+      height: 120px;
+      background: #B8860B;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ab-founder-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .ab-founder-name { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #1A1208; }
+    .ab-founder-title { color: #B8860B; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+    .ab-founder-bio { color: #7A6845; font-size: 14px; line-height: 1.8; margin-top: 1rem; }
+
+    .ab-values-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .ab-value-card {
+      background: #fff;
+      border: 1.5px solid #E8D9B8;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.35s;
+    }
+    .ab-value-card:hover { border-color: #B8860B; transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .ab-value-icon { font-size: 40px; display: block; margin-bottom: 1rem; }
+    .ab-value-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #1A1208; margin-bottom: 8px; }
+    .ab-value-text { font-size: 13px; color: #7A6845; line-height: 1.7; }
+
+    .ab-cta { background: linear-gradient(135deg, #B8860B, #8B6914); padding: 4rem 0; text-align: center; }
+    .ab-cta-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .ab-cta-sub { color: rgba(255,255,255,0.8); font-size: 15px; margin-bottom: 2rem; }
+    .ab-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .ab-cta-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: #B8860B; padding: 14px 28px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; transition: all 0.25s; }
+    .ab-cta-btn-primary:hover { background: #FDF8EE; transform: translateY(-2px); }
+    .ab-cta-btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.6); padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.25s; }
+    .ab-cta-btn-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+
+    .ab-contact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .ab-contact-card { background: #fff; border: 1.5px solid #E8D9B8; border-radius: 12px; padding: 1.5rem; text-align: center; }
+    .ab-contact-icon { font-size: 32px; color: #B8860B; margin-bottom: 10px; }
+    .ab-contact-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7A6845; margin-bottom: 6px; }
+    .ab-contact-val { font-size: 14px; color: #1A1208; font-weight: 600; }
+
+    @media (max-width:768px) {
+      .ab-hero-title { font-size: 36px; }
+      .ab-stats-inner { grid-template-columns: repeat(2,1fr); }
+      .ab-grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+      .ab-values-grid { grid-template-columns: 1fr; }
+      .ab-contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <script src="navbar.js"></script>
+<div class="ab-wrap">
+
+  <!-- HERO (HighCodeX) -->
+  <div class="ab-hero">
+    <div class="ab-hero-inner">
+      <p class="ab-eyebrow">Chennai · Tamil Nadu</p>
+      <h1 class="ab-hero-title">We Build Websites <span>That Convert</span></h1>
+      <p class="ab-hero-sub">Available for Projects — Full‑Stack Expertise</p>
+      <p class="ab-hero-desc">
+        HighCodeX Technologies delivers smart, modern & affordable web solutions that improve everyday business growth across South India.
+      </p>
+    </div>
+  </div>
+
+  <!-- STATS (based on PDF) -->
+  <div class="ab-stats">
+    <div class="ab-stats-inner">
+      <div><div class="ab-stat-num">20+</div><div class="ab-stat-lbl">Projects Delivered</div></div>
+      <div><div class="ab-stat-num">100%</div><div class="ab-stat-lbl">On‑Time Delivery</div></div>
+      <div><div class="ab-stat-num">5+</div><div class="ab-stat-lbl">Technologies</div></div>
+      <div><div class="ab-stat-num">24/7</div><div class="ab-stat-lbl">Support</div></div>
+    </div>
+  </div>
+
+  <!-- STORY (from PDF about Jeeva & mission) -->
+  <div class="ab-section">
+    <div class="ab-inner">
+      <div class="ab-grid-2">
+        <div>
+          <p class="ab-section-eyebrow">The Story Behind</p>
+          <h2 class="ab-section-title">HighCodeX <span>Technologies</span></h2>
+          <div class="ab-divider"></div>
+          <p class="ab-text">
+            <strong>Jeeva R</strong> — a passionate full‑stack developer from Chennai, building digital products that make a difference. Started HighCodeX with a simple mission: deliver professional, high‑quality digital products that help clients grow online.
+          </p>
+          <p class="ab-text">
+            From Ariyalur to the heart of Chennai, every line of code is driven by excellence. Great software isn't just about functionality — it's about experiences users love.
+          </p>
+          <p class="ab-text">
+            <strong>Mission:</strong> To provide world‑class digital solutions with clean code, on‑time delivery, and honest communication.<br>
+            <strong>Vision:</strong> To grow into a full‑scale digital agency serving clients across India and beyond.
+          </p>
+        </div>
+        <div>
+          <div class="ab-illus">
+            <!-- Online image (coding / tech) -->
+            <img src="https://picsum.photos/id/0/500/300" alt="Developer workspace" style="width:100%; border-radius:16px;">
+            <p class="ab-illus-quote" style="margin-top: 1rem;">
+              “Built Different. Delivered Better.”
+            </p>
+            <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid #E8D9B8;">
+              <div style="font-size:13px; color:#B8860B; font-weight:600;">— Jeeva R, Founder</div>
+              <div style="font-size:12px; color:#aaa;">HighCodeX Technologies</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOUNDER + SERVICES (from PDF) -->
+  <div class="ab-section ab-section-bg">
+    <div class="ab-inner">
+      <div class="ab-grid-2">
+        <div class="ab-founder-card">
+          <div class="ab-founder-avatar">
+            <!-- Online image for founder (placeholder) -->
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Jeeva R">
+          </div>
+          <div class="ab-founder-name">Jeeva R</div>
+          <div class="ab-founder-title">Full‑Stack Developer & Founder</div>
+          <div class="ab-divider" style="margin:1rem auto;"></div>
+          <p class="ab-founder-bio">
+            Based in Chennai, Tamil Nadu (native Ariyalur). Expertise in HTML, CSS, JavaScript, Python, Django, Laravel, React and more. Committed to clean, maintainable code and client success.
+          </p>
+          <p class="ab-founder-bio">
+            HighCodeX is more than a brand — it's a promise to go beyond limits.
+          </p>
+        </div>
+        <div>
+          <p class="ab-section-eyebrow">What We Offer</p>
+          <h2 class="ab-section-title">Solutions for<br><span>Every Digital Need</span></h2>
+          <div class="ab-divider"></div>
+          <!-- Static services from PDF -->
+          <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:1rem;">
+            <span style="font-size:22px;">🌐</span>
+            <div><div style="font-weight:600;">Web Design & Development</div><div style="font-size:13px;color:#7A6845;">Responsive, SEO‑ready, fast loading websites.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:1rem;">
+            <span style="font-size:22px;">📱</span>
+            <div><div style="font-weight:600;">Mobile App Development</div><div style="font-size:13px;color:#7A6845;">Android & iOS, cross‑platform, intuitive UI/UX.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:1rem;">
+            <span style="font-size:22px;">🛒</span>
+            <div><div style="font-weight:600;">E‑Commerce Solutions</div><div style="font-size:13px;color:#7A6845;">Secure payment gateways, inventory, admin dashboard.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:1rem;">
+            <span style="font-size:22px;">⚙️</span>
+            <div><div style="font-weight:600;">Backend Development</div><div style="font-size:13px;color:#7A6845;">REST APIs, database design, cloud integration.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUES (adapted from PDF) -->
+  <div class="ab-section">
+    <div class="ab-inner">
+      <div style="text-align:center; margin-bottom:1rem;">
+        <p class="ab-section-eyebrow">Why HighCodeX</p>
+        <h2 class="ab-section-title" style="margin-bottom:0;">Our <span>Core Values</span></h2>
+      </div>
+      <div class="ab-values-grid">
+        <div class="ab-value-card"><span class="ab-value-icon">⚡</span><div class="ab-value-title">Fast Delivery</div><p class="ab-value-text">Rapid turnaround without compromising quality. On‑time, every time.</p></div>
+        <div class="ab-value-card"><span class="ab-value-icon">🔒</span><div class="ab-value-title">Secure Code</div><p class="ab-value-text">Clean, secure & maintainable code with industry best practices.</p></div>
+        <div class="ab-value-card"><span class="ab-value-icon">📱</span><div class="ab-value-title">Mobile First</div><p class="ab-value-text">Every design is mobile‑first and SEO‑ready for all screen sizes.</p></div>
+        <div class="ab-value-card"><span class="ab-value-icon">🕒</span><div class="ab-value-title">24/7 Support</div><p class="ab-value-text">Round‑the‑clock support to keep your products running smoothly.</p></div>
+        <div class="ab-value-card"><span class="ab-value-icon">💬</span><div class="ab-value-title">Transparent</div><p class="ab-value-text">Clear communication, honest pricing, and regular updates.</p></div>
+        <div class="ab-value-card"><span class="ab-value-icon">🚀</span><div class="ab-value-title">Scalable</div><p class="ab-value-text">Solutions that grow with your business, not temporary fixes.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT INFO (from PDF) -->
+  <div class="ab-section ab-section-bg">
+    <div class="ab-inner">
+      <div style="text-align:center; margin-bottom:1rem;">
+        <p class="ab-section-eyebrow">Get in Touch</p>
+        <h2 class="ab-section-title" style="margin-bottom:0;">Let’s Build <span>Something Amazing</span></h2>
+      </div>
+      <div class="ab-contact-grid">
+        <div class="ab-contact-card"><div class="ab-contact-icon"><i class="bi bi-whatsapp"></i></div><div class="ab-contact-label">WhatsApp</div><div class="ab-contact-val">+91 7868946689</div></div>
+        <div class="ab-contact-card"><div class="ab-contact-icon"><i class="bi bi-telephone-fill"></i></div><div class="ab-contact-label">Phone</div><div class="ab-contact-val">+91 7868946689</div></div>
+        <div class="ab-contact-card"><div class="ab-contact-icon"><i class="bi bi-envelope-fill"></i></div><div class="ab-contact-label">Business Email</div><div class="ab-contact-val">highcodextech@gmail.com</div></div>
+        <div class="ab-contact-card"><div class="ab-contact-icon"><i class="bi bi-geo-alt-fill"></i></div><div class="ab-contact-label">Location</div><div class="ab-contact-val">Chennai, Tamil Nadu<br>(Native: Ariyalur)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="ab-cta">
+    <div class="ab-inner">
+      <h2 class="ab-cta-title">Ready to Transform Your Digital Presence?</h2>
+      <p class="ab-cta-sub">From concept to launch — we handle every layer with expertise and care.</p>
+      <div class="ab-cta-btns">
+        <a href="#" class="ab-cta-btn-primary"><i class="bi bi-chat-dots"></i> Start a Project</a>
+        <a href="tel:+917867894668" class="ab-cta-btn-outline"><i class="bi bi-telephone"></i> Call Now</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
