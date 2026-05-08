@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HighCodeX Technologies — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <style>
@@ -26,7 +26,7 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       background: var(--cream);
       color: var(--text);
       overflow-x: hidden;
@@ -54,7 +54,7 @@
     }
     .logo span { color: white; }
     .logo small {
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 9px; font-weight: 500;
       color: rgba(200,150,12,0.6);
       letter-spacing: 2px; text-transform: uppercase;
@@ -67,6 +67,7 @@
       color: rgba(255,255,255,0.75); text-decoration: none;
       padding: 8px 16px; border-radius: 30px;
       font-size: 14px; font-weight: 500; transition: 0.2s;
+      font-family: 'DM Sans', sans-serif;
     }
     .nav-links a:hover { color: var(--gold); }
     .nav-cta {
@@ -90,11 +91,12 @@
       padding: 0 36px; font-size: 12px; font-weight: 600;
       color: white; letter-spacing: 0.5px;
       display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'DM Sans', sans-serif;
     }
     .marquee-item i { color: var(--gold-light); }
     @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* HERO - layout.js navbar height accommodate */
+    /* HERO */
     .hero { padding: 48px 0 56px; text-align: center; position: relative; }
     .hero::before {
       content: ''; position: absolute; inset: 0;
@@ -105,6 +107,7 @@
       font-size: 11px; text-transform: uppercase;
       letter-spacing: 4px; font-weight: 700;
       color: var(--accent); margin-bottom: 14px; display: inline-block;
+      font-family: 'DM Sans', sans-serif;
     }
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
@@ -116,6 +119,7 @@
     .hero p {
       font-size: 15.5px; color: var(--muted);
       max-width: 520px; margin: 0 auto 36px; line-height: 1.7;
+      font-family: 'DM Sans', sans-serif;
     }
     .hero-stats {
       display: inline-flex; gap: 48px;
@@ -124,13 +128,50 @@
       box-shadow: 0 4px 24px rgba(0,0,0,0.08);
       border: 2px solid #e8d0d0;
     }
+
+    .whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 30px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  z-index: 9999;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  background: #128C7E;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+
+  .whatsapp-float {
+    width: 54px;
+    height: 54px;
+    font-size: 28px;
+    bottom: 16px;
+    right: 16px;
+  }
+
+}
     .stat-item { text-align: center; }
     .stat-num {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.9rem; font-weight: 700; color: var(--dark2); line-height: 1;
     }
     .stat-num span { color: var(--accent); }
-    .stat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+    .stat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; font-family: 'DM Sans', sans-serif; }
 
     /* SECTION HEADER */
     .section-header { text-align: center; margin-bottom: 52px; }
@@ -140,7 +181,7 @@
       font-weight: 700; color: var(--dark2); line-height: 1.2;
     }
     .section-title em { font-style: italic; color: var(--accent); }
-    .section-desc { font-size: 14.5px; color: var(--muted); max-width: 500px; margin: 12px auto 0; line-height: 1.7; }
+    .section-desc { font-size: 14.5px; color: var(--muted); max-width: 500px; margin: 12px auto 0; line-height: 1.7; font-family: 'DM Sans', sans-serif; }
 
     /* PORTFOLIO SECTION */
     .portfolio-section { padding: 76px 0; }
@@ -180,43 +221,38 @@
       border-radius: 4px; margin-left: 8px;
       display: flex; align-items: center; padding: 0 10px; overflow: hidden;
     }
-    .burl { font-size: 10px; color: rgba(255,255,255,0.28); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .burl { font-size: 10px; color: rgba(255,255,255,0.28); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'DM Sans', sans-serif; }
 
-    /* iframe container — scrollable, interactive */
- .iframe-wrap {
-  position: absolute;
-  top: 36px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-}
-.iframe-wrap iframe {
-  display: block;
-  width: 1280px;
-  height: 900px;
-  border: none;
-  transform: scale(0.52);
-  transform-origin: top left;
-  pointer-events: none;  /* default: no interaction */
-}
-
-/* preview box hover ஆகும்போது மட்டும் interactive */
-.preview-box:hover .iframe-wrap iframe {
-  pointer-events: auto;
-}
-.iframe-scale-wrapper {
-  width: 100%;
-  height: calc(900px * 0.52);
-  overflow: hidden;
-  position: relative;
-}
-.preview-box {
-  position: relative;
-  background: #111827;
-  min-height: 500px;
-  overflow: hidden;
-}
+    /* iframe container */
+    .iframe-wrap {
+      position: absolute;
+      top: 36px; left: 0; right: 0; bottom: 0;
+      overflow: hidden;
+    }
+    .iframe-wrap iframe {
+      display: block;
+      width: 1200px;
+      height: 900px;
+      border: none;
+      transform: scale(0.52);
+      transform-origin: top left;
+      pointer-events: none;
+    }
+    .preview-box:hover .iframe-wrap iframe {
+      pointer-events: auto;
+    }
+    .iframe-scale-wrapper {
+      width: 100%;
+      height: calc(900px * 0.52);
+      overflow: hidden;
+      position: relative;
+    }
+    .preview-box {
+      position: relative;
+      background: #111827;
+      min-height: 500px;
+      overflow: hidden;
+    }
 
     .live-badge {
       position: absolute; top: 48px; left: 14px; z-index: 9;
@@ -224,21 +260,23 @@
       color: var(--accent); font-size: 10px; font-weight: 700;
       letter-spacing: 2px; text-transform: uppercase;
       padding: 4px 12px; border-radius: 0;
+      font-family: 'DM Sans', sans-serif;
     }
 
     /* DETAIL BOX */
     .detail-box { padding: 42px 38px; display: flex; flex-direction: column; justify-content: center; }
-    .proj-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+    .proj-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; color: var(--accent); margin-bottom: 10px; font-family: 'DM Sans', sans-serif; }
     .proj-name {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.95rem; font-weight: 700; color: var(--dark2); line-height: 1.2; margin-bottom: 14px;
     }
-    .proj-desc { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 22px; }
+    .proj-desc { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 22px; font-family: 'DM Sans', sans-serif; }
     .tech-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 26px; }
     .pill {
       padding: 4px 13px; background: #fff0ee; color: var(--accent);
       border-radius: 0; font-size: 11.5px; font-weight: 600;
       border: 1px solid rgba(192,57,43,0.2);
+      font-family: 'DM Sans', sans-serif;
     }
     .price-block {
       display: flex; align-items: center; gap: 14px;
@@ -252,12 +290,12 @@
       border-radius: 0; display: flex; align-items: center;
       justify-content: center; color: white; font-size: 17px; flex-shrink: 0;
     }
-    .price-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .price-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-family: 'DM Sans', sans-serif; }
     .price-val {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.75rem; font-weight: 700; color: var(--dark2); line-height: 1;
     }
-    .price-val sub { font-size: 13px; font-family: 'Inter', sans-serif; color: var(--muted); font-weight: 400; }
+    .price-val sub { font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--muted); font-weight: 400; }
     .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
     .btn-buy {
       background: var(--accent); color: white; border: none;
@@ -265,6 +303,7 @@
       cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
       transition: all 0.25s; text-decoration: none;
       box-shadow: 0 4px 14px rgba(192,57,43,0.22);
+      font-family: 'DM Sans', sans-serif;
     }
     .btn-buy:hover { background: var(--accent2); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(192,57,43,0.35); }
     .btn-view {
@@ -272,6 +311,7 @@
       padding: 11px 22px; border-radius: 0; font-size: 14px; font-weight: 500;
       cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
       transition: 0.2s; text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
     }
     .btn-view:hover { background: var(--accent); color: white; }
 
@@ -289,8 +329,8 @@
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 14px; font-size: 22px; color: var(--accent);
     }
-    .feat-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--dark2); }
-    .feat-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .feat-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--dark2); font-family: 'DM Sans', sans-serif; }
+    .feat-text { font-size: 13px; color: var(--muted); line-height: 1.6; font-family: 'DM Sans', sans-serif; }
 
     /* PRICING */
     .pricing-section { padding: 78px 0; }
@@ -311,17 +351,19 @@
       background: var(--accent); color: white;
       font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
       text-transform: uppercase; padding: 4px 11px; border-radius: 0;
+      font-family: 'DM Sans', sans-serif;
     }
     .pc-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 700; color: var(--dark2); margin-bottom: 8px; }
     .pc-price { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; }
-    .pc-price sub { font-size: 13px; font-family: 'Inter', sans-serif; color: var(--muted); font-weight: 400; }
-    .pc-pages { font-size: 12px; color: var(--muted); margin: 4px 0 18px; }
+    .pc-price sub { font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--muted); font-weight: 400; }
+    .pc-pages { font-size: 12px; color: var(--muted); margin: 4px 0 18px; font-family: 'DM Sans', sans-serif; }
     .pc-feats { list-style: none; margin-bottom: 26px; }
-    .pc-feats li { font-size: 13px; color: #444; padding: 6px 0; border-bottom: 1px solid #f5eeee; display: flex; align-items: center; gap: 9px; }
+    .pc-feats li { font-size: 13px; color: #444; padding: 6px 0; border-bottom: 1px solid #f5eeee; display: flex; align-items: center; gap: 9px; font-family: 'DM Sans', sans-serif; }
     .pc-feats li i { color: var(--accent); }
     .btn-pc {
       width: 100%; padding: 12px; border-radius: 0;
       font-weight: 600; font-size: 14px; cursor: pointer; transition: 0.2s;
+      font-family: 'DM Sans', sans-serif;
     }
     .btn-pc.filled { background: var(--accent); color: white; border: none; }
     .btn-pc.outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
@@ -338,13 +380,14 @@
       font-size: clamp(2rem, 4vw, 2.9rem); font-weight: 700; color: white; margin-bottom: 14px;
     }
     .cta-section h2 em { font-style: italic; color: var(--gold-light); }
-    .cta-section p { color: rgba(255,255,255,0.75); font-size: 15px; margin-bottom: 34px; }
+    .cta-section p { color: rgba(255,255,255,0.75); font-size: 15px; margin-bottom: 34px; font-family: 'DM Sans', sans-serif; }
     .contact-chips { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 34px; }
     .chip {
       display: inline-flex; align-items: center; gap: 9px;
       background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
       padding: 11px 20px; border-radius: 0; color: white;
       font-size: 14px; text-decoration: none; transition: 0.2s;
+      font-family: 'DM Sans', sans-serif;
     }
     .chip i { color: var(--gold-light); font-size: 15px; }
     .chip:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
@@ -354,6 +397,7 @@
       font-size: 15px; font-weight: 700; cursor: pointer;
       display: inline-flex; align-items: center; gap: 9px;
       transition: 0.25s; box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      font-family: 'DM Sans', sans-serif;
     }
     .btn-main:hover { background: var(--gold-light); transform: translateY(-3px); }
 
@@ -369,27 +413,153 @@
       display: inline-block; margin-bottom: 8px; text-decoration: none;
     }
     footer .flogo span { color: white; }
-    footer p { font-size: 12.5px; }
+    footer p { font-size: 12.5px; font-family: 'DM Sans', sans-serif; }
     footer strong { color: var(--gold); }
 
     /* FADE UP */
     .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.7s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-    /* MOBILE */
+    /* ═══════════════════════════════════════
+       RESPONSIVE FIXES
+    ═══════════════════════════════════════ */
+
+    /* Tablet: 768px – 900px */
     @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero-stats { gap: 28px; padding: 20px 28px; flex-wrap: wrap; justify-content: center; }
+
+      /* Project rows — stack vertically */
       .project-row { grid-template-columns: 1fr; }
-      .project-row .preview-box { order: 1 !important; min-height: 280px; }
+      .project-row .preview-box { order: 1 !important; min-height: 320px; }
       .project-row .detail-box  { order: 2 !important; border: none !important; border-top: 1px solid var(--border) !important; padding: 28px 22px; }
-      .features-grid { grid-template-columns: repeat(2,1fr); }
-      .pricing-grid  { grid-template-columns: 1fr; max-width: 360px; }
-      .nav-links     { display: none; }
-      .hero-stats    { gap: 28px; padding: 20px 28px; flex-wrap: wrap; justify-content: center; }
+
+      /* iframe tablet scale */
+      .iframe-wrap iframe {
+        width: 1024px;
+        height: 768px;
+        transform: scale(0.48);
+      }
+      .iframe-scale-wrapper {
+        height: calc(768px * 0.48);
+      }
+
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+    }
+
+    /* Mobile: ≤ 600px */
+    @media (max-width: 600px) {
+      .container { padding: 0 16px; }
+
+      /* Navbar */
+      .navbar-inner { height: 58px; padding: 0 16px; }
+      .logo { font-size: 20px; }
+      .logo small { display: none; }
+
+      /* Marquee — sits right under layout.js navbar (no extra margin needed) */
+      .marquee-strip { margin-top: 0; }
+
+      /* Hero */
+      .hero { padding: 32px 0 40px; }
+      .hero h1 { font-size: clamp(2rem, 7vw, 2.8rem); }
+      .hero p { font-size: 14px; }
+      .hero-stats {
+        flex-direction: column; gap: 16px;
+        padding: 18px 24px; width: 100%;
+      }
+      .stat-num { font-size: 1.6rem; }
+
+      /* Section headers */
+      .section-title { font-size: clamp(1.7rem, 6vw, 2.2rem); }
+      .section-desc { font-size: 13.5px; }
+      .section-header { margin-bottom: 32px; }
+
+      /* Portfolio section */
+      .portfolio-section { padding: 40px 0 48px; }
+      .project-row { margin-bottom: 28px; }
+
+      /* Preview box — good height for mobile iframe */
+      .preview-box { min-height: 240px !important; }
+
+      /* iframe scale — fit narrow screen */
+      .iframe-wrap iframe {
+        width: 1050px;
+        height: 650px;
+        transform: scale(0.38);
+        transform-origin: top left;
+      }
+      .iframe-scale-wrapper {
+        height: calc(650px * 0.38);
+      }
+
+      /* Detail box */
+      .detail-box { padding: 20px 16px !important; }
+      .proj-name { font-size: 1.55rem; margin-bottom: 10px; }
+      .proj-desc { font-size: 13px; margin-bottom: 16px; line-height: 1.65; }
+      .tech-pills { gap: 5px; margin-bottom: 18px; }
+      .pill { font-size: 11px; padding: 3px 10px; }
+
+      /* Price block */
+      .price-block { padding: 12px 14px; gap: 10px; margin-bottom: 16px; }
+      .price-ico { width: 36px; height: 36px; font-size: 15px; }
+      .price-val { font-size: 1.4rem; }
+
+      /* Buttons */
+      .btn-buy, .btn-view { padding: 10px 18px; font-size: 13px; }
+      .btn-row { gap: 8px; }
+
+      /* Features */
+      .features-strip { padding: 36px 0; }
+      .features-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .feat-card { padding: 16px 10px; }
+      .feat-ico { width: 46px; height: 46px; font-size: 19px; }
+      .feat-title { font-size: 13px; }
+      .feat-text { font-size: 11.5px; }
+
+      /* Pricing */
+      .pricing-section { padding: 44px 0; }
+      .pricing-grid { max-width: 100%; }
+      .price-card { padding: 24px 18px; }
+      .pc-price { font-size: 1.9rem; }
+
+      /* CTA */
+      .cta-section { padding: 50px 0; }
+      .contact-chips { flex-direction: column; align-items: center; gap: 10px; }
+      .chip { width: 100%; max-width: 300px; justify-content: center; }
+      .btn-main { padding: 12px 28px; font-size: 14px; }
+
+      /* Footer */
+      footer { padding: 22px 0; }
+
+      /* Bottom nav bar spacing from layout.js */
+      body { padding-bottom: 70px !important; }
+    }
+
+    /* Very small: ≤ 400px */
+    @media (max-width: 400px) {
+      .hero h1 { font-size: 1.75rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .btn-row { flex-direction: column; }
+      .btn-buy, .btn-view { width: 100%; justify-content: center; }
+
+      /* Even smaller iframe for tiny screens */
+      .iframe-wrap iframe {
+        width: 1000px;
+        height: 600px;
+        transform: scale(0.33);
+      }
+      .iframe-scale-wrapper {
+        height: calc(600px * 0.33);
+      }
+
+      .preview-box { min-height: 200px !important; }
+      .proj-name { font-size: 1.4rem; }
     }
   </style>
 </head>
 <body>
-   <script src="layout.js" defer></script>
+  <script src="layout.js" defer></script>
 
   <!-- NAVBAR handled by layout.js -->
   <div id="main-header"></div>
@@ -397,15 +567,15 @@
   <!-- MARQUEE -->
   <div class="marquee-strip" style="margin-top:0">
     <div class="marquee-track">
-      <span class="marquee-item"><i class="bi bi-check-circle-fill"></i> Clean & Scalable Code</span>
+      <span class="marquee-item"><i class="bi bi-check-circle-fill"></i> Clean &amp; Scalable Code</span>
       <span class="marquee-item"><i class="bi bi-lightning-fill"></i> Fast Delivery — On Time</span>
-      <span class="marquee-item"><i class="bi bi-phone-fill"></i> Mobile-First & SEO Ready</span>
+      <span class="marquee-item"><i class="bi bi-phone-fill"></i> Mobile-First &amp; SEO Ready</span>
       <span class="marquee-item"><i class="bi bi-shield-fill-check"></i> Secure Architecture</span>
       <span class="marquee-item"><i class="bi bi-headset"></i> 24/7 Support</span>
       <span class="marquee-item"><i class="bi bi-layers-fill"></i> Full-Stack Expertise</span>
-      <span class="marquee-item"><i class="bi bi-check-circle-fill"></i> Clean & Scalable Code</span>
+      <span class="marquee-item"><i class="bi bi-check-circle-fill"></i> Clean &amp; Scalable Code</span>
       <span class="marquee-item"><i class="bi bi-lightning-fill"></i> Fast Delivery — On Time</span>
-      <span class="marquee-item"><i class="bi bi-phone-fill"></i> Mobile-First & SEO Ready</span>
+      <span class="marquee-item"><i class="bi bi-phone-fill"></i> Mobile-First &amp; SEO Ready</span>
       <span class="marquee-item"><i class="bi bi-shield-fill-check"></i> Secure Architecture</span>
       <span class="marquee-item"><i class="bi bi-headset"></i> 24/7 Support</span>
       <span class="marquee-item"><i class="bi bi-layers-fill"></i> Full-Stack Expertise</span>
@@ -522,61 +692,67 @@
   <!-- FOOTER handled by layout.js -->
   <div id="main-footer"></div>
 
+  <!-- WhatsApp Float -->
+<a href="https://wa.me/917868946689?text=Hi%20HighCodeX%2C%20I'd%20like%20to%20discuss%20a%20project" 
+target="_blank" 
+class="whatsapp-float" 
+aria-label="Chat on WhatsApp">
+
+  <i class="bi bi-whatsapp"></i>
+
+</a>
+
   <script>
-    // ═══════════════════════════════════════════════════
-    //  PROJECT DATA — உன் local HTML files இங்க add பண்ணு
-    //  file: "filename.html"  ← same folder-ல இருக்கணும்
-    // ═══════════════════════════════════════════════════
-   const projects = [
-  {
-    name: "Highcodex",
-    tag: "Digital Agency",
-    desc: "A modern digital agency website showcasing web development, branding, SEO, and business growth services with premium UI design.",
-    file: "HCX-WEBSITE/index.html",
-    price: "₹12,000",
-    techs: ["HTML5", "CSS3", "JavaScript", "Bootstrap Icons"]
-  },
-  {
-    name: "Ecommerce",
-    tag: "Online Shopping",
-    desc: "Feature-rich e-commerce platform with product listings, shopping cart, secure checkout, and responsive mobile-friendly design.",
-    file: "Ecommerce/home.html",
-    price: "₹8,000",
-    techs: ["HTML5", "CSS3", "JavaScript"]
-  },
-  {
-    name: "Website",
-    tag: "Corporate Website",
-    desc: "Professional business website crafted for startups and companies with modern layouts, animations, and lead generation features.",
-    file: "Website/hcx_home.html",
-    price: "₹18,000",
-    techs: ["Laravel", "MySQL", "Bootstrap", "PHP"]
-  },
-  {
-    name: "Booksky",
-    tag: "Booking Platform",
-    desc: "Smart booking platform designed for appointments, reservations, and event scheduling with clean UI and fast performance.",
-    file: "Booksky/index.html",
-    price: "₹12,000",
-    techs: ["HTML5", "CSS3", "JavaScript", "Bootstrap Icons"]
-  },
-  {
-    name: "ChatApp",
-    tag: "Messaging Application",
-    desc: "Real-time chat application with instant messaging, user authentication, online status, and modern responsive interface.",
-    file: "ChatApp/index.html",
-    price: "₹8,000",
-    techs: ["HTML5", "CSS3", "JavaScript"]
-  },
-  {
-    name: "Portfolio",
-    tag: "Personal Branding",
-    desc: "Creative personal portfolio website for developers, designers, and freelancers to showcase projects, skills, and achievements.",
-    file: "Portfolio/index.html",
-    price: "₹18,000",
-    techs: ["Laravel", "MySQL", "Bootstrap", "PHP"]
-  },
-];
+    const projects = [
+      {
+        name: "Highcodex",
+        tag: "Digital Agency",
+        desc: "A modern digital agency website showcasing web development, branding, SEO, and business growth services with premium UI design.",
+        file: "HCX-WEBSITE/index.html",
+        price: "₹12,000",
+        techs: ["HTML5", "CSS3", "JavaScript", "Bootstrap Icons"]
+      },
+      {
+        name: "Ecommerce",
+        tag: "Online Shopping",
+        desc: "Feature-rich e-commerce platform with product listings, shopping cart, secure checkout, and responsive mobile-friendly design.",
+        file: "Ecommerce/home.html",
+        price: "₹8,000",
+        techs: ["HTML5", "CSS3", "JavaScript"]
+      },
+      {
+        name: "Website",
+        tag: "Corporate Website",
+        desc: "Professional business website crafted for startups and companies with modern layouts, animations, and lead generation features.",
+        file: "Website/hcx_home.html",
+        price: "₹18,000",
+        techs: ["Laravel", "MySQL", "Bootstrap", "PHP"]
+      },
+      {
+        name: "Booksky",
+        tag: "Booking Platform",
+        desc: "Smart booking platform designed for appointments, reservations, and event scheduling with clean UI and fast performance.",
+        file: "Booksky/index.html",
+        price: "₹12,000",
+        techs: ["HTML5", "CSS3", "JavaScript", "Bootstrap Icons"]
+      },
+      {
+        name: "ChatApp",
+        tag: "Messaging Application",
+        desc: "Real-time chat application with instant messaging, user authentication, online status, and modern responsive interface.",
+        file: "ChatApp/index.html",
+        price: "₹8,000",
+        techs: ["HTML5", "CSS3", "JavaScript"]
+      },
+      {
+        name: "Portfolio",
+        tag: "Personal Branding",
+        desc: "Creative personal portfolio website for developers, designers, and freelancers to showcase projects, skills, and achievements.",
+        file: "Portfolio/index.html",
+        price: "₹18,000",
+        techs: ["Laravel", "MySQL", "Bootstrap", "PHP"]
+      },
+    ];
 
     // BUILD PROJECT ROWS
     const container = document.getElementById('projects-container');
@@ -592,7 +768,6 @@
             <div class="bdot g"></div>
             <div class="bbar"><span class="burl">${proj.file}</span></div>
           </div>
-          <div class="live-badge"><i class="bi bi-circle-fill" style="font-size:7px;color:#22c55e;margin-right:4px"></i>Live Preview</div>
           <div class="iframe-wrap">
             <div class="iframe-scale-wrapper">
               <iframe src="${proj.file}"

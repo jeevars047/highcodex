@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>HighCodeX Technologies | Web & Mobile Development</title>
   
-  <!-- Google Fonts + Bootstrap Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Cormorant Garamond (headings) + DM Sans (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
   <style>
@@ -31,7 +31,7 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       background-color: var(--cream);
       color: #2d2a2a;
       overflow-x: hidden;
@@ -48,6 +48,42 @@
       padding: 70px 0;
     }
 
+    .whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 30px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  z-index: 9999;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  background: #128C7E;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+
+  .whatsapp-float {
+    width: 54px;
+    height: 54px;
+    font-size: 28px;
+    bottom: 16px;
+    right: 16px;
+  }
+
+}
     .section-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.8rem;
@@ -88,6 +124,7 @@
       border: none;
       padding: 12px 28px;
       border-radius: 40px;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 600;
       font-size: 0.9rem;
       cursor: pointer;
@@ -96,6 +133,7 @@
       gap: 10px;
       transition: all 0.25s ease;
       box-shadow: 0 4px 8px rgba(192, 57, 43, 0.2);
+      white-space: nowrap;
     }
 
     .btn-primary:hover {
@@ -110,6 +148,7 @@
       color: var(--primary-rose);
       padding: 10px 26px;
       border-radius: 40px;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 500;
       transition: 0.2s;
     }
@@ -119,9 +158,305 @@
       color: white;
     }
 
+    /* ══════════════════════════════════
+       HERO
+    ══════════════════════════════════ */
+    .hero-slider-wrapper {
+      position: relative;
+      height: calc(85vh - 10px);
+      min-height: 600px;
+    }
+
+    /* ══════════════════════════════════
+       HERO SEARCH BAR
+    ══════════════════════════════════ */
+    .hero-search {
+      background: white;
+      border-radius: 60px;
+      padding: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+    }
+
+    .hero-search select {
+      flex: 1;
+      min-width: 140px;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 50px;
+      background: #fef9f5;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      outline: none;
+      font-size: 0.9rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    /* ══════════════════════════════════
+       BENEFITS GRID
+    ══════════════════════════════════ */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 28px;
+    }
+
+    .benefit-card {
+      background: var(--cream);
+      border-radius: 28px;
+      padding: 32px 20px;
+      text-align: center;
+      transition: 0.3s;
+      border: 1px solid var(--border-light);
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+    }
+
+    /* ══════════════════════════════════
+       SERVICES GRID
+    ══════════════════════════════════ */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 24px;
+    }
+
+    .service-chip {
+      background: white;
+      border-radius: 60px;
+      padding: 14px 10px;
+      text-align: center;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: var(--shadow-sm);
+      cursor: default;
+      transition: all 0.2s;
+    }
+
+    .service-chip:hover {
+      background: #f8e6cf;
+      transform: translateY(-4px);
+    }
+
+    /* ══════════════════════════════════
+       STORIES GRID
+    ══════════════════════════════════ */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .story-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: 0.25s;
+    }
+
+    .story-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .story-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ══════════════════════════════════
+       MISC
+    ══════════════════════════════════ */
+    .marquee-track {
+      display: inline-flex;
+      white-space: nowrap;
+      animation: scrollMarquee 26s linear infinite;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: rgba(255,255,240,0.5);
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .dot.active {
+      width: 28px;
+      background: #d4af37;
+    }
+
+    .hero-slide { transition: opacity 1s ease; }
+    .active-nav { color: #d4af37 !important; border-bottom: 2px solid #d4af37; }
+    .nav-link { transition: 0.2s; }
+
+    @keyframes scrollMarquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ════════════════════════════════════
+       RESPONSIVE — Tablet (≤992px)
+    ════════════════════════════════════ */
     @media (max-width: 992px) {
       .section-title { font-size: 2.2rem; }
       section { padding: 50px 0; }
+
+      .hero-slider-wrapper {
+        height: auto;
+        min-height: 560px;
+      }
+
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ════════════════════════════════════
+       RESPONSIVE — Mobile (≤768px)
+    ════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .container { padding: 0 16px; }
+      section { padding: 40px 0; }
+      .section-title { font-size: 1.9rem; }
+
+      /* Hero */
+      .hero-slider-wrapper {
+        min-height: 100svh;
+        height: auto;
+      }
+
+      /* Hero content — give top padding for navbar clearance */
+      .hero-content-inner {
+        padding-top: 100px;
+        padding-bottom: 60px;
+      }
+
+      /* Hero stats */
+      .hero-stats {
+        gap: 16px;
+      }
+
+      .hero-stats > div {
+        flex: 1 1 70px;
+        text-align: center;
+      }
+
+      /* Hero search — stack vertically */
+      .hero-search {
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 12px;
+        gap: 10px;
+      }
+
+      .hero-search select,
+      .hero-search .btn-primary {
+        width: 100%;
+        border-radius: 12px !important;
+        margin: 0 !important;
+      }
+
+      /* Benefits — 1 col on small mobile */
+      .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .benefit-card { padding: 24px 16px; }
+
+      /* Services — 2 col */
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .service-chip {
+        border-radius: 16px;
+        font-size: 0.82rem;
+        padding: 12px 8px;
+        gap: 6px;
+      }
+
+      /* Stories — 1 col */
+      .stories-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      /* Project matcher selects */
+      #projectTypeSelect,
+      #complexityRange {
+        width: 100%;
+      }
+
+      /* Trust bar */
+      .trust-bar {
+        gap: 20px;
+        font-size: 0.85rem;
+      }
+
+      /* CTA section */
+      .cta-section h3 {
+        font-size: 1.6rem !important;
+      }
+
+      /* Navbar toggle */
+      .global-navbar .nav-menu { display: none; }
+      .mobile-toggle { display: block !important; }
+    }
+
+    /* ════════════════════════════════════
+       RESPONSIVE — Small Mobile (≤480px)
+    ════════════════════════════════════ */
+    @media (max-width: 480px) {
+      .section-title { font-size: 1.6rem; }
+
+      .hero-stats {
+        gap: 12px;
+      }
+
+      .hero-stats > div span:first-child {
+        font-size: 1.6rem !important;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-chip {
+        border-radius: 60px;
+        padding: 14px 16px;
+        font-size: 0.9rem;
+      }
+
+      .btn-primary {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
@@ -132,7 +467,8 @@
   <main>
     <!-- ========== HERO SECTION with SLIDER + SEARCH ========== -->
     <section id="home" style="padding-top: 0; margin-top: 0">
-<div class="hero-slider-wrapper" style="position: relative; height: calc(85vh - 10px); min-height: 600px;">        <div class="hero-slides" style="position: absolute; inset: 0; z-index: 0;">
+      <div class="hero-slider-wrapper">
+        <div class="hero-slides" style="position: absolute; inset: 0; z-index: 0;">
           <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1920&q=80'); background-size: cover; background-position: center; position: absolute; inset: 0; transition: opacity 1.2s; opacity: 1;"></div>
           <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920&q=80'); background-size: cover; background-position: center; position: absolute; inset: 0; opacity: 0;"></div>
           <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1920&q=80'); background-size: cover; background-position: center; position: absolute; inset: 0; opacity: 0;"></div>
@@ -140,44 +476,55 @@
         </div>
         
         <div class="container" style="position: relative; z-index: 10; height: 100%; display: flex; flex-direction: column; justify-content: center;">
-          <div class="hero-content" style="max-width: 720px;">
+          <div class="hero-content hero-content-inner" style="max-width: 720px;">
             <div class="eyebrow" style="background: rgba(212, 175, 55, 0.18); display: inline-block; padding: 5px 18px; border-radius: 40px; backdrop-filter: blur(4px); color: var(--gold-light);">✦ FULL-STACK DEVELOPMENT AGENCY</div>
-            <h1 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 700; color: white; margin: 20px 0 16px; line-height: 1.1;">We Build Websites <span style="color: var(--gold);">That Convert</span></h1>
-            <p style="color: rgba(255,255,240,0.9); font-size: 1.1rem; max-width: 500px; margin-bottom: 32px;">Available for Projects - Chennai, Tamil Nadu · Premium web & app solutions delivered with clean code.</p>
+            <h1 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 7vw, 5rem); font-weight: 700; color: white; margin: 20px 0 16px; line-height: 1.1;">We Build Websites <span style="color: var(--gold);">That Convert</span></h1>
+            <p style="color: rgba(255,255,240,0.9); font-size: 1.05rem; max-width: 500px; margin-bottom: 32px;">Available for Projects - Chennai, Tamil Nadu · Premium web & app solutions delivered with clean code.</p>
             
             <!-- Project Inquiry Bar -->
-            <div class="hero-search" style="background: white; border-radius: 60px; padding: 6px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; box-shadow: 0 20px 35px rgba(0,0,0,0.2);">
-              <select id="projectType" style="flex: 1; padding: 14px 20px; border: none; border-radius: 50px; background: #fef9f5; font-weight: 500; outline: none; font-size: 0.9rem;">
+            <div class="hero-search">
+              <select id="projectType">
                 <option value="">💻 Select Service</option>
-                <option>Web Development</option><option>Mobile App Development</option><option>E-Commerce Solution</option><option>Backend / API</option>
+                <option>Web Development</option>
+                <option>Mobile App Development</option>
+                <option>E-Commerce Solution</option>
+                <option>Backend / API</option>
               </select>
-              <select id="budgetRange" style="flex: 1; padding: 14px 20px; border: none; border-radius: 50px; background: #fef9f5; font-weight: 500; outline: none;">
-                <option value="">💰 Budget Range</option><option>₹30k - ₹80k</option><option>₹80k - ₹2L</option><option>₹2L+</option>
+              <select id="budgetRange">
+                <option value="">💰 Budget Range</option>
+                <option>₹30k - ₹80k</option>
+                <option>₹80k - ₹2L</option>
+                <option>₹2L+</option>
               </select>
               <button id="getQuoteBtn" class="btn-primary" style="border-radius: 50px; padding: 12px 32px; margin: 4px;"><i class="bi bi-chat-dots"></i> Free Consultation</button>
             </div>
-            <div class="hero-stats" style="display: flex; gap: 32px; margin-top: 40px;">
-              <div><span style="font-size: 2rem; font-weight: 700; color: var(--gold);">50+</span><br><span style="font-size: 0.75rem; color: rgba(255,255,255,0.8);">PROJECTS DELIVERED</span></div>
-              <div><span style="font-size: 2rem; font-weight: 700; color: var(--gold);">98%</span><br><span style="font-size: 0.75rem; color: rgba(255,255,255,0.8);">CLIENT SATISFACTION</span></div>
-              <div><span style="font-size: 2rem; font-weight: 700; color: var(--gold);">24/7</span><br><span style="font-size: 0.75rem; color: rgba(255,255,255,0.8);">SUPPORT</span></div>
+
+            <div class="hero-stats">
+              <div><span style="font-size: 2rem; font-weight: 700; color: var(--gold);">7+</span><br><span style="font-size: 0.72rem; color: rgba(255,255,255,0.8);">SAMPLE WEBSITES</span></div>
+              <div><span style="font-size: 2rem; font-weight: 700; color: var(--gold);">98%</span><br><span style="font-size: 0.72rem; color: rgba(255,255,255,0.8);">CLIENT SATISFACTION</span></div>
+              <div><span style="font-size: 2rem; font-weight: 700; color: var(--gold);">24/7</span><br><span style="font-size: 0.72rem; color: rgba(255,255,255,0.8);">SUPPORT</span></div>
             </div>
           </div>
         </div>
+
         <div class="hero-dots" style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 20;">
-          <div class="dot active" data-index="0"></div><div class="dot" data-index="1"></div><div class="dot" data-index="2"></div>
+          <div class="dot active" data-index="0"></div>
+          <div class="dot" data-index="1"></div>
+          <div class="dot" data-index="2"></div>
         </div>
       </div>
     </section>
 
-    <!-- Marquee / Trust Badge (tech version) -->
+    <!-- Marquee / Trust Badge -->
     <div style="background: var(--primary-burgundy); color: white; padding: 12px 0; overflow: hidden;">
-      <div class="marquee-track" style="display: flex; gap: 48px; white-space: nowrap; animation: scrollMarquee 24s linear infinite;">
-        <span>🚀 50+ Websites Launched</span><span>⚡ On-Time Delivery Guarantee</span><span>🔒 Secure & Scalable Code</span>
-        <span>📱 Mobile-First Designs</span><span>🎯 100% Client Focus</span><span>🚀 50+ Websites Launched</span>
+      <div class="marquee-track" style="display: flex; gap: 48px; white-space: nowrap;">
+        <span>🚀 7+ Sample Websites</span><span>⚡ On-Time Delivery Guarantee</span><span>🔒 Secure & Scalable Code</span>
+        <span>📱 Mobile-First Designs</span><span>🎯 100% Client Focus</span><span>🚀 7+ Sample Websites</span>
+        <span>⚡ On-Time Delivery Guarantee</span><span>🔒 Secure & Scalable Code</span><span>📱 Mobile-First Designs</span>
       </div>
     </div>
 
-    <!-- ========== WHY CHOOSE US (Benefits) ========== -->
+    <!-- ========== WHY CHOOSE US ========== -->
     <section style="background: white;">
       <div class="container">
         <div class="fade-up" style="text-align: center; margin-bottom: 48px;">
@@ -185,23 +532,23 @@
           <h2 class="section-title">Built Different. <span>Delivered Better.</span></h2>
           <p style="max-width: 650px; margin: 16px auto 0; color: var(--text-muted);">We don't just write code — we engineer solutions that grow your business.</p>
         </div>
-        <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 28px;">
-          <div class="benefit-card fade-up" style="background: var(--cream); border-radius: 28px; padding: 32px 20px; text-align: center; transition: 0.3s; border: 1px solid var(--border-light);">
+        <div class="benefits-grid">
+          <div class="benefit-card fade-up">
             <div style="background: rgba(192,57,43,0.1); width: 72px; height: 72px; border-radius: 80px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px;"><i class="bi bi-code-slash" style="color: var(--primary-rose);"></i></div>
             <h3 style="font-size: 1.4rem; font-weight: 700;">Clean & Scalable Code</h3>
             <p style="color: var(--text-muted); margin-top: 12px;">Maintainable, secure code with industry best practices.</p>
           </div>
-          <div class="benefit-card fade-up" style="background: var(--cream); border-radius: 28px; padding: 32px 20px; text-align: center;">
+          <div class="benefit-card fade-up">
             <div style="background: rgba(192,57,43,0.1); width: 72px; height: 72px; border-radius: 80px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px;"><i class="bi bi-clock-history" style="color: var(--primary-rose);"></i></div>
             <h3 style="font-size: 1.4rem; font-weight: 700;">On-Time Delivery</h3>
             <p style="color: var(--text-muted);">Rapid turnaround without compromising quality — every time.</p>
           </div>
-          <div class="benefit-card fade-up" style="background: var(--cream); border-radius: 28px; padding: 32px 20px; text-align: center;">
+          <div class="benefit-card fade-up">
             <div style="background: rgba(192,57,43,0.1); width: 72px; height: 72px; border-radius: 80px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px;"><i class="bi bi-phone" style="color: var(--primary-rose);"></i></div>
             <h3 style="font-size: 1.4rem; font-weight: 700;">Mobile-First & SEO</h3>
             <p style="color: var(--text-muted);">Every design is responsive and SEO-ready for all screen sizes.</p>
           </div>
-          <div class="benefit-card fade-up" style="background: var(--cream); border-radius: 28px; padding: 32px 20px; text-align: center;">
+          <div class="benefit-card fade-up">
             <div style="background: rgba(192,57,43,0.1); width: 72px; height: 72px; border-radius: 80px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px;"><i class="bi bi-headset" style="color: var(--primary-rose);"></i></div>
             <h3 style="font-size: 1.4rem; font-weight: 700;">24/7 Expert Support</h3>
             <p style="color: var(--text-muted);">Round-the-clock support to keep your products running smoothly.</p>
@@ -210,77 +557,84 @@
       </div>
     </section>
 
-    <!-- ========== POPULAR SERVICES (mini showcase) ========== -->
+    <!-- ========== POPULAR SERVICES ========== -->
     <section style="background: #fef7ef;">
       <div class="container">
         <div class="fade-up" style="text-align: center; margin-bottom: 48px;">
           <div class="eyebrow">our expertise</div>
           <h2 class="section-title">High-impact <span>services</span> for your business</h2>
         </div>
-        <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 24px;">
-          <div class="service-chip" style="background: white; border-radius: 60px; padding: 14px 10px; text-align: center; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: var(--shadow-sm);"><i class="bi bi-browser-chrome" style="color: var(--primary-rose);"></i> Web Development</div>
-          <div class="service-chip" style="background: white; border-radius: 60px; padding: 14px 10px; text-align: center; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px;"><i class="bi bi-phone" style="color: var(--primary-rose);"></i> Mobile Apps</div>
-          <div class="service-chip" style="background: white; border-radius: 60px; padding: 14px 10px; text-align: center; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px;"><i class="bi bi-cart3" style="color: var(--primary-rose);"></i> E-Commerce</div>
-          <div class="service-chip" style="background: white; border-radius: 60px; padding: 14px 10px; text-align: center; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px;"><i class="bi bi-server" style="color: var(--primary-rose);"></i> Backend APIs</div>
-          <div class="service-chip" style="background: white; border-radius: 60px; padding: 14px 10px; text-align: center; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px;"><i class="bi bi-palette" style="color: var(--primary-rose);"></i> UI/UX Design</div>
-          <div class="service-chip" style="background: white; border-radius: 60px; padding: 14px 10px; text-align: center; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px;"><i class="bi bi-shield-lock" style="color: var(--primary-rose);"></i> Security & Maintenance</div>
+        <div class="services-grid">
+          <div class="service-chip"><i class="bi bi-browser-chrome" style="color: var(--primary-rose);"></i> Web Development</div>
+          <div class="service-chip"><i class="bi bi-phone" style="color: var(--primary-rose);"></i> Mobile Apps</div>
+          <div class="service-chip"><i class="bi bi-cart3" style="color: var(--primary-rose);"></i> E-Commerce</div>
+          <div class="service-chip"><i class="bi bi-server" style="color: var(--primary-rose);"></i> Backend APIs</div>
+          <div class="service-chip"><i class="bi bi-palette" style="color: var(--primary-rose);"></i> UI/UX Design</div>
+          <div class="service-chip"><i class="bi bi-shield-lock" style="color: var(--primary-rose);"></i> Security & Maintenance</div>
         </div>
       </div>
     </section>
 
-    <!-- ========== CLIENT SUCCESS STORIES (replaced wedding stories) ========== -->
+    <!-- ========== CLIENT SUCCESS STORIES ========== -->
     <section>
       <div class="container">
-        <div class="fade-up" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; margin-bottom: 48px;">
+        <div class="fade-up" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 48px;">
           <div>
             <div class="eyebrow">client success</div>
             <h2 class="section-title">Real Results, <span>Real Stories</span></h2>
             <p style="color: var(--text-muted); max-width: 500px;">Businesses that grew with HighCodeX solutions.</p>
           </div>
         </div>
-        <div class="stories-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
-          <div class="story-card fade-up" style="background: white; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-sm);">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" style="width: 100%; height: 240px; object-fit: cover;" alt="team meeting">
+        <div class="stories-grid">
+          <div class="story-card fade-up">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" alt="team meeting">
             <div style="padding: 24px;">
               <h3 style="font-size: 1.4rem; font-family: 'Cormorant Garamond', serif;">EcoMart Online Store</h3>
               <p style="color: var(--primary-rose); font-size: 0.75rem; letter-spacing: 1px;">E-COMMERCE | LARAVEL</p>
-              <p style="margin-top: 12px; color: var(--text-muted);">“HighCodeX built a scalable e-commerce platform that increased our sales by 150% in 3 months. Exceptional support!”</p>
+              <p style="margin-top: 12px; color: var(--text-muted);">"HighCodeX built a scalable e-commerce platform that increased our sales by 150% in 3 months. Exceptional support!"</p>
             </div>
           </div>
-          <div class="story-card fade-up" style="background: white; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-sm);">
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80" style="width: 100%; height: 240px; object-fit: cover;" alt="startup team">
+          <div class="story-card fade-up">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80" alt="startup team">
             <div style="padding: 24px;">
-              <h3 style="font-size: 1.4rem;">HealthFirst CRM</h3>
-              <p style="color: var(--primary-rose); font-size: 0.75rem;">BACKEND | DJANGO</p>
-              <p style="margin-top: 12px; color: var(--text-muted);">“The custom dashboard and API integration transformed our operations. On-time delivery and clean code.”</p>
+              <h3 style="font-size: 1.4rem; font-family: 'Cormorant Garamond', serif;">HealthFirst CRM</h3>
+              <p style="color: var(--primary-rose); font-size: 0.75rem; letter-spacing: 1px;">BACKEND | DJANGO</p>
+              <p style="margin-top: 12px; color: var(--text-muted);">"The custom dashboard and API integration transformed our operations. On-time delivery and clean code."</p>
             </div>
           </div>
-          <div class="story-card fade-up" style="background: white; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-sm);">
-            <img src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?w=600&q=80" style="width: 100%; height: 240px; object-fit: cover;" alt="mobile app">
+          <div class="story-card fade-up">
+            <img src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?w=600&q=80" alt="mobile app">
             <div style="padding: 24px;">
-              <h3 style="font-size: 1.4rem;">QuickServe Delivery App</h3>
-              <p style="color: var(--primary-rose); font-size: 0.75rem;">MOBILE APP | REACT NATIVE</p>
-              <p style="margin-top: 12px; color: var(--text-muted);">“Our customers love the seamless experience. HighCodeX understood our vision perfectly and delivered ahead of schedule.”</p>
+              <h3 style="font-size: 1.4rem; font-family: 'Cormorant Garamond', serif;">QuickServe Delivery App</h3>
+              <p style="color: var(--primary-rose); font-size: 0.75rem; letter-spacing: 1px;">MOBILE APP | REACT NATIVE</p>
+              <p style="margin-top: 12px; color: var(--text-muted);">"Our customers love the seamless experience. HighCodeX understood our vision perfectly and delivered ahead of schedule."</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========== INTERACTIVE PROJECT MATCHER (replaces vendor matcher) ========== -->
+    <!-- ========== INTERACTIVE PROJECT MATCHER ========== -->
     <section style="background: linear-gradient(115deg, #fceaea 0%, #fff1e6 100%);">
       <div class="container">
         <div class="fade-up" style="text-align: center; max-width: 750px; margin: 0 auto;">
           <div class="eyebrow">✨ find your perfect stack</div>
           <h2 class="section-title">Get <span>Personalised</span> Project Recommendations</h2>
-          <p style="margin-bottom: 32px; color: #583c3c;">Tell us your project type & complexity, we’ll suggest the best tech stack and timeline.</p>
+          <p style="margin-bottom: 32px; color: #583c3c;">Tell us your project type & complexity, we'll suggest the best tech stack and timeline.</p>
           <div style="background: white; border-radius: 48px; padding: 28px; box-shadow: var(--shadow-md);">
             <div style="display: flex; flex-wrap: wrap; gap: 18px; justify-content: center;">
-              <select id="projectTypeSelect" style="padding: 12px 20px; border-radius: 60px; border: 1px solid #e2cfc1; background: #fff; min-width: 180px;">
-                <option>Website / Landing Page</option><option>E-Commerce Store</option><option>Mobile App (iOS/Android)</option><option>Custom Web Application</option><option>Backend API / Dashboard</option>
+              <select id="projectTypeSelect" style="padding: 12px 20px; border-radius: 60px; border: 1px solid #e2cfc1; background: #fff; font-family: 'DM Sans', sans-serif; min-width: 180px; flex: 1;">
+                <option>Website / Landing Page</option>
+                <option>E-Commerce Store</option>
+                <option>Mobile App (iOS/Android)</option>
+                <option>Custom Web Application</option>
+                <option>Backend API / Dashboard</option>
               </select>
-              <select id="complexityRange" style="padding: 12px 20px; border-radius: 60px; border: 1px solid #e2cfc1;">
-                <option>Basic (1-2 weeks)</option><option>Intermediate (3-5 weeks)</option><option>Advanced (6-8 weeks)</option><option>Enterprise (3+ months)</option>
+              <select id="complexityRange" style="padding: 12px 20px; border-radius: 60px; border: 1px solid #e2cfc1; font-family: 'DM Sans', sans-serif; flex: 1;">
+                <option>Basic (1-2 weeks)</option>
+                <option>Intermediate (3-5 weeks)</option>
+                <option>Advanced (6-8 weeks)</option>
+                <option>Enterprise (3+ months)</option>
               </select>
               <button id="matchProjectBtn" class="btn-primary" style="background: var(--primary-burgundy);"><i class="bi bi-lightbulb"></i> Suggest My Tech Stack</button>
             </div>
@@ -290,17 +644,17 @@
       </div>
     </section>
 
-    <!-- ========== TRUST BADGES (tech version) ========== -->
+    <!-- ========== TRUST BADGES ========== -->
     <div style="background: white; padding: 20px 0; border-top: 1px solid #f0e2d4; border-bottom: 1px solid #f0e2d4;">
-      <div class="container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 48px; align-items: center;">
-        <span style="font-weight: 600; color: #886b6b;">Trusted by 50+ Startups & Businesses</span>
+      <div class="container trust-bar" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 48px; align-items: center;">
+        <span style="font-weight: 600; color: #886b6b;">Trusted by 7+ Sample Websites</span>
         <span><i class="bi bi-trophy-fill" style="color: var(--gold);"></i> Top Rated on Clutch</span>
         <span><i class="bi bi-chat-heart-fill" style="color: #c0392b;"></i> 4.9/5 Client Satisfaction</span>
       </div>
     </div>
 
     <!-- ========== CALL TO ACTION ========== -->
-    <section style="background: var(--dark-charcoal); color: white; text-align: center;">
+    <section class="cta-section" style="background: var(--dark-charcoal); color: white; text-align: center;">
       <div class="container fade-up">
         <h3 style="font-size: 2rem; font-family: 'Cormorant Garamond', serif;">Ready to scale your business online?</h3>
         <p style="margin: 12px auto 24px; max-width: 550px;">Get a free project consultation & a custom quote from our expert team.</p>
@@ -311,10 +665,19 @@
   </main>
 
   <div id="main-footer"></div>
+<!-- WhatsApp Float -->
+<a href="https://wa.me/917868946689?text=Hi%20HighCodeX%2C%20I'd%20like%20to%20discuss%20a%20project" 
+target="_blank" 
+class="whatsapp-float" 
+aria-label="Chat on WhatsApp">
 
+  <i class="bi bi-whatsapp"></i>
+
+</a>
   <script>
     (function() {
       document.addEventListener('DOMContentLoaded', () => {
+        // Hero slider
         let slideIdx = 0;
         const slides = document.querySelectorAll('.hero-slide');
         const dots = document.querySelectorAll('.hero-dots .dot');
@@ -335,48 +698,45 @@
           }));
         }
 
-        const getQuoteBtn = document.getElementById('getQuoteBtn');
-        if(getQuoteBtn) getQuoteBtn.addEventListener('click', () => { alert(`✅ Thanks! We'll get back to you within 24h about your ${document.getElementById('projectType')?.value || 'project'} with budget ${document.getElementById('budgetRange')?.value || 'flexible'}.`); });
-        
+        // Quote button
+       const getQuoteBtn = document.getElementById('getQuoteBtn');
+
+if (getQuoteBtn) {
+
+  getQuoteBtn.addEventListener('click', () => {
+
+    window.open(
+      "https://wa.me/917868946689?text=Hi%20HighCodeX%2C%20I%20want%20a%20free%20consultation%20for%20my%20project",
+      "_blank"
+    );
+
+  });
+
+}
+
+        // Project matcher
         const matchBtn = document.getElementById('matchProjectBtn');
         const msgSpan = document.getElementById('matcherMessage');
-        if(matchBtn) matchBtn.addEventListener('click', () => {
+        if (matchBtn) matchBtn.addEventListener('click', () => {
           const project = document.getElementById('projectTypeSelect')?.value || 'project';
           const complexity = document.getElementById('complexityRange')?.value || '';
           msgSpan.innerHTML = `🚀 Recommendation: For ${project} (${complexity}), we suggest using React/Node.js or Django + PostgreSQL. Get a detailed quote now!`;
           msgSpan.style.color = '#9b2c1d';
         });
-        
+
+        // CTA button
         const ctaBtn = document.getElementById('ctaBookBtn');
-        if(ctaBtn) ctaBtn.addEventListener('click', () => alert('📞 Thank you! A HighCodeX expert will call you within 2 hours. Let\'s build something amazing!'));
-        
+        if (ctaBtn) ctaBtn.addEventListener('click', () => alert('📞 Thank you! A HighCodeX expert will call you within 2 hours. Let\'s build something amazing!'));
+
+        // Fade-up observer
         const fadeElements = document.querySelectorAll('.fade-up');
         const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+          entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1 });
         fadeElements.forEach(el => observer.observe(el));
-        
-        const marqueeStyle = document.createElement('style');
-        marqueeStyle.textContent = `@keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } } .marquee-track { animation: scrollMarquee 28s linear infinite; }`;
-        document.head.appendChild(marqueeStyle);
       });
     })();
   </script>
-
-  <style>
-    .marquee-track { display: inline-flex; white-space: nowrap; animation: scrollMarquee 26s linear infinite; }
-    @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .hero-slide { transition: opacity 1s ease; }
-    .dot { width: 8px; height: 8px; background: rgba(255,255,240,0.5); border-radius: 20px; cursor: pointer; transition: 0.3s; }
-    .dot.active { width: 28px; background: #d4af37; }
-    .service-chip { cursor: default; transition: all 0.2s; }
-    .service-chip:hover { background: #f8e6cf !important; transform: translateY(-4px); }
-    @media (max-width: 768px) { .hero-search { flex-direction: column; border-radius: 32px; background: white; } .hero-search select, .hero-search button { width: 100%; } .global-navbar .nav-menu { display: none; } .mobile-toggle { display: block !important; } }
-    .active-nav { color: #d4af37 !important; border-bottom: 2px solid #d4af37; }
-    .nav-link { transition: 0.2s; }
-    .benefit-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12); }
-    .story-card:hover { transform: translateY(-6px); transition: 0.25s; }
-  </style>
 
   <!-- Load layout.js to inject menubar and footer -->
   <script src="layout.js" defer></script>

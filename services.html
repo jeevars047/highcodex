@@ -44,6 +44,43 @@
       padding: 0 24px;
     }
 
+    .whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 30px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  z-index: 9999;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  background: #128C7E;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+
+  .whatsapp-float {
+    width: 54px;
+    height: 54px;
+    font-size: 28px;
+    bottom: 16px;
+    right: 16px;
+  }
+
+}
+
     section {
       padding: 70px 0;
     }
@@ -412,6 +449,16 @@
   </main>
 
   <div id="main-footer"></div>
+
+  <!-- WhatsApp Float -->
+<a href="https://wa.me/917868946689?text=Hi%20HighCodeX%2C%20I'd%20like%20to%20discuss%20a%20project" 
+target="_blank" 
+class="whatsapp-float" 
+aria-label="Chat on WhatsApp">
+
+  <i class="bi bi-whatsapp"></i>
+
+</a>
 
   <script>
     (function() {

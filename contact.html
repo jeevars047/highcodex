@@ -299,25 +299,82 @@
           <div class="contact-card">
             <h3 style="font-size: 1.8rem; font-family: 'Cormorant Garamond', serif;">Send a message</h3>
             <div style="width: 50px; height: 2px; background: var(--gold); margin: 12px 0 24px;"></div>
-            <form id="contactForm" style="display: flex; flex-direction: column; gap: 20px;">
-              <input type="text" id="fullName" class="form-control" placeholder="Full name *" required>
-              <input type="email" id="emailAddress" class="form-control" placeholder="Email address *" required>
-              <input type="tel" id="phoneNumber" class="form-control" placeholder="Phone number (optional)">
-              <select id="serviceInterest" class="form-control">
-                <option value="">I'm interested in...</option>
-                <option>Web Development</option>
-                <option>Mobile App Development</option>
-                <option>E-Commerce Solution</option>
-                <option>Backend / API</option>
-                <option>UI/UX Design</option>
-                <option>Other / Consultation</option>
-              </select>
-              <textarea rows="4" id="messageBox" class="form-control" placeholder="Tell us about your project, budget, or timeline..."></textarea>
-              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
-                <i class="bi bi-send-fill"></i> Send Inquiry →
-              </button>
-              <p style="font-size: 0.7rem; text-align: center; color: #8f7a6b;">We respond within 24h. No spam, only solutions.</p>
-            </form>
+            <form 
+action="https://formsubmit.co/highcodextech@gmail.com" 
+method="POST"
+id="contactForm" 
+style="display: flex; flex-direction: column; gap: 20px;">
+
+  <!-- FormSubmit Settings -->
+  <input type="hidden" name="_subject" value="New HighCodeX Inquiry">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+
+  <!-- Name -->
+  <input 
+    type="text" 
+    name="Full Name"
+    id="fullName" 
+    class="form-control" 
+    placeholder="Full name *" 
+    required>
+
+  <!-- Email -->
+  <input 
+    type="email" 
+    name="Email"
+    id="emailAddress" 
+    class="form-control" 
+    placeholder="Email address *" 
+    required>
+
+  <!-- Phone -->
+  <input 
+    type="tel" 
+    name="Phone Number"
+    id="phoneNumber" 
+    class="form-control" 
+    placeholder="Phone number (optional)">
+
+  <!-- Service -->
+  <select 
+    name="Service Interest"
+    id="serviceInterest" 
+    class="form-control">
+
+    <option value="">I'm interested in...</option>
+    <option>Web Development</option>
+    <option>Mobile App Development</option>
+    <option>E-Commerce Solution</option>
+    <option>Backend / API</option>
+    <option>UI/UX Design</option>
+    <option>Other / Consultation</option>
+
+  </select>
+
+  <!-- Message -->
+  <textarea 
+    rows="4" 
+    name="Message"
+    id="messageBox" 
+    class="form-control" 
+    placeholder="Tell us about your project, budget, or timeline..."></textarea>
+
+  <!-- Submit -->
+  <button 
+    type="submit" 
+    class="btn-primary" 
+    style="width: 100%; justify-content: center;">
+
+    <i class="bi bi-send-fill"></i> Send Inquiry →
+
+  </button>
+
+  <p style="font-size: 0.7rem; text-align: center; color: #8f7a6b;">
+    We respond within 24h. No spam, only solutions.
+  </p>
+
+</form>
           </div>
 
         </div>
@@ -393,49 +450,50 @@
     <i class="bi bi-whatsapp"></i>
   </a>
 
-  <script>
-    (function () {
-      document.addEventListener('DOMContentLoaded', () => {
+ <script>
+(function () {
 
-        // Fade-up observer
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  document.addEventListener('DOMContentLoaded', () => {
 
-        // FAQ accordion
-        document.querySelectorAll('.faq-item').forEach(item => {
-          item.querySelector('.faq-question').addEventListener('click', () => {
-            item.classList.toggle('active');
-          });
-        });
-
-        // Contact form
-        const form = document.getElementById('contactForm');
-        if (form) {
-          form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('fullName')?.value.trim();
-            const email = document.getElementById('emailAddress')?.value.trim();
-            if (!name || !email) { alert('❓ Please enter your name and email.'); return; }
-            const service = document.getElementById('serviceInterest')?.value || 'not specified';
-            alert(`✅ Thanks ${name}! We've received your inquiry regarding ${service}. Our team will get back to you within 24 hours at ${email}.`);
-            form.reset();
-          });
+    // Fade-up observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
         }
+      });
+    }, { threshold: 0.1 });
 
-        // CTA button
-        const ctaBtn = document.getElementById('ctaFooterBtn');
-        if (ctaBtn) {
-          ctaBtn.addEventListener('click', () => {
-            alert("📅 Awesome! One of our experts will contact you shortly. Meanwhile, reach out via WhatsApp: +91 7868946689");
-          });
-        }
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(item => {
+
+      item.querySelector('.faq-question').addEventListener('click', () => {
+
+        item.classList.toggle('active');
 
       });
-    })();
-  </script>
 
+    });
+
+    // CTA button
+    const ctaBtn = document.getElementById('ctaFooterBtn');
+
+    if (ctaBtn) {
+
+      ctaBtn.addEventListener('click', () => {
+
+        alert("📅 Awesome! One of our experts will contact you shortly. Meanwhile, reach out via WhatsApp: +91 7868946689");
+
+      });
+
+    }
+
+  });
+
+})();
+</script>
   <script src="layout.js" defer></script>
 </body>
 </html>
